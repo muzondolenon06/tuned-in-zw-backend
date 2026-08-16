@@ -135,19 +135,29 @@ def get_recents(user_id: int, db: Session = Depends(get_db)):
 @app.get("/radio/{station}", response_model=List[ArticleSchema])
 def get_radio_programs(station: str, db: Session = Depends(get_db)):
     """
-    Return articles tagged as radio-type content for a station.
-    Falls back to general articles since we share the RSS feed pool.
+    Return articles tagged as Radio content.
     """
-    if station.lower() == "all":
-        articles = db.query(models.Article).order_by(models.Article.published_date.desc()).limit(20).all()
-    else:
-        articles = db.query(models.Article).filter(
-            models.Article.source.ilike(f"%{station}%")
-        ).order_by(models.Article.published_date.desc()).all()
-        if not articles:
-            # Fallback to general articles with station name injected
-            articles = db.query(models.Article).order_by(models.Article.published_date.desc()).limit(10).all()
-    return articles
+    # Check if any radio articles exist at all
+    radio_count = db.query(models.Article).filter(models.Article.category == "Radio").count()
+    if radio_count == 0:
+        # Seed default radio programs if none exist
+        sample_radio = [
+            models.Article(title="The Ignition", summary="Start your morning with the latest hits and news on ZiFM Stereo.", url="#", source="ZiFM", category="Radio", published_date=datetime.datetime.now()),
+            models.Article(title="The Breeze", summary="Smooth sounds and deep discussions on StarFM.", url="#", source="StarFM", category="Radio", published_date=datetime.datetime.now()),
+            models.Article(title="Capitalk Drive", summary="Navigating Harare's traffic with the best conversations.", url="#", source="Capitalk", category="Radio", published_date=datetime.datetime.now())
+        ]
+        db.add_all(sample_radio)
+        db.commit()
+
+    query = db.query(models.Article).filter(models.Article.category == "Radio")
+    
+    if station.lower() != "all":
+        query = query.filter(
+            (models.Article.source.ilike(f"%{station}%")) |
+            (models.Article.title.ilike(f"%{station}%"))
+        )
+        
+    return query.order_by(models.Article.published_date.desc()).all()
 
 @app.get("/radio/{station}/search")
 def search_radio(station: str, query: str, db: Session = Depends(get_db)):
