@@ -142,12 +142,15 @@ def get_radio_programs(station: str, db: Session = Depends(get_db)):
     if radio_count == 0:
         # Seed default radio programs if none exist
         sample_radio = [
-            models.Article(title="The Ignition", summary="Start your morning with the latest hits and news on ZiFM Stereo.", url="#", source="ZiFM", category="Radio", published_date=datetime.datetime.now()),
-            models.Article(title="The Breeze", summary="Smooth sounds and deep discussions on StarFM.", url="#", source="StarFM", category="Radio", published_date=datetime.datetime.now()),
-            models.Article(title="Capitalk Drive", summary="Navigating Harare's traffic with the best conversations.", url="#", source="Capitalk", category="Radio", published_date=datetime.datetime.now())
+            models.Article(title="The Ignition", summary="Start your morning with the latest hits and news on ZiFM Stereo.", url="#zifm", source="ZiFM", category="Radio", published_date=datetime.datetime.now()),
+            models.Article(title="The Breeze", summary="Smooth sounds and deep discussions on StarFM.", url="#starfm", source="StarFM", category="Radio", published_date=datetime.datetime.now()),
+            models.Article(title="Capitalk Drive", summary="Navigating Harare's traffic with the best conversations.", url="#capitalk", source="Capitalk", category="Radio", published_date=datetime.datetime.now())
         ]
-        db.add_all(sample_radio)
-        db.commit()
+        try:
+            db.add_all(sample_radio)
+            db.commit()
+        except Exception as e:
+            db.rollback()
 
     query = db.query(models.Article).filter(models.Article.category == "Radio")
     
