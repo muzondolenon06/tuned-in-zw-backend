@@ -262,8 +262,26 @@ def get_hot_picks_mixed(user_id: int, db: Session = Depends(get_db)):
 
 @app.get("/opportunities", response_model=List[OpportunitySchema])
 def get_opportunities(db: Session = Depends(get_db)):
-    """Return all youth opportunities."""
+    """Return all youth opportunities including admin posts."""
     opps = db.query(models.Opportunity).all()
+    
+    # Fetch admin posts that were categorized as opportunities
+    admin_opps = db.query(models.Article).filter(
+        models.Article.category == "Opportunities"
+    ).all()
+    
+    # Prepend admin opportunities to the top
+    for a in admin_opps:
+        opp_obj = models.Opportunity(
+            id=a.id + 100000, # offset ID to avoid collision
+            title=a.title,
+            source=a.source,
+            url=a.url,
+            description=a.summary or a.full_content,
+            criteria="Admin update"
+        )
+        opps.insert(0, opp_obj)
+        
     if not opps:
         # Seed with sample data if empty
         sample_opps = [
