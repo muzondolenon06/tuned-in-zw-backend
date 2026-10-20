@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 import models, database
-from database import get_db, engine
+from database import get_db, engine, SessionLocal
 from pydantic import BaseModel
 from typing import List, Optional
 import datetime
@@ -630,11 +630,14 @@ def ensure_data_seeded(db: Session):
 
 @app.on_event("startup")
 def on_startup():
-    db = SessionLocal()
     try:
-        ensure_data_seeded(db)
-    finally:
-        db.close()
+        db = SessionLocal()
+        try:
+            ensure_data_seeded(db)
+        finally:
+            db.close()
+    except Exception as e:
+        print(f"Startup auto-seed error (non-fatal): {e}")
 
 @app.get("/besure/challenges", response_model=List[ImageChallengeSchema])
 def get_challenges(db: Session = Depends(get_db)):
