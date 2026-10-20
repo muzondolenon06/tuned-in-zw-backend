@@ -10,11 +10,19 @@ class AIService:
     def __init__(self):
         self.api_key = os.environ.get("GOOGLE_API_KEY")
         self.model_name = "gemini-2.0-flash"
-        if not self.api_key:
-            raise ValueError("GOOGLE_API_KEY is not set in .env")
-        self.client = genai.Client(api_key=self.api_key)
+        self.client = None
+        if self.api_key:
+            try:
+                self.client = genai.Client(api_key=self.api_key)
+            except Exception as e:
+                print(f"Failed to initialize Gemini client: {e}")
+                self.client = None
+        else:
+            print("GOOGLE_API_KEY not set. AIService running in simulated fallback mode.")
 
     def _call_api(self, prompt: str, json_mode: bool = False) -> str:
+        if not self.client:
+            raise ValueError("GOOGLE_API_KEY is not configured")
         config = types.GenerateContentConfig()
         if json_mode:
             config.response_mime_type = "application/json"

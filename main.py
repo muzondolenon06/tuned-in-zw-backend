@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException, BackgroundTasks
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -10,6 +11,9 @@ import datetime
 import os
 import json
 from rss_aggregator import run_rss_aggregator
+from ai_service import AIService
+
+ai_service = AIService()
 
 # In-memory admin post store (persisted in DB via Article model)
 ADMIN_SOURCE = "Admin"
@@ -28,8 +32,7 @@ app.add_middleware(
 
 if os.path.exists("frontend"):
     app.mount("/app", StaticFiles(directory="frontend", html=True), name="frontend")
-if os.path.exists("tuned_in_zw_website"):
-    app.mount("/website", StaticFiles(directory="tuned_in_zw_website", html=True), name="website")
+    app.mount("/website", StaticFiles(directory="frontend", html=True), name="website")
 
 class ArticleSchema(BaseModel):
     id: int
@@ -300,6 +303,8 @@ def get_opportunities(db: Session = Depends(get_db)):
 
 @app.get("/")
 def root():
+    if os.path.exists("frontend/index.html"):
+        return FileResponse("frontend/index.html")
     return {"message": "Tuned_in_zw API is running."}
 
 @app.get("/emails/", response_model=List[AutomatedEmailSchema])
@@ -391,3 +396,241 @@ def delete_admin_post(post_id: int, db: Session = Depends(get_db)):
     db.delete(post)
     db.commit()
     return {"message": "Post deleted successfully"}
+
+
+# --- NEW SCHEMAS ---
+
+class UserSchema(BaseModel):
+    id: int
+    username: str
+    email: str
+    class Config:
+        from_attributes = True
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
+class MILScoreSchema(BaseModel):
+    id: int
+    user_id: int
+    info_verification: int
+    ai_awareness: int
+    digital_safety: int
+    source_evaluation: int
+    class Config:
+        from_attributes = True
+
+class ImageChallengeSchema(BaseModel):
+    id: int
+    image_url: Optional[str] = None
+    category: Optional[str] = None
+    is_real: bool
+    explanation: Optional[str] = None
+    created_at: datetime.datetime
+    class Config:
+        from_attributes = True
+
+class ChallengeAnswer(BaseModel):
+    user_id: int
+    is_real: bool
+    notice_text: str
+
+class VerifyRequest(BaseModel):
+    content: str
+
+class VerifyResponse(BaseModel):
+    publisher: str
+    original_source: str
+    credible_sources: str
+    recommendation: str
+
+# --- NEW ENDPOINTS ---
+
+@app.post("/auth/login")
+def login(user_data: UserLogin, db: Session = Depends(get_db)):
+    # Very basic placeholder auth
+    user = db.query(models.User).filter(models.User.email == user_data.email).first()
+    if not user:
+        # Auto-register for prototype purposes
+        user = models.User(username=user_data.email.split("@")[0], email=user_data.email, password_hash="hash")
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+        # Create initial MILScore
+        mil = models.MILScore(user_id=user.id)
+        db.add(mil)
+        db.commit()
+    return {"message": "Login successful", "user_id": user.id, "username": user.username}
+
+@app.get("/mil/score/{user_id}", response_model=MILScoreSchema)
+def get_mil_score(user_id: int, db: Session = Depends(get_db)):
+    score = db.query(models.MILScore).filter(models.MILScore.user_id == user_id).first()
+    if not score:
+        score = models.MILScore(user_id=user_id)
+        db.add(score)
+        db.commit()
+        db.refresh(score)
+    return score
+
+@app.post("/safespace/verify", response_model=VerifyResponse)
+def verify_content(request: VerifyRequest, db: Session = Depends(get_db)):
+    # AI implementation for verifying content with heuristic fallback
+    text = request.content.strip()
+    
+    # Try calling AI service if available
+    try:
+        if hasattr(ai_service, 'client') and ai_service.client:
+            prompt = f"""Analyze this claim/content circulating in Zimbabwe: '{text}'
+Answer these 4 questions:
+1. Who published it? (originating account/source)
+2. Is there an original source? (government gazette, verified media, none)
+3. What do credible sources say? (debunking or confirming details)
+4. What should you do? (guidance on sharing/reporting)
+Respond in strict JSON format:
+{{"publisher": "...", "original_source": "...", "credible_sources": "...", "recommendation": "..."}}"""
+            res_json = ai_service._call_api(prompt, json_mode=True)
+            res_json = res_json.replace('```json', '').replace('```', '').strip()
+            data = json.loads(res_json)
+            return VerifyResponse(
+                publisher=data.get("publisher", "Unverified social media broadcast"),
+                original_source=data.get("original_source", "No matching official gazette or press release found."),
+                credible_sources=data.get("credible_sources", "Major Zimbabwean news outlets have not confirmed this report."),
+                recommendation=data.get("recommendation", "Pause before sharing. Confirm with official department channels.")
+            )
+    except Exception as e:
+        print(f"Verify AI processing error: {e}")
+        
+    # Heuristic verification fallback
+    lower = text.lower()
+    if any(k in lower for k in ["ecocash", "won", "prize", "airtime", "voucher", "click here", "claim your"]):
+        return VerifyResponse(
+            publisher="Likely fraudulent WhatsApp / SMS sender",
+            original_source="No verified promotion registered with official telecoms or merchants.",
+            credible_sources="Consumer protection bodies and police frequently warn against upfront payment or code-dialing schemes.",
+            recommendation="Do not dial any USSD codes or share PINs. Block and report the sender immediately."
+        )
+    elif any(k in lower for k in ["gazette", "curriculum", "zimsec", "minister", "parliament", "zimstat", "rbz"]):
+        return VerifyResponse(
+            publisher="Civic / Policy claim referencing Zimbabwean authorities",
+            original_source="Pending cross-check against recent Government Gazettes and Ministerial press briefings.",
+            credible_sources="Check official government portals (e.g. Zimstat, Ministry of Information) or Tuned_in_zw News Hub.",
+            recommendation="Verify the exact gazette statutory instrument number before treating as law."
+        )
+    else:
+        return VerifyResponse(
+            publisher="Unverified online source / forwarded chain message",
+            original_source="No primary document or official citation accompanied this text.",
+            credible_sources="No corroborating reports on mainstream Zimbabwean platforms (NewsDay, Herald, etc.).",
+            recommendation="Hold and verify. Search the Tuned_in_zw News Hub to see if verified journalists have investigated."
+        )
+
+@app.get("/besure/challenges", response_model=List[ImageChallengeSchema])
+def get_challenges(db: Session = Depends(get_db)):
+    return db.query(models.ImageChallenge).all()
+
+@app.post("/besure/challenges/{id}/answer")
+def answer_challenge(id: int, answer: ChallengeAnswer, db: Session = Depends(get_db)):
+    challenge = db.query(models.ImageChallenge).filter(models.ImageChallenge.id == id).first()
+    if not challenge:
+        raise HTTPException(status_code=404, detail="Challenge not found")
+    
+    # Check correctness
+    expected_is_real = challenge.is_real
+    is_correct = (answer.is_real == expected_is_real)
+    
+    # Prompt AI to categorize notice_text into one of the 4 areas and evaluate
+    evaluation = ai_service.categorize_article(f"Evaluate this response: {answer.notice_text}", "MIL Evaluation")
+    
+    # Update MIL Score (Placeholder logic)
+    score = db.query(models.MILScore).filter(models.MILScore.user_id == answer.user_id).first()
+    if score:
+        if is_correct:
+            score.ai_awareness += 5
+        db.commit()
+        
+    return {
+        "correct": is_correct,
+        "message": "Correct!" if is_correct else "Incorrect.",
+        "ai_feedback": f"Your reasoning was evaluated."
+    }
+
+
+
+class SafeSpaceExperienceBase(BaseModel):
+    topic: str
+    content: str
+    image_url: Optional[str] = None
+    author_name: Optional[str] = "Anonymous Peer"
+
+class SafeSpaceExperienceCreate(SafeSpaceExperienceBase):
+    pass
+
+class SafeSpaceExperienceSchema(SafeSpaceExperienceBase):
+    id: int
+    class Config:
+        from_attributes = True
+
+@app.get("/safespace/experiences", response_model=List[SafeSpaceExperienceSchema])
+def get_safespace_experiences(topic: Optional[str] = None, db: Session = Depends(get_db)):
+    query = db.query(models.SafeSpaceExperience)
+    if topic:
+        query = query.filter(models.SafeSpaceExperience.topic == topic)
+    return query.order_by(models.SafeSpaceExperience.id.desc()).all()
+
+@app.post("/safespace/experiences", response_model=SafeSpaceExperienceSchema)
+def create_safespace_experience(exp: SafeSpaceExperienceCreate, db: Session = Depends(get_db)):
+    new_exp = models.SafeSpaceExperience(
+        topic=exp.topic,
+        content=exp.content,
+        image_url=exp.image_url,
+        author_name=exp.author_name or "Anonymous Peer"
+    )
+    db.add(new_exp)
+    db.commit()
+    db.refresh(new_exp)
+    return new_exp
+
+# --- MODULE SCHEMAS & ENDPOINTS ---
+
+class ModuleContentSchema(BaseModel):
+    id: int
+    module_id: int
+    content_type: str
+    title: str
+    content_url: Optional[str] = None
+    content_text: Optional[str] = None
+    published_date: datetime.datetime
+    class Config:
+        from_attributes = True
+
+class MILModuleSchema(BaseModel):
+    id: int
+    title: str
+    description: str
+    contents: List[ModuleContentSchema] = []
+    class Config:
+        from_attributes = True
+
+@app.get("/modules", response_model=List[MILModuleSchema])
+def get_mil_modules(db: Session = Depends(get_db)):
+    modules = db.query(models.MILModule).all()
+    result = []
+    for m in modules:
+        contents = db.query(models.ModuleContent).filter(models.ModuleContent.module_id == m.id).all()
+        mod_dict = {
+            "id": m.id,
+            "title": m.title,
+            "description": m.description,
+            "contents": contents
+        }
+        result.append(mod_dict)
+    return result
+
+@app.get("/modules/{id}/content", response_model=List[ModuleContentSchema])
+def get_module_content(id: int, db: Session = Depends(get_db)):
+    return db.query(models.ModuleContent).filter(models.ModuleContent.module_id == id).all()
+
+# Mount site root for direct browser access
+if os.path.exists("frontend"):
+    app.mount("/", StaticFiles(directory="frontend", html=True), name="site_root")

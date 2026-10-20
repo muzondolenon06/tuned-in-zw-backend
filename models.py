@@ -70,3 +70,65 @@ class AutomatedEmail(Base):
     id = Column(Integer, primary_key=True, index=True)
     topic = Column(String, index=True)
     content = Column(Text)
+
+class MILModule(Base):
+    __tablename__ = "mil_modules"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, unique=True, index=True)
+    description = Column(Text)
+
+class ModuleContent(Base):
+    __tablename__ = "module_contents"
+
+    id = Column(Integer, primary_key=True, index=True)
+    module_id = Column(Integer, ForeignKey("mil_modules.id"))
+    content_type = Column(String) # "video", "reading", "quiz"
+    title = Column(String)
+    content_url = Column(String, nullable=True) # for video or quiz link
+    content_text = Column(Text, nullable=True) # for reading material
+    published_date = Column(DateTime, default=datetime.datetime.utcnow)
+
+    module = relationship("MILModule")
+
+class UserProgress(Base):
+    __tablename__ = "user_progress"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    content_id = Column(Integer, ForeignKey("module_contents.id"))
+    completed_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    user = relationship("User")
+    content = relationship("ModuleContent")
+
+class MILScore(Base):
+    __tablename__ = "mil_scores"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), unique=True)
+    info_verification = Column(Integer, default=0)
+    ai_awareness = Column(Integer, default=0)
+    digital_safety = Column(Integer, default=0)
+    source_evaluation = Column(Integer, default=0)
+    
+    user = relationship("User")
+
+class SafeSpaceExperience(Base):
+    __tablename__ = "safespace_experiences"
+
+    id = Column(Integer, primary_key=True, index=True)
+    topic = Column(String, index=True)
+    content = Column(Text)
+    image_url = Column(String, nullable=True)
+    author_name = Column(String, default="Anonymous Peer")
+
+class ImageChallenge(Base):
+    __tablename__ = "image_challenges"
+
+    id = Column(Integer, primary_key=True, index=True)
+    image_url = Column(String, nullable=True) # URL or Base64
+    category = Column(String) # e.g. "AI-generated image", "real photograph", "manipulated headline"
+    is_real = Column(Boolean)
+    explanation = Column(Text)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
