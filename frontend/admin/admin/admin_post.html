@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Update - Tuned_in_zw Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .post-container {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .post-textarea {
+            width: 100%;
+            min-height: 120px;
+            background: rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--text-color);
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        .post-textarea:focus { outline: none; border-color: var(--primary); }
+        .media-icons { display: flex; gap: 12px; margin-bottom: 15px; flex-wrap: wrap; }
+        .media-icon {
+            display: flex; flex-direction: column; align-items: center;
+            background: rgba(255,255,255,0.08); padding: 10px 18px;
+            border-radius: 10px; cursor: pointer;
+            border: 1px solid transparent; transition: 0.25s;
+            font-size: 0.8rem; color: var(--text-muted);
+        }
+        .media-icon:hover { border-color: var(--primary); background: rgba(255,255,255,0.15); }
+        .media-icon span { font-size: 1.5rem; margin-bottom: 4px; }
+        .attached-media { display:none; position:relative; margin-bottom:15px; }
+        .attached-media img { width:100%; max-height:200px; object-fit:cover; border-radius:10px; }
+        .remove-media-btn {
+            position: absolute; top: 10px; right: 10px;
+            background: rgba(0,0,0,0.7); color: white; border: none;
+            border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-weight: bold;
+        }
+        .post-history-item {
+            background: rgba(255,255,255,0.05); border-radius: 10px;
+            padding: 15px; margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.2s;
+        }
+        .post-history-item:hover { background: rgba(255,255,255,0.08); }
+        .post-history-header { display:flex; justify-content:space-between; margin-bottom:10px; }
+        .admin-badge {
+            display: inline-block; background: var(--primary);
+            color: white; font-size: 0.7rem; font-weight: bold;
+            padding: 2px 8px; border-radius: 20px; margin-left: 8px;
+        }
+        .section-select {
+            width: 100%; padding: 12px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px; color: var(--text-color);
+            font-family: 'Inter', sans-serif; font-size: 0.95rem;
+            margin-bottom: 15px; box-sizing: border-box;
+        }
+        .section-select option { background: #1a1a2e; }
+        .title-input {
+            width: 100%; padding: 12px 15px;
+            background: rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px; color: var(--text-color);
+            font-family: 'Inter', sans-serif; font-size: 1rem;
+            margin-bottom: 15px; box-sizing: border-box;
+        }
+        .title-input:focus { outline: none; border-color: var(--primary); }
+        .loading-spinner {
+            display: inline-block; width: 16px; height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff; border-radius: 50%;
+            animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 6px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <header class="app-header newspaper-header">
+        <button class="icon-btn" onclick="window.history.back()">&#8592; Back</button>
+        <h1 style="margin:0;" id="page-title">Post Update</h1>
+        <div class="header-actions"></div>
+    </header>
+
+    <main class="container" style="padding-top: 20px; padding-bottom: 100px;">
+
+        <!-- Create Post Form -->
+        <div class="post-container">
+            <h3 style="margin-top:0; color:var(--primary);">✍️ Create New Post</h3>
+
+            <label style="display:block; margin-bottom:6px; color:var(--text-muted); font-size:0.9rem;">Post Title *</label>
+            <input type="text" id="post-title" class="title-input" placeholder="Enter a clear, concise headline...">
+
+            <label style="display:block; margin-bottom:6px; color:var(--text-muted); font-size:0.9rem;">Post Content *</label>
+            <textarea id="post-text" class="post-textarea" placeholder="Write your post content here..."></textarea>
+
+            <label style="display:block; margin-bottom:6px; color:var(--text-muted); font-size:0.9rem;">Publish to Section</label>
+            <select id="post-section" class="section-select">
+                <option value="general">General (All Sections)</option>
+                <option value="news">Today's News</option>
+                <option value="discovery">Discovery</option>
+                <option value="hotpicks">🔥 Hot Picks</option>
+                <option value="opportunities">Youth Opportunities</option>
+                <option value="connect">Youth Connect+</option>
+                <option value="radio">Radio</option>
+            </select>
+
+            <label style="display:block; margin-bottom:6px; color:var(--text-muted); font-size:0.9rem;">Cover Image URL (optional)</label>
+            <input type="url" id="post-image-url" class="title-input" placeholder="https://example.com/image.jpg">
+
+            <p style="margin:0 0 10px 0; color:var(--text-muted); font-size:0.9rem;">Attach local media</p>
+            <div class="media-icons">
+                <div class="media-icon" onclick="triggerFileInput('image/*')">
+                    <span>📷</span> Images
+                </div>
+                <div class="media-icon" onclick="triggerFileInput('video/*')">
+                    <span>🎥</span> Videos
+                </div>
+                <div class="media-icon" onclick="triggerFileInput('*/*')">
+                    <span>📄</span> Files
+                </div>
+                <div class="media-icon" onclick="triggerFileInput('audio/*')">
+                    <span>🎙️</span> Audio
+                </div>
+            </div>
+
+            <!-- Hidden file input -->
+            <input type="file" id="file-input" style="display:none;" onchange="handleFileSelect(event)">
+
+            <!-- Attached Media Preview -->
+            <div id="attached-media" class="attached-media">
+                <img id="media-preview" src="" alt="Attached media">
+                <button class="remove-media-btn" onclick="removeMedia()">✕</button>
+                <p id="file-name" style="text-align:center; color:var(--text-muted); margin-top:5px;"></p>
+            </div>
+
+            <label style="display:flex; align-items:center; gap:10px; margin-bottom:15px; cursor:pointer;">
+                <input type="checkbox" id="post-is-hotpick" style="width:18px; height:18px;">
+                <span style="color:var(--text-muted); font-size:0.9rem;">🔥 Mark as Hot Pick (featured in the Hot Picks section)</span>
+            </label>
+
+            <div style="display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap;">
+                <button id="post-btn" class="icon-btn" style="background:#2ecc71; color:white; padding:10px 20px; border-radius:8px; font-weight:bold; border:none; min-width:120px;" onclick="submitPost()">
+                    📤 Post Now
+                </button>
+                <button id="sync-btn" class="icon-btn" style="background:var(--primary); color:white; padding:10px 20px; border-radius:8px; font-weight:bold; border:none; min-width:160px;" onclick="syncFeeds()">
+                    🔄 Sync RSS Feeds
+                </button>
+            </div>
+        </div>
+
+        <hr style="border:1px solid rgba(255,255,255,0.1); margin: 25px 0;">
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3 style="margin:0;">📋 Your Admin Posts</h3>
+            <span id="posts-count" style="color:var(--text-muted); font-size:0.9rem;"></span>
+        </div>
+        <div id="post-history">
+            <p style="color:var(--text-muted);">Loading your posts...</p>
+        </div>
+    </main>
+
+    <script>
+        const API_BASE = 'https://tuned-in-zw-backend.onrender.com';
+
+        // Read section from URL and pre-select
+        const urlParams = new URLSearchParams(window.location.search);
+        const defaultSection = urlParams.get('section') || 'general';
+        document.getElementById('post-section').value = defaultSection;
+
+        let currentFile = null;
+
+        // Load existing admin posts on page load
+        window.addEventListener('DOMContentLoaded', loadAdminPosts);
+
+        async function loadAdminPosts() {
+            const historyDiv = document.getElementById('post-history');
+            historyDiv.innerHTML = '<p style="color:var(--text-muted);">Loading...</p>';
+            try {
+                const res = await fetch(`${API_BASE}/admin/posts`);
+                if (!res.ok) throw new Error('Failed to load posts');
+                const posts = await res.json();
+                document.getElementById('posts-count').textContent = `${posts.length} post(s)`;
+
+                if (posts.length === 0) {
+                    historyDiv.innerHTML = '<p style="color:var(--text-muted);">No admin posts yet. Create your first post above!</p>';
+                    return;
+                }
+                historyDiv.innerHTML = '';
+                posts.forEach(post => renderPostItem(post));
+            } catch (e) {
+                historyDiv.innerHTML = '<p style="color:#e74c3c;">Error loading posts. Is the backend running?</p>';
+            }
+        }
+
+        function renderPostItem(post) {
+            const historyDiv = document.getElementById('post-history');
+            const date = new Date(post.published_date).toLocaleString();
+            const div = document.createElement('div');
+            div.className = 'post-history-item';
+            div.id = `post-${post.id}`;
+            div.innerHTML = `
+                <div class="post-history-header">
+                    <div>
+                        <strong>Admin</strong>
+                        <span class="admin-badge">${post.category}</span>
+                    </div>
+                    <span style="color:var(--text-muted); font-size:0.8rem;">${date}</span>
+                </div>
+                <div style="font-weight:600; margin-bottom:8px; color:var(--text-color);">${post.title}</div>
+                <p style="white-space:pre-wrap; margin:0; color:var(--text-muted); font-size:0.95rem;">${post.summary || ''}</p>
+                ${post.image_url && !post.image_url.startsWith('#') ? `<img src="${post.image_url}" style="width:100%; max-height:180px; object-fit:cover; border-radius:8px; margin-top:10px;">` : ''}
+                <div style="display:flex; gap:10px; margin-top:15px; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px; flex-wrap:wrap;">
+                    <span style="color:var(--text-muted); font-size:0.8rem; align-self:center;">✅ Live in user feed</span>
+                    <button class="icon-btn" style="color:#e74c3c; font-size:0.9rem; margin-left:auto;" onclick="deleteAdminPost(${post.id})">🗑️ Delete</button>
+                </div>
+            `;
+            historyDiv.appendChild(div);
+        }
+
+        function triggerFileInput(acceptType) {
+            const input = document.getElementById('file-input');
+            input.accept = acceptType;
+            input.click();
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            currentFile = file;
+            const previewDiv = document.getElementById('attached-media');
+            const imgPreview = document.getElementById('media-preview');
+            const fileName = document.getElementById('file-name');
+
+            if (file.type.startsWith('image/')) {
+                imgPreview.src = URL.createObjectURL(file);
+                imgPreview.style.display = 'block';
+                fileName.innerText = '';
+            } else {
+                imgPreview.style.display = 'none';
+                fileName.innerText = 'Attached: ' + file.name;
+            }
+            previewDiv.style.display = 'block';
+        }
+
+        function removeMedia() {
+            currentFile = null;
+            document.getElementById('file-input').value = '';
+            document.getElementById('attached-media').style.display = 'none';
+        }
+
+        async function submitPost() {
+            const title = document.getElementById('post-title').value.trim();
+            const text = document.getElementById('post-text').value.trim();
+            const section = document.getElementById('post-section').value;
+            const imageUrl = document.getElementById('post-image-url').value.trim();
+            const isHotPick = document.getElementById('post-is-hotpick').checked;
+
+            if (!title || !text) {
+                showToast('Please enter a title and content before posting.');
+                return;
+            }
+
+            const btn = document.getElementById('post-btn');
+            btn.innerHTML = '<span class="loading-spinner"></span> Posting...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(`${API_BASE}/admin/post`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title,
+                        content: text,
+                        section,
+                        image_url: imageUrl || null,
+                        is_hot_pick: isHotPick
+                    })
+                });
+
+                if (res.ok) {
+                    const newPost = await res.json();
+                    // Reset form
+                    document.getElementById('post-title').value = '';
+                    document.getElementById('post-text').value = '';
+                    document.getElementById('post-image-url').value = '';
+                    document.getElementById('post-is-hotpick').checked = false;
+                    removeMedia();
+                    // Show at top of list
+                    const historyDiv = document.getElementById('post-history');
+                    if (historyDiv.querySelector('p')) historyDiv.innerHTML = '';
+                    renderPostItem(newPost);
+                    // Reload count
+                    const allPosts = document.querySelectorAll('.post-history-item');
+                    document.getElementById('posts-count').textContent = `${allPosts.length} post(s)`;
+                    showToast('✅ Post is now live in user feeds!');
+                } else {
+                    const err = await res.json();
+                    showToast('Error: ' + (err.detail || 'Failed to post'));
+                }
+            } catch (e) {
+                showToast('Network error. Is the backend running?');
+            } finally {
+                btn.innerHTML = '📤 Post Now';
+                btn.disabled = false;
+            }
+        }
+
+        async function deleteAdminPost(id) {
+            if (!confirm('Permanently delete this post from the user feed?')) return;
+            try {
+                const res = await fetch(`${API_BASE}/admin/posts/${id}`, { method: 'DELETE' });
+                if (res.ok) {
+                    const el = document.getElementById(`post-${id}`);
+                    if (el) el.remove();
+                    showToast('Post deleted from user feed.');
+                    // Update count
+                    const allPosts = document.querySelectorAll('.post-history-item');
+                    document.getElementById('posts-count').textContent = `${allPosts.length} post(s)`;
+                    if (allPosts.length === 0) {
+                        document.getElementById('post-history').innerHTML = '<p style="color:var(--text-muted);">No admin posts yet.</p>';
+                    }
+                } else {
+                    showToast('Failed to delete post.');
+                }
+            } catch (e) {
+                showToast('Network error deleting post.');
+            }
+        }
+
+        async function syncFeeds() {
+            const btn = document.getElementById('sync-btn');
+            btn.innerHTML = '<span class="loading-spinner"></span> Syncing...';
+            btn.disabled = true;
+            try {
+                const res = await fetch(`${API_BASE}/admin/sync-feeds`, { method: 'POST' });
+                if (res.ok) {
+                    showToast('🔄 RSS feeds are syncing in the background. New articles will appear shortly.');
+                } else {
+                    showToast('Sync request sent (may take a moment).');
+                }
+            } catch (e) {
+                showToast('Error connecting to backend.');
+            } finally {
+                setTimeout(() => {
+                    btn.innerHTML = '🔄 Sync RSS Feeds';
+                    btn.disabled = false;
+                }, 3000);
+            }
+        }
+
+        function showToast(message) {
+            let toast = document.getElementById('admin-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'admin-toast';
+                Object.assign(toast.style, {
+                    position: 'fixed', bottom: '90px', left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: 'var(--primary)', color: '#fff',
+                    padding: '12px 24px', borderRadius: '30px',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
+                    zIndex: '9999', fontSize: '0.9rem', fontWeight: 'bold',
+                    opacity: '0', transition: 'opacity 0.3s', pointerEvents: 'none',
+                    maxWidth: '80vw', textAlign: 'center'
+                });
+                document.body.appendChild(toast);
+            }
+            toast.innerText = message;
+            toast.style.opacity = '1';
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3500);
+        }
+    </script>
+</body>
+</html>

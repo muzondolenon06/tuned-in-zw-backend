@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youth Digital Vanguard Initiative - Tuned_in_zw</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Hero & Download Section -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <div class="hero-image-container">
+                <img src="vanguard_logo.jpg" alt="Youth Digital Vanguard Initiative" class="hero-logo">
+                <h1 class="hero-text">PLAY YOUR PART: LEAD THE CHARGE, BE THE SHIELD</h1>
+            </div>
+            
+            <div class="download-corner">
+                <h3>Get the full Tuned_in_zw experience</h3>
+                <a href="https://github.com/muzondolenon06/tuned-in-zw-website/releases/latest/download/Tuned_in_zw_prototype.apk" class="download-btn android-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0004.5511-.4482.9997-.9993.9997zm-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997zm11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.416.416 0 0 0-.5676.1521l-2.022 3.503C15.5532 8.2366 13.8213 7.7813 12 7.7813s-3.5532.4553-5.1373 1.1691L4.8407 5.4474a.416.416 0 0 0-.5676-.1521.416.416 0 0 0-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396z"/></svg>
+                    Download for Android
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-container" id="main-content">
+        <!-- Youth Connect+ (Outreach) View -->
+        <div id="view-outreach" class="content-view active">
+            <div class="outreach-header">
+                <h2>Youth Connect+ MIL Academy</h2>
+                <p>Empowering the next generation of digital leaders and defenders.</p>
+            </div>
+            
+            <div class="outreach-tabs">
+                <button class="out-tab active" onclick="switchOutreachTab('home', this)">HOME</button>
+                <button class="out-tab" onclick="switchOutreachTab('safespace', this)">Y.D.V.I SAFE SPACE</button>
+                <button class="out-tab" onclick="switchOutreachTab('opportunities', this)">OPPORTUNITIES</button>
+                <button class="out-tab" onclick="switchOutreachTab('contact', this)">CONTACT</button>
+            </div>
+            
+            <div id="outreach-feed" class="feed-container">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+
+        <!-- Module Detail View (Hidden by default) -->
+        <div id="view-module-detail" class="content-view">
+            <div class="outreach-header" style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="closeDetailView()">
+                <span style="font-size:1.5rem; color:var(--primary); font-weight:bold;">← Back to Modules</span>
+                <h2 id="module-detail-title" style="margin:0; margin-left:15px;">Module Details</h2>
+            </div>
+            <div class="progress-bar-container" style="background:rgba(255,255,255,0.1); height:8px; border-radius:4px; margin: 15px 20px;">
+                <div id="module-progress" style="background:#2ecc71; height:100%; width:100%; border-radius:4px; transition:width 0.3s;"></div>
+            </div>
+            <p id="module-progress-text" style="text-align:center; font-size:0.85rem; color:#2ecc71; margin-top:-5px; margin-bottom:15px;">✓ Completed & Registered</p>
+            
+            <div id="module-content-list" class="feed-container">
+                <!-- Content injected here -->
+            </div>
+        </div>
+        
+        <!-- Safe Space Detail View -->
+        <div id="view-safespace-detail" class="content-view">
+            <div class="outreach-header" style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="closeSafeSpaceDetailView()">
+                <span style="font-size:1.5rem; color:#2ecc71; font-weight:bold;">← Back to Safe Space</span>
+                <h2 id="safespace-detail-title" style="margin:0; margin-left:15px;">Safe Space Topic</h2>
+            </div>
+            
+            <div id="safespace-article-container" class="feed-container" style="padding-top:10px;">
+                <!-- Admin Guide Injected Here -->
+            </div>
+            
+            <div class="feed-container" style="padding-top:20px; border-top: 1px solid rgba(255,255,255,0.1); margin-top:20px;">
+                <h3 style="margin-bottom:15px; text-align:center;">Your Peer's experiences with <span id="safespace-peer-topic" style="color:var(--primary);"></span></h3>
+                
+                <div id="safespace-comments-list">
+                    <!-- Comments injected here -->
+                </div>
+                
+                <button id="safespace-share-btn" onclick="document.getElementById('safespace-post-form').style.display='block'; this.style.display='none';" style="background:var(--primary); color:#fff; border:none; padding:12px; border-radius:5px; cursor:pointer; font-weight:bold; width:100%; margin-top:15px;">Share your experience</button>
+                
+                <div id="safespace-post-form" style="display:none; margin-top:15px; background:rgba(255,255,255,0.05); padding:15px; border-radius:10px;">
+                    <textarea id="safespace-post-text" placeholder="Share your experience or advice for peers..." style="width:100%; min-height:80px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:10px; border-radius:5px; margin-bottom:10px; box-sizing:border-box;"></textarea>
+                    <input type="file" id="safespace-post-image" accept="image/*" style="margin-bottom:10px; width:100%; color:#aaa;" />
+                    <button id="safespace-submit-btn" onclick="submitSafeSpaceComment()" style="background:#2ecc71; color:#fff; border:none; padding:12px; border-radius:5px; cursor:pointer; font-weight:bold; width:100%;">Post Experience</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- News View -->
+        <div id="view-news" class="content-view">
+            <div class="page-header">
+                <h2>News Hub</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterNews('All', this)">All News</button>
+                    <button class="filter-tab" onclick="filterNews('The Zimbabwean', this)">The Zimbabwean</button>
+                    <button class="filter-tab" onclick="filterNews('NewsDay', this)">NewsDay</button>
+                    <button class="filter-tab" onclick="filterNews('Herald', this)">Herald</button>
+                    <button class="filter-tab" onclick="filterNews('Chronicle', this)">Chronicle</button>
+                </div>
+            </div>
+            <div id="news-feed" class="feed-container grid-layout">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+
+        <!-- Radio View -->
+        <div id="view-radio" class="content-view">
+            <div class="page-header">
+                <h2>Radio Programmes & Broadcasts</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterRadio('All', this)">All Stations</button>
+                    <button class="filter-tab" onclick="filterRadio('ZiFM', this)">ZiFM Stereo</button>
+                    <button class="filter-tab" onclick="filterRadio('StarFM', this)">StarFM</button>
+                    <button class="filter-tab" onclick="filterRadio('Capitalk', this)">Capitalk 100.4FM</button>
+                </div>
+            </div>
+            <div id="radio-feed" class="feed-container list-layout">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+
+        <!-- BeSure View -->
+        <div id="view-besure" class="content-view">
+            <div class="outreach-header">
+                <h2>BeSure Fact-Checking Suite</h2>
+                <p>Your ultimate fact-checking and media literacy toolkit.</p>
+            </div>
+            
+            <div class="outreach-tabs">
+                <button class="out-tab active" onclick="switchBeSureTab('verify', this)">🔎 VERIFY THIS</button>
+                <button class="out-tab" onclick="switchBeSureTab('real_or_manipulated', this)">REAL OR MANIPULATED?</button>
+                <button class="out-tab" onclick="switchBeSureTab('mil_challenge', this)">MIL Challenge</button>
+                <button class="out-tab" onclick="switchBeSureTab('mil_score', this)">MIL Score</button>
+            </div>
+            
+            <div id="besure-feed" class="feed-container">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+        
+        <!-- Login View -->
+        <div id="view-login" class="content-view">
+            <div class="outreach-header">
+                <h2>Personal Account & Score Tracking</h2>
+                <p>Sign in to track your Media Literacy scores and contribute peer reports.</p>
+            </div>
+            <div class="feed-container" style="display:flex; flex-direction:column; gap:15px; align-items:center; margin-top:20px; max-width:400px; margin-left:auto; margin-right:auto;">
+                <input type="email" id="login-email" placeholder="Email Address (e.g. youth@tunedin.zw)" style="width:100%; padding:12px; border-radius:5px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:#fff; box-sizing:border-box;" />
+                <input type="password" id="login-password" placeholder="Password" style="width:100%; padding:12px; border-radius:5px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:#fff; box-sizing:border-box;" />
+                <button onclick="handleLogin()" style="width:100%; padding:12px; border-radius:5px; border:none; background:#2ecc71; color:#fff; font-weight:bold; cursor:pointer; font-size:1rem;">Sign In / Auto-Register</button>
+                <p id="login-message" style="color:#2ecc71; display:none; text-align:center;"></p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Fixed Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="javascript:void(0)" class="nav-item active" onclick="switchMainView('outreach', this)">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
+            <span>Youth Connect+</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item" onclick="switchMainView('news', this)">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            <span>News</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item" onclick="switchMainView('radio', this)">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>Radio</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item" onclick="switchMainView('besure', this)">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+            <span>BeSure</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item" id="nav-login-btn" onclick="switchMainView('login', this)">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <span id="nav-login-text">Login</span>
+        </a>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+</html>

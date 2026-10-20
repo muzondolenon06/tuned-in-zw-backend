@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuned_in_zw - Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="app-header" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+        <h1 style="margin:0; font-size:1.1rem;">Tuned_in_zw <span style="color:var(--primary); font-size:0.85rem; font-weight:normal;">(Admin)</span></h1>
+        <div style="display:flex; align-items:center; gap:8px; flex:1; justify-content:flex-end; flex-wrap:wrap;">
+            <input type="text" id="global-search" class="search-bar" placeholder="Search news..." style="max-width:160px;">
+            <button onclick="window.location.href='admin_post.html';" class="edit-profile-btn" style="width:auto; min-width:max-content; padding:8px 12px; margin:0; background:#2ecc71;">+ New Post</button>
+            <button onclick="window.location.href='admin_settings.html';" class="edit-profile-btn" style="width:auto; min-width:max-content; padding:8px 12px; margin:0;">⚙️ Settings</button>
+            <button onclick="sessionStorage.removeItem('isLoggedIn'); sessionStorage.removeItem('isAdmin'); window.location.href='login.html';" style="width:auto; min-width:max-content; background:#e74c3c; color:white; border:none; border-radius:5px; padding:8px 12px; cursor:pointer; font-weight:bold;">Log out</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Today's News -->
+        <section class="widget-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h2 style="margin:0;">Today's News</h2>
+                <button onclick="window.location.href='admin_post.html?section=news'" class="edit-profile-btn" style="width:auto; min-width:max-content; padding:6px 12px; margin:0; font-size:0.9rem;">+ Post Content</button>
+            </div>
+            <div class="horizontal-scroll" id="todays-news-widgets">
+                <!-- Widgets dynamically populated -->
+            </div>
+        </section>
+
+        <!-- Discover -->
+        <section class="widget-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h2 style="margin:0;">Discover</h2>
+                <button onclick="window.location.href='admin_post.html?section=discover'" class="edit-profile-btn" style="width:auto; min-width:max-content; padding:6px 12px; margin:0; font-size:0.9rem;">+ Post Content</button>
+            </div>
+            <div class="horizontal-scroll" id="discover-widgets">
+                <!-- Widgets dynamically populated -->
+            </div>
+        </section>
+
+        <!-- Recommended For You -->
+        <section class="widget-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h2 style="margin:0;">Recommended - for you</h2>
+                <button onclick="window.location.href='admin_post.html?section=recommended'" class="edit-profile-btn" style="width:auto; min-width:max-content; padding:6px 12px; margin:0; font-size:0.9rem;">+ Post Content</button>
+            </div>
+            <div class="horizontal-scroll" id="recommended-widgets">
+                <!-- Widgets dynamically populated -->
+            </div>
+        </section>
+        
+        <!-- Recents -->
+        <section class="widget-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h2 style="margin:0;">Recents</h2>
+                <button onclick="window.location.href='admin_post.html?section=recents'" class="edit-profile-btn" style="width:auto; min-width:max-content; padding:6px 12px; margin:0; font-size:0.9rem;">+ Post Content</button>
+            </div>
+            <div class="horizontal-scroll" id="recents-widgets">
+                <!-- Widgets dynamically populated -->
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="newspaper.html" class="nav-item">News</a>
+        <a href="radio.html" class="nav-item">Radio</a>
+        <a href="opportunities.html" class="nav-item">Youth Opportunities</a>
+        <a href="outreach.html" class="nav-item">Youth Connect+</a>
+        <a href="hot_picks.html" class="nav-item">Hot picks</a>
+        <a href="discovery.html" class="nav-item">Discovery</a>
+    </nav>
+    <script src="app.js"></script>
+</body>
+</html>

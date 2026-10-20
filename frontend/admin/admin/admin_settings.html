@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Settings - Tuned_in_zw</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .settings-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+        .settings-tab {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            font-weight: 600;
+        }
+        .settings-tab.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .email-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .email-item h4 {
+            margin: 0 0 10px 0;
+            color: var(--text-color);
+        }
+        .email-item textarea {
+            width: 100%;
+            height: 100px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-color);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-family: 'Inter', sans-serif;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header newspaper-header">
+        <button class="icon-btn" onclick="window.location.href='admin_index.html'">&#8592; Back</button>
+        <h1 style="margin:0;">Settings</h1>
+        <div class="header-actions"></div>
+    </header>
+
+    <main class="container" style="padding-top: 20px;">
+        <div class="settings-nav" id="settings-tabs">
+            <button class="settings-tab active" onclick="switchTab('myspace', this)">My Space</button>
+            <button class="settings-tab" onclick="switchTab('emails', this)">Automated Emails</button>
+            <button class="settings-tab" onclick="switchTab('feeds', this)">RSS Feeds</button>
+            <button class="settings-tab" onclick="switchTab('notifications', this)">Notifications</button>
+        </div>
+
+        <!-- My Space Tab -->
+        <div id="myspace" class="tab-content active">
+            <h2>Profile Details</h2>
+            <div class="profile-field" style="margin-bottom: 15px;">
+                <label style="display:block; margin-bottom:5px; color:var(--text-muted);">Name</label>
+                <input type="text" class="search-bar" value="Admin User" style="width:100%; border-radius:5px;">
+            </div>
+            <div class="profile-field" style="margin-bottom: 15px;">
+                <label style="display:block; margin-bottom:5px; color:var(--text-muted);">Email</label>
+                <input type="email" class="search-bar" value="admin@tunedin.co.zw" style="width:100%; border-radius:5px;">
+            </div>
+            <div class="profile-field" style="margin-bottom: 15px;">
+                <label style="display:block; margin-bottom:5px; color:var(--text-muted);">Gender</label>
+                <select class="search-bar" style="width:100%; border-radius:5px; background:rgba(255,255,255,0.1); color:var(--text-color); border:none; padding:10px;">
+                    <option value="Male" style="color:black;">Male</option>
+                    <option value="Female" style="color:black;">Female</option>
+                    <option value="Rather not say" style="color:black;">Rather not say</option>
+                </select>
+            </div>
+            <div class="profile-field" style="margin-bottom: 15px;">
+                <label style="display:block; margin-bottom:5px; color:var(--text-muted);">Pronouns</label>
+                <select class="search-bar" style="width:100%; border-radius:5px; background:rgba(255,255,255,0.1); color:var(--text-color); border:none; padding:10px;">
+                    <option value="he/him" style="color:black;">he/him</option>
+                    <option value="she/her" style="color:black;">she/her</option>
+                    <option value="other" style="color:black;">other</option>
+                </select>
+            </div>
+            <div class="profile-field" style="margin-bottom: 15px;">
+                <label style="display:block; margin-bottom:5px; color:var(--text-muted);">Level of Education</label>
+                <select class="search-bar" style="width:100%; border-radius:5px; background:rgba(255,255,255,0.1); color:var(--text-color); border:none; padding:10px;">
+                    <option value="GCE O Level/equivalent" style="color:black;">GCE O Level/equivalent</option>
+                    <option value="GCE A Level/equivalent" style="color:black;">GCE A Level/equivalent</option>
+                    <option value="National certificate/diploma" style="color:black;">National certificate/diploma</option>
+                    <option value="Degree" style="color:black;">Degree</option>
+                    <option value="other" style="color:black;">other</option>
+                </select>
+            </div>
+            <button class="edit-profile-btn" onclick="alert('Profile updated!')">Save Profile</button>
+        </div>
+
+        <!-- Automated Emails Tab -->
+        <div id="emails" class="tab-content">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h2 style="margin:0;">Automated Emails</h2>
+                <button class="edit-profile-btn" style="padding:6px 12px; margin:0;" onclick="createNewEmail()">+ Create New</button>
+            </div>
+            
+            <div id="email-list">
+                <div class="email-item">
+                    <h4>Topic: Registration on Platform</h4>
+                    <label style="display:block; margin-bottom:5px; color:var(--text-muted); font-size:0.9rem;">Email Content:</label>
+                    <textarea>Welcome to Tuned-in_zw! We are excited to have you on board. Please explore the news and radio stations.</textarea>
+                    <div style="display:flex; justify-content:flex-end;">
+                        <button class="edit-profile-btn" style="padding:6px 12px; margin:0;" onclick="alert('Email template saved!')">Save Changes</button>
+                    </div>
+                </div>
+                <div class="email-item">
+                    <h4>Topic: Changing Password</h4>
+                    <label style="display:block; margin-bottom:5px; color:var(--text-muted); font-size:0.9rem;">Email Content:</label>
+                    <textarea>You have requested a password reset. Please click the link below to change your password securely.</textarea>
+                    <div style="display:flex; justify-content:flex-end;">
+                        <button class="edit-profile-btn" style="padding:6px 12px; margin:0;" onclick="alert('Email template saved!')">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create New Email Form (Hidden by default) -->
+            <div id="new-email-form" style="display:none; background:rgba(255,255,255,0.05); padding:15px; border-radius:10px; margin-top:20px; border:1px solid var(--primary);">
+                <h3 style="margin-top:0;">Create New Automated Email</h3>
+                <label style="display:block; margin-bottom:5px; color:var(--text-muted); font-size:0.9rem;">Topic / Use Case</label>
+                <input type="text" id="new-email-topic" class="search-bar" placeholder="e.g. Account Deletion" style="width:100%; border-radius:5px; margin-bottom:15px;">
+                <label style="display:block; margin-bottom:5px; color:var(--text-muted); font-size:0.9rem;">Email Content:</label>
+                <textarea id="new-email-content" style="width:100%; height:100px; background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.1); color:var(--text-color); padding:10px; border-radius:5px; margin-bottom:10px; font-family:'Inter', sans-serif; resize:vertical;"></textarea>
+                <div style="display:flex; justify-content:flex-end; gap:10px;">
+                    <button class="icon-btn" style="background:#e74c3c; padding:6px 12px; border-radius:5px;" onclick="document.getElementById('new-email-form').style.display='none'">Cancel</button>
+                    <button class="edit-profile-btn" style="padding:6px 12px; margin:0;" onclick="saveNewEmail()">Upload to System</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RSS Feeds Tab -->
+        <div id="feeds" class="tab-content">
+            <h2>RSS Feed Management</h2>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">Manually trigger the RSS aggregator to pull the latest news, opportunities, and discovery topics into the app.</p>
+            <div class="email-item">
+                <h4 style="margin:0 0 8px;">Current Feed Source</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem; margin:0;">The Zimbabwean — thezimbabwean.co/feed/</p>
+            </div>
+            <div class="email-item">
+                <h4 style="margin:0 0 8px;">Last Sync</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem; margin:0;" id="last-sync-time">Loading...</p>
+            </div>
+            <button id="sync-trigger-btn" class="edit-profile-btn" style="margin-top:10px;" onclick="triggerSync()">
+                🔄 Sync Feeds Now
+            </button>
+            <div id="sync-status" style="margin-top:12px; color:#2ecc71; font-size:0.9rem; display:none;">✅ Sync triggered! New articles will appear in user feeds shortly.</div>
+        </div>
+
+        <!-- Notifications Tab -->
+        <div id="notifications" class="tab-content">
+            <h2>Notifications</h2>
+            <div class="email-item" style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <h4 style="margin:0;">Push Notifications</h4>
+                    <p style="margin:5px 0 0 0; font-size:0.9rem; color:var(--text-muted);">Receive alerts on user activity.</p>
+                </div>
+                <input type="checkbox" checked style="width:20px; height:20px;">
+            </div>
+            <div class="email-item" style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <h4 style="margin:0;">Email Summaries</h4>
+                    <p style="margin:5px 0 0 0; font-size:0.9rem; color:var(--text-muted);">Receive weekly admin digest emails.</p>
+                </div>
+                <input type="checkbox" style="width:20px; height:20px;">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const API_BASE = 'https://tuned-in-zw-backend.onrender.com';
+
+        // Load last sync info
+        async function loadSyncInfo() {
+            try {
+                const res = await fetch(`${API_BASE}/news/today`);
+                const articles = await res.json();
+                const el = document.getElementById('last-sync-time');
+                if (el && articles.length > 0) {
+                    const latest = new Date(articles[0].published_date);
+                    el.textContent = `${articles.length} articles loaded. Latest: ${latest.toLocaleString()}`;
+                }
+            } catch(e) {}
+        }
+        loadSyncInfo();
+
+        async function triggerSync() {
+            const btn = document.getElementById('sync-trigger-btn');
+            const status = document.getElementById('sync-status');
+            btn.disabled = true;
+            btn.textContent = 'Syncing...';
+            try {
+                await fetch(`${API_BASE}/admin/sync-feeds`, { method: 'POST' });
+                status.style.display = 'block';
+                setTimeout(() => loadSyncInfo(), 5000);
+            } catch(e) {
+                status.textContent = '❌ Error triggering sync. Is backend running?';
+                status.style.color = '#e74c3c';
+                status.style.display = 'block';
+            } finally {
+                setTimeout(() => { btn.disabled = false; btn.textContent = '🔄 Sync Feeds Now'; }, 3000);
+            }
+        }
+
+        function switchTab(tabId, el) {
+            document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            if (el) el.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+
+            if(tabId === 'emails') fetchEmails();
+        }
+
+        async function fetchEmails() {
+            try {
+                const res = await fetch(`${API_BASE}/emails/`);
+                if(!res.ok) throw new Error("Failed to load emails");
+                const emails = await res.json();
+                const list = document.getElementById('email-list');
+                list.innerHTML = '';
+                emails.forEach(email => {
+                    const newDiv = document.createElement('div');
+                    newDiv.className = 'email-item';
+                    const safeTopic = email.topic.replace(/'/g, "\\'");
+                    newDiv.innerHTML = `
+                        <h4>Topic: ${email.topic}</h4>
+                        <label style="display:block; margin-bottom:5px; color:var(--text-muted); font-size:0.9rem;">Email Content:</label>
+                        <textarea id="email-content-${email.id}">${email.content}</textarea>
+                        <div style="display:flex; justify-content:flex-end;">
+                            <button class="edit-profile-btn" style="padding:6px 12px; margin:0;" onclick="updateEmail(${email.id}, '${safeTopic}')">Save Changes</button>
+                        </div>
+                    `;
+                    list.appendChild(newDiv);
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        function createNewEmail() {
+            document.getElementById('new-email-form').style.display = 'block';
+            document.getElementById('new-email-topic').focus();
+        }
+
+        async function saveNewEmail() {
+            const topic = document.getElementById('new-email-topic').value;
+            const content = document.getElementById('new-email-content').value;
+            
+            if(!topic || !content) {
+                alert('Please fill out both topic and content.');
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}/emails/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic, content })
+                });
+                if(res.ok) {
+                    alert('New automated email uploaded to the system!');
+                    document.getElementById('new-email-topic').value = '';
+                    document.getElementById('new-email-content').value = '';
+                    document.getElementById('new-email-form').style.display = 'none';
+                    fetchEmails();
+                } else {
+                    alert('Failed to save email');
+                }
+            } catch (e) {
+                console.error(e);
+                alert('Error saving email');
+            }
+        }
+
+        async function updateEmail(id, topic) {
+            const content = document.getElementById(`email-content-${id}`).value;
+            try {
+                const res = await fetch(`${API_BASE}/emails/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic, content })
+                });
+                if(res.ok) {
+                    alert('Email template saved!');
+                } else {
+                    alert('Failed to update email');
+                }
+            } catch (e) {
+                console.error(e);
+                alert('Error updating email');
+            }
+        }
+    </script>
+</body>
+</html>
