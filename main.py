@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException, BackgroundTasks
+from fastapi import FastAPI, Depends, HTTPException, BackgroundTasks, Header, Body
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,6 +11,7 @@ from typing import List, Optional
 import datetime
 import os
 import json
+import secrets
 from rss_aggregator import run_rss_aggregator
 from ai_service import AIService
 
@@ -241,6 +242,22 @@ class MILModuleSchema(BaseModel):
     contents: List[ModuleContentSchema] = []
     class Config:
         from_attributes = True
+
+class ModuleProgressRequest(BaseModel):
+    user_id: Optional[int] = None
+    module_id: Optional[int] = None
+    module_title: str
+
+class SessionUniversityUpdate(BaseModel):
+    user_id: Optional[int] = None
+    university: str
+
+class LogoutRequest(BaseModel):
+    session_token: Optional[str] = None
+
+class ToggleActionRequest(BaseModel):
+    user_id: Optional[int] = None
+    active: Optional[bool] = None
 
 
 # ─── AUTO-SEEDING & MIGRATION LOGIC ────────────────────────────────────────────
@@ -1121,17 +1138,102 @@ def delete_admin_post(post_id: int, db: Session = Depends(get_db)):
     return {"message": "Post deleted successfully"}
 
 
+# ─── AUTH, SESSION & USER ACTIVITY HELPERS ─────────────────────────────────────
+
+SESSION_TTL_DAYS = 30
+
+def _get_active_session(db: Session, x_session_token: Optional[str]) -> Optional[models.UserSession]:
+    token = (x_session_token or "").strip()
+    if not token:
+        return None
+    session_row = db.query(models.UserSession).filter(
+        models.UserSession.session_token == token,
+        models.UserSession.is_active == True,
+    ).first()
+    if not session_row:
+        return None
+    if session_row.expires_at and session_row.expires_at < datetime.datetime.utcnow():
+        session_row.is_active = False
+        db.commit()
+        return None
+    return session_row
+
+def _resolve_active_user_id(
+    db: Session,
+    x_session_token: Optional[str],
+    fallback_user_id: Optional[int] = None,
+) -> int:
+    session_row = _get_active_session(db, x_session_token)
+    if session_row:
+        return session_row.user_id
+    return fallback_user_id or 1
+
+def _get_user_activity_payload(db: Session, user_id: int) -> dict:
+    progress_rows = db.query(models.UserModuleProgress).filter(
+        models.UserModuleProgress.user_id == user_id
+    ).order_by(models.UserModuleProgress.completed_at.asc()).all()
+    rsvp_rows = db.query(models.UserEventRSVP).filter(
+        models.UserEventRSVP.user_id == user_id
+    ).all()
+    like_rows = db.query(models.UserStoryLike).filter(
+        models.UserStoryLike.user_id == user_id
+    ).all()
+    return {
+        "completed_modules": [row.module_title for row in progress_rows],
+        "rsvp_event_ids": [row.event_id for row in rsvp_rows],
+        "liked_story_ids": [row.experience_id for row in like_rows],
+    }
+
+def _sync_user_link_toggle(
+    db: Session,
+    model_cls,
+    lookup_kwargs: dict,
+    target_obj,
+    counter_attr: str,
+    desired_state: Optional[bool] = None,
+    default_count: int = 0,
+):
+    """Idempotently set or toggle a user-to-resource link and adjust the counter."""
+    existing = db.query(model_cls).filter_by(**lookup_kwargs).first()
+    current_count = getattr(target_obj, counter_attr, None)
+    if current_count is None:
+        current_count = default_count
+
+    target_state = (existing is None) if desired_state is None else bool(desired_state)
+    newly_added = False
+
+    if target_state and existing is None:
+        db.add(model_cls(**lookup_kwargs))
+        current_count += 1
+        newly_added = True
+    elif not target_state and existing is not None:
+        db.delete(existing)
+        current_count = max(0, current_count - 1)
+
+    setattr(target_obj, counter_attr, current_count)
+    db.commit()
+    db.refresh(target_obj)
+    return target_state, newly_added, getattr(target_obj, counter_attr)
+
+
 # ─── AUTH & SMART LIFESTYLE SCORE ENDPOINTS ────────────────────────────────────
 
 @app.post("/auth/login")
 def login(user_data: UserLogin, db: Session = Depends(get_db)):
     ensure_data_seeded(db)
-    username_clean = user_data.email.split("@")[0] if "@" in user_data.email else user_data.email
-    user = db.query(models.User).filter(models.User.username == username_clean).first()
+    clean_email = (user_data.email or "").strip().lower()
+    username_clean = clean_email.split("@")[0] if "@" in clean_email else clean_email
+
+    user = None
+    if clean_email:
+        user = db.query(models.User).filter(models.User.email.ilike(clean_email)).first()
+    if not user and username_clean:
+        user = db.query(models.User).filter(models.User.username == username_clean).first()
+
     if not user:
         user = models.User(
-            username=username_clean,
-            email=user_data.email,
+            username=username_clean or "ambassador",
+            email=clean_email or user_data.email,
             password_hash="hash",
             university=user_data.university or "University of Zimbabwe (UZ)"
         )
@@ -1147,11 +1249,115 @@ def login(user_data: UserLogin, db: Session = Depends(get_db)):
         )
         db.add(mil)
         db.commit()
+    else:
+        changed = False
+        if clean_email and not user.email:
+            user.email = clean_email
+            changed = True
+        if user_data.university and user.university != user_data.university:
+            user.university = user_data.university
+            changed = True
+        if changed:
+            db.commit()
+
+    now = datetime.datetime.utcnow()
+    session_token = secrets.token_urlsafe(32)
+    session_row = models.UserSession(
+        session_token=session_token,
+        user_id=user.id,
+        university=user_data.university or getattr(user, "university", "UZ") or "UZ",
+        is_active=True,
+        created_at=now,
+        last_seen_at=now,
+        expires_at=now + datetime.timedelta(days=SESSION_TTL_DAYS),
+    )
+    db.add(session_row)
+    db.commit()
+
+    activity = _get_user_activity_payload(db, user.id)
     return {
         "message": "Login successful",
+        "session_token": session_token,
         "user_id": user.id,
         "username": user.username,
-        "university": getattr(user, "university", "University of Zimbabwe (UZ)")
+        "email": user.email,
+        "university": session_row.university,
+        **activity,
+    }
+
+@app.get("/auth/session")
+def get_current_session(
+    x_session_token: Optional[str] = Header(default=None, alias="X-Session-Token"),
+    db: Session = Depends(get_db),
+):
+    ensure_data_seeded(db)
+    session_row = _get_active_session(db, x_session_token)
+    if not session_row:
+        raise HTTPException(status_code=401, detail="Session not active")
+
+    user = db.query(models.User).filter(models.User.id == session_row.user_id).first()
+    if not user:
+        raise HTTPException(status_code=401, detail="User not found for session")
+
+    session_row.last_seen_at = datetime.datetime.utcnow()
+    db.commit()
+
+    activity = _get_user_activity_payload(db, user.id)
+    return {
+        "session_token": session_row.session_token,
+        "user_id": user.id,
+        "username": user.username,
+        "email": user.email,
+        "university": session_row.university or getattr(user, "university", "UZ") or "UZ",
+        **activity,
+    }
+
+@app.post("/auth/session/university")
+def update_session_university(
+    req: SessionUniversityUpdate,
+    x_session_token: Optional[str] = Header(default=None, alias="X-Session-Token"),
+    db: Session = Depends(get_db),
+):
+    session_row = _get_active_session(db, x_session_token)
+    user_id = session_row.user_id if session_row else (req.user_id or 1)
+    if session_row:
+        session_row.university = req.university
+        session_row.last_seen_at = datetime.datetime.utcnow()
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if user:
+        user.university = req.university
+    db.commit()
+    return {"user_id": user_id, "university": req.university}
+
+@app.post("/auth/logout")
+def logout_session(
+    req: Optional[LogoutRequest] = Body(default=None),
+    x_session_token: Optional[str] = Header(default=None, alias="X-Session-Token"),
+    db: Session = Depends(get_db),
+):
+    token = (x_session_token or (req.session_token if req else "") or "").strip()
+    if token:
+        session_row = db.query(models.UserSession).filter(
+            models.UserSession.session_token == token,
+            models.UserSession.is_active == True,
+        ).first()
+        if session_row:
+            session_row.is_active = False
+            session_row.last_seen_at = datetime.datetime.utcnow()
+            db.commit()
+    return {"message": "Logged out"}
+
+@app.get("/user/activity")
+def get_user_activity(
+    user_id: Optional[int] = None,
+    x_session_token: Optional[str] = Header(default=None, alias="X-Session-Token"),
+    db: Session = Depends(get_db),
+):
+    ensure_data_seeded(db)
+    resolved_user_id = _resolve_active_user_id(db, x_session_token, user_id)
+    return {
+        "user_id": resolved_user_id,
+        **_get_user_activity_payload(db, resolved_user_id),
     }
 
 @app.get("/mil/score/{user_id}", response_model=MILScoreSchema)
@@ -1375,19 +1581,39 @@ def create_safespace_experience(exp: SafeSpaceExperienceCreate, db: Session = De
     return new_exp
 
 @app.post("/safespace/experiences/{exp_id}/like")
-def like_safespace_experience(exp_id: int, user_id: int = 1, db: Session = Depends(get_db)):
+def like_safespace_experience(
+    exp_id: int,
+    user_id: int = 1,
+    req: Optional[ToggleActionRequest] = Body(default=None),
+    x_session_token: Optional[str] = Header(default=None, alias="X-Session-Token"),
+    db: Session = Depends(get_db),
+):
     ensure_data_seeded(db)
     exp = db.query(models.SafeSpaceExperience).filter(models.SafeSpaceExperience.id == exp_id).first()
     if not exp:
         raise HTTPException(status_code=404, detail="Experience not found")
-    if getattr(exp, "likes_count", None) is None:
-        exp.likes_count = 5
-    exp.likes_count += 1
-    db.commit()
-    db.refresh(exp)
+
+    resolved_user_id = _resolve_active_user_id(db, x_session_token, req.user_id if req and req.user_id else user_id)
+    desired_state = req.active if req else None
+    liked_now, _, new_likes_count = _sync_user_link_toggle(
+        db=db,
+        model_cls=models.UserStoryLike,
+        lookup_kwargs={"user_id": resolved_user_id, "experience_id": exp_id},
+        target_obj=exp,
+        counter_attr="likes_count",
+        desired_state=desired_state,
+        default_count=5,
+    )
+    liked_ids = [
+        r.experience_id
+        for r in db.query(models.UserStoryLike).filter(models.UserStoryLike.user_id == resolved_user_id).all()
+    ]
     return {
-        "message": "Liked!",
-        "new_likes_count": exp.likes_count
+        "message": "Liked!" if liked_now else "Like removed",
+        "experience_id": exp_id,
+        "liked": liked_now,
+        "new_likes_count": new_likes_count,
+        "liked_story_ids": liked_ids,
     }
 
 
@@ -1440,25 +1666,52 @@ def create_campus_event(event: CampusEventCreate, db: Session = Depends(get_db))
     return new_event
 
 @app.post("/events/{event_id}/rsvp")
-def rsvp_campus_event(event_id: int, user_id: int = 1, db: Session = Depends(get_db)):
+def rsvp_campus_event(
+    event_id: int,
+    user_id: int = 1,
+    req: Optional[ToggleActionRequest] = Body(default=None),
+    x_session_token: Optional[str] = Header(default=None, alias="X-Session-Token"),
+    db: Session = Depends(get_db),
+):
     ensure_data_seeded(db)
     event = db.query(models.CampusEvent).filter(models.CampusEvent.id == event_id).first()
     if not event:
         raise HTTPException(status_code=404, detail="Event not found")
-    
-    event.rsvp_count += 1
-    
-    # Also reward user with Smart Lifestyle / University points
-    score = db.query(models.MILScore).filter(models.MILScore.user_id == user_id).first()
-    if score:
-        score.digital_safety = min(100, score.digital_safety + 2)
-        score.source_evaluation = min(100, score.source_evaluation + 2)
-    
-    db.commit()
-    db.refresh(event)
+
+    resolved_user_id = _resolve_active_user_id(db, x_session_token, req.user_id if req and req.user_id else user_id)
+    desired_state = req.active if req else None
+    rsvped_now, newly_added, new_rsvp_count = _sync_user_link_toggle(
+        db=db,
+        model_cls=models.UserEventRSVP,
+        lookup_kwargs={"user_id": resolved_user_id, "event_id": event_id},
+        target_obj=event,
+        counter_attr="rsvp_count",
+        desired_state=desired_state,
+        default_count=0,
+    )
+
+    if newly_added:
+        # Also reward user with Smart Lifestyle / University points on new RSVP
+        score = db.query(models.MILScore).filter(models.MILScore.user_id == resolved_user_id).first()
+        if score:
+            score.digital_safety = min(100, score.digital_safety + 2)
+            score.source_evaluation = min(100, score.source_evaluation + 2)
+            db.commit()
+
+    rsvp_ids = [
+        r.event_id
+        for r in db.query(models.UserEventRSVP).filter(models.UserEventRSVP.user_id == resolved_user_id).all()
+    ]
     return {
-        "message": f"You're registered for {event.title}! (+15 Ambassador Points)",
-        "new_rsvp_count": event.rsvp_count
+        "message": (
+            f"You're registered for {event.title}! (+15 Ambassador Points)"
+            if rsvped_now
+            else f"RSVP cancelled for {event.title}."
+        ),
+        "event_id": event_id,
+        "rsvped": rsvped_now,
+        "new_rsvp_count": new_rsvp_count,
+        "rsvp_event_ids": rsvp_ids,
     }
 
 
@@ -1478,6 +1731,63 @@ def get_mil_modules(db: Session = Depends(get_db)):
             "contents": contents
         })
     return result
+
+@app.get("/modules/progress")
+def get_module_progress(
+    user_id: Optional[int] = None,
+    x_session_token: Optional[str] = Header(default=None, alias="X-Session-Token"),
+    db: Session = Depends(get_db),
+):
+    ensure_data_seeded(db)
+    resolved_user_id = _resolve_active_user_id(db, x_session_token, user_id)
+    rows = db.query(models.UserModuleProgress).filter(
+        models.UserModuleProgress.user_id == resolved_user_id
+    ).order_by(models.UserModuleProgress.completed_at.asc()).all()
+    return {
+        "user_id": resolved_user_id,
+        "completed_modules": [r.module_title for r in rows],
+    }
+
+@app.post("/modules/progress")
+def record_module_progress(
+    req: ModuleProgressRequest,
+    x_session_token: Optional[str] = Header(default=None, alias="X-Session-Token"),
+    db: Session = Depends(get_db),
+):
+    ensure_data_seeded(db)
+    resolved_user_id = _resolve_active_user_id(db, x_session_token, req.user_id)
+    clean_title = (req.module_title or "").strip()
+    if not clean_title:
+        raise HTTPException(status_code=400, detail="module_title is required")
+
+    module_obj = None
+    if req.module_id is not None:
+        module_obj = db.query(models.MILModule).filter(models.MILModule.id == req.module_id).first()
+    if not module_obj:
+        module_obj = db.query(models.MILModule).filter(models.MILModule.title == clean_title).first()
+
+    existing = db.query(models.UserModuleProgress).filter(
+        models.UserModuleProgress.user_id == resolved_user_id,
+        models.UserModuleProgress.module_title == clean_title,
+    ).first()
+
+    if not existing:
+        db.add(models.UserModuleProgress(
+            user_id=resolved_user_id,
+            module_id=module_obj.id if module_obj else req.module_id,
+            module_title=clean_title,
+            completed_at=datetime.datetime.utcnow(),
+        ))
+        db.commit()
+
+    rows = db.query(models.UserModuleProgress).filter(
+        models.UserModuleProgress.user_id == resolved_user_id
+    ).order_by(models.UserModuleProgress.completed_at.asc()).all()
+    return {
+        "message": f"Progress saved for {clean_title}",
+        "user_id": resolved_user_id,
+        "completed_modules": [r.module_title for r in rows],
+    }
 
 @app.get("/modules/{id}/content", response_model=List[ModuleContentSchema])
 def get_module_content(id: int, db: Session = Depends(get_db)):

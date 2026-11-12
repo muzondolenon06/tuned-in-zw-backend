@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Text
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Text, UniqueConstraint
 from sqlalchemy.orm import relationship
 import datetime
 from database import Base
@@ -185,3 +185,64 @@ class CampusEvent(Base):
     banner_url = Column(String, nullable=True)
     rsvp_count = Column(Integer, default=0)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+
+class UserSession(Base):
+    __tablename__ = "user_sessions"
+
+    id = Column(Integer, primary_key=True, index=True)
+    session_token = Column(String, unique=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), index=True)
+    university = Column(String, default="UZ", nullable=True)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    last_seen_at = Column(DateTime, default=datetime.datetime.utcnow)
+    expires_at = Column(DateTime, nullable=True)
+
+    user = relationship("User")
+
+
+class UserModuleProgress(Base):
+    __tablename__ = "user_module_progress"
+    __table_args__ = (
+        UniqueConstraint("user_id", "module_title", name="uq_user_module_title"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), index=True)
+    module_id = Column(Integer, ForeignKey("mil_modules.id"), nullable=True, index=True)
+    module_title = Column(String, index=True)
+    completed_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    user = relationship("User")
+    module = relationship("MILModule")
+
+
+class UserEventRSVP(Base):
+    __tablename__ = "user_event_rsvps"
+    __table_args__ = (
+        UniqueConstraint("user_id", "event_id", name="uq_user_event_rsvp"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), index=True)
+    event_id = Column(Integer, ForeignKey("campus_events.id"), index=True)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    user = relationship("User")
+    event = relationship("CampusEvent")
+
+
+class UserStoryLike(Base):
+    __tablename__ = "user_story_likes"
+    __table_args__ = (
+        UniqueConstraint("user_id", "experience_id", name="uq_user_story_like"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), index=True)
+    experience_id = Column(Integer, ForeignKey("safespace_experiences.id"), index=True)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    user = relationship("User")
+    experience = relationship("SafeSpaceExperience")
