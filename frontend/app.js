@@ -1,11 +1,19 @@
 const API_BASE = window.location.hostname.includes('vercel.app') ? 'https://tuned-in-zw-backend.onrender.com' : ((window.location.origin && window.location.origin.startsWith('http')) ? window.location.origin : 'http://127.0.0.1:8006');
 
 // -----------------------------------------
+// Session & Neon-Synced Activity Storage Keys
+// -----------------------------------------
+const DELTAS_SESSION_TOKEN_KEY = 'deltasSessionToken';
+const DELTAS_SESSION_USER_KEY = 'deltasUserSession';
+const DELTAS_PORTAL_UNLOCKED_KEY = 'deltasPortalUnlocked';
+
+// -----------------------------------------
 // Global State
 // -----------------------------------------
-let currentUserId = sessionStorage.getItem('currentUserId') ? parseInt(sessionStorage.getItem('currentUserId')) : 1;
-let currentUsername = sessionStorage.getItem('currentUsername') || 'SmartAmbassador';
-let currentUniversity = sessionStorage.getItem('currentUniversity') || 'UZ';
+let currentSessionToken = localStorage.getItem(DELTAS_SESSION_TOKEN_KEY) || sessionStorage.getItem(DELTAS_SESSION_TOKEN_KEY) || '';
+let currentUserId = 1;
+let currentUsername = 'SmartAmbassador';
+let currentUniversity = 'UZ';
 let currentSafeSpaceTopic = 'How I Navigated Peer Pressure';
 
 const ACADEMY_TITLES = [
@@ -32,13 +40,176 @@ const PEER_STORY_CATEGORIES = [
 ];
 
 // -----------------------------------------
-// Optimistic UI State Stores
+// User-Scoped Activity Stores (Synced with Neon)
 // -----------------------------------------
 let userRSVPs = {};
-try { userRSVPs = JSON.parse(localStorage.getItem('userRSVPs') || '{}'); } catch(e){}
-
 let userLikedStories = {};
-try { userLikedStories = JSON.parse(localStorage.getItem('userLikedStories') || '{}'); } catch(e){}
+let completedSmartModulesCache = [];
+
+function _userCacheKey(prefix, uid = currentUserId) {
+    return `${prefix}_u${uid || 1}`;
+}
+
+function getAuthHeaders(extra = {}) {
+    const headers = { ...extra };
+    if (currentSessionToken) {
+        headers['X-Session-Token'] = currentSessionToken;
+    }
+    return headers;
+}
+
+function readLocalJSON(key, fallback) {
+    try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+    } catch (e) {
+        return fallback;
+    }
+}
+
+function writeLocalJSON(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch (e) {}
+}
+
+function loadUserActivityCache(uid = currentUserId) {
+    userRSVPs = readLocalJSON(_userCacheKey('userRSVPs', uid), {});
+    userLikedStories = readLocalJSON(_userCacheKey('userLikedStories', uid), {});
+    completedSmartModulesCache = readLocalJSON(_userCacheKey('completedSmartModules', uid), []);
+}
+
+function saveUserActivityCache(uid = currentUserId) {
+    writeLocalJSON(_userCacheKey('userRSVPs', uid), userRSVPs);
+    writeLocalJSON(_userCacheKey('userLikedStories', uid), userLikedStories);
+    writeLocalJSON(_userCacheKey('completedSmartModules', uid), completedSmartModulesCache);
+}
+
+function loadSessionFromBrowserStorage() {
+    const saved = readLocalJSON(DELTAS_SESSION_USER_KEY, null);
+    if (saved && saved.user_id) {
+        currentUserId = parseInt(saved.user_id, 10) || 1;
+        currentUsername = saved.username || 'SmartAmbassador';
+        currentUniversity = saved.university || 'UZ';
+    } else {
+        currentUserId = sessionStorage.getItem('currentUserId') ? parseInt(sessionStorage.getItem('currentUserId'), 10) : 1;
+        currentUsername = sessionStorage.getItem('currentUsername') || 'SmartAmbassador';
+        currentUniversity = sessionStorage.getItem('currentUniversity') || 'UZ';
+    }
+    loadUserActivityCache(currentUserId);
+}
+
+function updateSessionUI() {
+    const isSignedIn = !!(currentSessionToken || sessionStorage.getItem('currentUsername') || localStorage.getItem(DELTAS_SESSION_USER_KEY));
+    const navText = document.getElementById('nav-login-text');
+    if (navText) navText.innerText = isSignedIn ? currentUsername : 'Ambassador';
+
+    const userPill = document.getElementById('active-user-pill');
+    if (userPill) userPill.innerText = isSignedIn ? `${currentUsername} (${currentUniversity})` : 'Delta & Boost Challenge';
+
+    const landingLoginBtnText = document.querySelector('.btn-portal-login span');
+    if (landingLoginBtnText) {
+        landingLoginBtnText.innerText = isSignedIn ? `Enter Portal (${currentUsername})` : 'Sign In to Portal';
+    }
+}
+
+function applyServerUserState(data) {
+    if (!data) return;
+    if (data.session_token) {
+        currentSessionToken = data.session_token;
+        try { localStorage.setItem(DELTAS_SESSION_TOKEN_KEY, currentSessionToken); } catch (e) {}
+        try { sessionStorage.setItem(DELTAS_SESSION_TOKEN_KEY, currentSessionToken); } catch (e) {}
+    }
+    if (data.user_id) currentUserId = parseInt(data.user_id, 10) || 1;
+    if (data.username) currentUsername = data.username;
+    if (data.university) currentUniversity = data.university;
+
+    const meta = {
+        user_id: currentUserId,
+        username: currentUsername,
+        university: currentUniversity
+    };
+    writeLocalJSON(DELTAS_SESSION_USER_KEY, meta);
+    try {
+        sessionStorage.setItem('currentUserId', String(currentUserId));
+        sessionStorage.setItem('currentUsername', currentUsername);
+        sessionStorage.setItem('currentUniversity', currentUniversity);
+    } catch (e) {}
+
+    loadUserActivityCache(currentUserId);
+
+    if (Array.isArray(data.completed_modules)) {
+        completedSmartModulesCache = data.completed_modules;
+    }
+    if (Array.isArray(data.rsvp_event_ids)) {
+        const nextRSVPs = {};
+        data.rsvp_event_ids.forEach(id => { nextRSVPs[id] = true; });
+        userRSVPs = nextRSVPs;
+    }
+    if (Array.isArray(data.liked_story_ids)) {
+        const nextLikes = {};
+        data.liked_story_ids.forEach(id => { nextLikes[id] = true; });
+        userLikedStories = nextLikes;
+    }
+
+    saveUserActivityCache(currentUserId);
+    updateSessionUI();
+}
+
+function clearClientSessionState() {
+    currentSessionToken = '';
+    currentUserId = 1;
+    currentUsername = 'SmartAmbassador';
+    currentUniversity = 'UZ';
+    userRSVPs = {};
+    userLikedStories = {};
+    completedSmartModulesCache = [];
+
+    [DELTAS_SESSION_TOKEN_KEY, DELTAS_SESSION_USER_KEY, DELTAS_PORTAL_UNLOCKED_KEY].forEach(k => {
+        try { localStorage.removeItem(k); } catch (e) {}
+        try { sessionStorage.removeItem(k); } catch (e) {}
+    });
+    ['currentUserId', 'currentUsername', 'currentUniversity'].forEach(k => {
+        try { sessionStorage.removeItem(k); } catch (e) {}
+    });
+    updateSessionUI();
+}
+
+async function syncActivityFromNeon() {
+    if (!currentUserId && !currentSessionToken) return null;
+    try {
+        const res = await fetch(`${API_BASE}/user/activity?user_id=${currentUserId}`, {
+            headers: getAuthHeaders()
+        });
+        if (!res.ok) return null;
+        const data = await res.json();
+        applyServerUserState(data);
+        return data;
+    } catch (e) {
+        return null;
+    }
+}
+
+async function syncUniversityChapter(newUni) {
+    currentUniversity = newUni || 'UZ';
+    writeLocalJSON(DELTAS_SESSION_USER_KEY, {
+        user_id: currentUserId,
+        username: currentUsername,
+        university: currentUniversity
+    });
+    try { sessionStorage.setItem('currentUniversity', currentUniversity); } catch (e) {}
+    updateSessionUI();
+
+    try {
+        await fetch(`${API_BASE}/auth/session/university`, {
+            method: 'POST',
+            headers: getAuthHeaders({ 'Content-Type': 'application/json' }),
+            body: JSON.stringify({ user_id: currentUserId, university: currentUniversity })
+        });
+    } catch (e) {}
+}
+
+loadSessionFromBrowserStorage();
 
 // -----------------------------------------
 // Skeleton Loading Renderers (Mirrors Content • Zero Layout Shift)
@@ -139,22 +310,40 @@ function renderModulesSkeleton(count = 6) {
 }
 
 function getCompletedModules() {
-    try {
-        const raw = localStorage.getItem('completedSmartModules');
-        return raw ? JSON.parse(raw) : ["Binge Drinking & Health Limits", "Drinking & Driving Prevention"];
-    } catch (e) {
-        return ["Binge Drinking & Health Limits"];
+    if (Array.isArray(completedSmartModulesCache) && completedSmartModulesCache.length > 0) {
+        return completedSmartModulesCache;
     }
+    const stored = readLocalJSON(_userCacheKey('completedSmartModules', currentUserId), []);
+    completedSmartModulesCache = Array.isArray(stored) ? stored : [];
+    return completedSmartModulesCache;
 }
 
-function markModuleCompleted(title) {
-    const completed = getCompletedModules();
+function markModuleCompleted(title, moduleId = null) {
+    const completed = getCompletedModules().slice();
     if (!completed.includes(title)) {
         completed.push(title);
-        try {
-            localStorage.setItem('completedSmartModules', JSON.stringify(completed));
-        } catch (e) {}
+        completedSmartModulesCache = completed;
+        saveUserActivityCache(currentUserId);
     }
+
+    fetch(`${API_BASE}/modules/progress`, {
+        method: 'POST',
+        headers: getAuthHeaders({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify({
+            user_id: currentUserId,
+            module_id: moduleId,
+            module_title: title
+        })
+    })
+        .then(res => res.ok ? res.json() : null)
+        .then(data => {
+            if (data && Array.isArray(data.completed_modules)) {
+                completedSmartModulesCache = data.completed_modules;
+                saveUserActivityCache(currentUserId);
+            }
+        })
+        .catch(() => {});
+
     return completed;
 }
 
@@ -324,6 +513,7 @@ async function loadAboveTheInfluenceView() {
     container.innerHTML = renderModulesSkeleton(4);
 
     try {
+        await syncActivityFromNeon();
         const res = await fetch(`${API_BASE}/modules`);
         const allModules = await res.json();
         const modules = allModules.filter(m => SUPPORT_HUB_TITLES.includes(m.title));
@@ -431,7 +621,10 @@ async function loadOutreach(tabId) {
 
     try {
         if (tabId === 'home') {
-            const res = await fetch(`${API_BASE}/modules`);
+            const [res] = await Promise.all([
+                fetch(`${API_BASE}/modules`),
+                syncActivityFromNeon()
+            ]);
             const allModules = await res.json();
             const modules = allModules.filter(m => ACADEMY_TITLES.includes(m.title));
             const completed = getCompletedModules();
@@ -644,7 +837,7 @@ async function openModuleDetail(moduleId, title, isHomeMode) {
     updatePortalSlideshowView(isHomeMode ? 'outreach' : 'influence');
 
     if (isHomeMode) {
-        markModuleCompleted(title);
+        markModuleCompleted(title, moduleId);
         const view = document.getElementById('view-module-detail');
         view.classList.add('active');
         document.getElementById('module-detail-title').textContent = title;
@@ -777,7 +970,7 @@ async function likePeerStory(storyId, btn) {
     // --- OPTIMISTIC UI: UPDATE IMMEDIATELY ---
     const isNowLiked = !wasLiked;
     userLikedStories[storyId] = isNowLiked;
-    try { localStorage.setItem('userLikedStories', JSON.stringify(userLikedStories)); } catch(e){}
+    saveUserActivityCache(currentUserId);
 
     const newLikes = isNowLiked ? (prevLikes + 1) : Math.max(0, prevLikes - 1);
     countSpan.innerText = newLikes;
@@ -790,21 +983,26 @@ async function likePeerStory(storyId, btn) {
         btn.innerHTML = `<span>🤍</span> <span id="story-likes-${storyId}">${newLikes}</span> <span>Helpful</span>`;
     }
 
-    // --- BACKGROUND SERVER REQUEST ---
+    // --- BACKGROUND SERVER REQUEST (SYNCED TO NEON) ---
     try {
         const res = await fetch(`${API_BASE}/safespace/experiences/${storyId}/like?user_id=${currentUserId}`, {
-            method: 'POST'
+            method: 'POST',
+            headers: getAuthHeaders({ 'Content-Type': 'application/json' }),
+            body: JSON.stringify({ user_id: currentUserId, active: isNowLiked })
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         if (data.new_likes_count !== undefined) {
             countSpan.innerText = data.new_likes_count;
         }
+        if (Array.isArray(data.liked_story_ids)) {
+            applyServerUserState({ liked_story_ids: data.liked_story_ids });
+        }
     } catch (err) {
         // --- QUIET ROLLBACK TO PREVIOUS VALUE IF REQUEST FAILS ---
         console.warn(`[Optimistic UI Rollback] Like failed on story ${storyId}:`, err);
         userLikedStories[storyId] = wasLiked;
-        try { localStorage.setItem('userLikedStories', JSON.stringify(userLikedStories)); } catch(e){}
+        saveUserActivityCache(currentUserId);
         countSpan.innerText = prevLikes;
         btn.className = prevClass;
         btn.innerHTML = prevHTML;
@@ -1095,7 +1293,10 @@ async function loadEvents(category = 'All') {
 
     try {
         const url = (category === 'All') ? `${API_BASE}/events` : `${API_BASE}/events?category=${encodeURIComponent(category)}`;
-        const res = await fetch(url);
+        const [res] = await Promise.all([
+            fetch(url),
+            syncActivityFromNeon()
+        ]);
         const events = await res.json();
 
         if (!events || events.length === 0) {
@@ -1157,7 +1358,7 @@ async function rsvpEvent(eventId) {
     // --- 2. OPTIMISTIC UI: UPDATE IMMEDIATELY ON CLICK ---
     const isNowRSVPed = !wasRSVPed;
     userRSVPs[eventId] = isNowRSVPed;
-    try { localStorage.setItem('userRSVPs', JSON.stringify(userRSVPs)); } catch(e){}
+    saveUserActivityCache(currentUserId);
 
     const newCount = isNowRSVPed ? (prevCount + 1) : Math.max(0, prevCount - 1);
     countSpan.innerText = newCount;
@@ -1165,21 +1366,26 @@ async function rsvpEvent(eventId) {
     btn.style.background = isNowRSVPed ? 'var(--accent-sage)' : 'var(--primary)';
     btn.innerHTML = isNowRSVPed ? '✓ Registered (Attending)' : '✓ RSVP / Join';
 
-    // --- 3. EXECUTE SERVER REQUEST IN BACKGROUND ---
+    // --- 3. EXECUTE SERVER REQUEST IN BACKGROUND (SYNCED TO NEON) ---
     try {
         const res = await fetch(`${API_BASE}/events/${eventId}/rsvp?user_id=${currentUserId}`, {
-            method: 'POST'
+            method: 'POST',
+            headers: getAuthHeaders({ 'Content-Type': 'application/json' }),
+            body: JSON.stringify({ user_id: currentUserId, active: isNowRSVPed })
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         if (data.new_rsvp_count !== undefined) {
             countSpan.innerText = data.new_rsvp_count;
         }
+        if (Array.isArray(data.rsvp_event_ids)) {
+            applyServerUserState({ rsvp_event_ids: data.rsvp_event_ids });
+        }
     } catch (err) {
         // --- 4. QUIET ROLLBACK TO PREVIOUS VALUE IF REQUEST FAILS ---
         console.warn(`[Optimistic UI Rollback] Event RSVP failed for ID ${eventId}:`, err);
         userRSVPs[eventId] = prevRSVPState;
-        try { localStorage.setItem('userRSVPs', JSON.stringify(userRSVPs)); } catch(e){}
+        saveUserActivityCache(currentUserId);
         countSpan.innerText = prevCount;
         btn.style.background = prevBtnBg;
         btn.innerHTML = prevBtnHTML;
@@ -1502,7 +1708,7 @@ async function loadWeeklyChallengeAndLeaderboard(container) {
                     
                     <div style="margin-bottom:14px;">
                         <label style="font-size:0.82rem; color:var(--primary); font-weight:700;">Select Your University Chapter:</label>
-                        <select id="quiz-uni-select" onchange="currentUniversity=this.value; sessionStorage.setItem('currentUniversity', this.value);" style="width:100%; padding:9px; margin-top:4px; box-sizing:border-box;">
+                        <select id="quiz-uni-select" onchange="syncUniversityChapter(this.value);" style="width:100%; padding:9px; margin-top:4px; box-sizing:border-box;">
                             ${universities.map(u => `<option value="${u.short_code}" ${u.short_code === currentUniversity ? 'selected' : ''}>${u.university_name} (${u.short_code})</option>`).join('')}
                         </select>
                     </div>
@@ -1876,6 +2082,10 @@ function switchFrame2Feature(mode, btnElement) {
 }
 
 function openLandingLoginModal() {
+    if (currentSessionToken && localStorage.getItem(DELTAS_PORTAL_UNLOCKED_KEY) === 'true') {
+        enterPortalShellUI();
+        return;
+    }
     const modal = document.getElementById('landing-login-modal');
     if (modal) {
         modal.style.display = 'flex';
@@ -1914,13 +2124,18 @@ async function authenticateAmbassador(email, password, uni) {
         if (!res.ok) throw new Error('Auth status ' + res.status);
         const data = await res.json();
         return {
+            session_token: data.session_token || '',
             user_id: data.user_id || 1,
             username: data.username || cleanEmail.split('@')[0],
-            university: cleanUni
+            university: data.university || cleanUni,
+            completed_modules: data.completed_modules,
+            rsvp_event_ids: data.rsvp_event_ids,
+            liked_story_ids: data.liked_story_ids
         };
     } catch (e) {
         // Fallback for offline or local session continuity
         return {
+            session_token: '',
             user_id: 1,
             username: cleanEmail ? cleanEmail.split('@')[0] : 'ambassador',
             university: cleanUni
@@ -1928,35 +2143,47 @@ async function authenticateAmbassador(email, password, uni) {
     }
 }
 
-function unlockAndEnterPortal(authData) {
-    currentUserId = authData.user_id;
-    currentUsername = authData.username;
-    currentUniversity = authData.university;
-
-    sessionStorage.setItem('currentUserId', String(currentUserId));
-    sessionStorage.setItem('currentUsername', currentUsername);
-    sessionStorage.setItem('currentUniversity', currentUniversity);
-    sessionStorage.setItem('deltasPortalUnlocked', 'true');
-
-    const navText = document.getElementById('nav-login-text');
-    if (navText) navText.innerText = currentUsername;
-
-    const userPill = document.getElementById('active-user-pill');
-    if (userPill) userPill.innerText = `${currentUsername} (${currentUniversity})`;
-
-    closeLandingLoginModal();
-
+function enterPortalShellUI(scrollTop = true) {
     const landing = document.getElementById('landing-experience');
     const portal = document.getElementById('portal-app-shell');
     if (landing) landing.style.display = 'none';
     if (portal) portal.style.display = 'block';
     document.body.classList.remove('on-landing');
 
-    // Start automated ambient background slideshow across the whole platform
     initPortalSlideshow('outreach');
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (scrollTop) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     loadOutreach('home');
+}
+
+function refreshActivePortalView() {
+    const activeView = document.querySelector('.content-view.active');
+    if (!activeView) return;
+    if (activeView.id === 'view-outreach') {
+        const activeTab = document.querySelector('#view-outreach .out-tab.active');
+        if (!activeTab || activeTab.textContent.includes('SMART LIVING')) {
+            loadOutreach('home');
+        }
+    } else if (activeView.id === 'view-events') {
+        loadEvents(currentEventCategory);
+    } else if (activeView.id === 'view-influence') {
+        fetchGlobalPeerFeed();
+    } else if (activeView.id === 'view-safespace-detail') {
+        fetchPeerPosts();
+    }
+}
+
+function unlockAndEnterPortal(authData) {
+    applyServerUserState(authData);
+
+    try {
+        localStorage.setItem(DELTAS_PORTAL_UNLOCKED_KEY, 'true');
+        sessionStorage.setItem(DELTAS_PORTAL_UNLOCKED_KEY, 'true');
+    } catch (e) {}
+
+    closeLandingLoginModal();
+    enterPortalShellUI(true);
 }
 
 function showLandingExperience() {
@@ -1971,10 +2198,17 @@ function showLandingExperience() {
 
 function handleLogout() {
     stopPortalSlideshow();
-    sessionStorage.removeItem('deltasPortalUnlocked');
-    sessionStorage.removeItem('currentUserId');
-    sessionStorage.removeItem('currentUsername');
-    sessionStorage.removeItem('currentUniversity');
+    const tokenToRevoke = currentSessionToken;
+    if (tokenToRevoke) {
+        fetch(`${API_BASE}/auth/logout`, {
+            method: 'POST',
+            headers: getAuthHeaders({ 'Content-Type': 'application/json' }),
+            body: JSON.stringify({ session_token: tokenToRevoke }),
+            keepalive: true
+        }).catch(() => {});
+    }
+
+    clearClientSessionState();
 
     // Clear previous login feedback messages so the landing page login forms look fresh
     const modalFb = document.getElementById('modal-login-feedback');
@@ -1985,6 +2219,27 @@ function handleLogout() {
     if (portalMsg) portalMsg.style.display = 'none';
 
     showLandingExperience();
+}
+
+async function restoreServerSession() {
+    if (!currentSessionToken) return null;
+    try {
+        const res = await fetch(`${API_BASE}/auth/session`, {
+            headers: getAuthHeaders()
+        });
+        if (res.status === 401) {
+            clearClientSessionState();
+            showLandingExperience();
+            return null;
+        }
+        if (!res.ok) return null;
+        const data = await res.json();
+        applyServerUserState(data);
+        refreshActivePortalView();
+        return data;
+    } catch (e) {
+        return null;
+    }
 }
 
 async function quickDemoLogin(role = 'ambassador') {
@@ -2078,25 +2333,19 @@ document.addEventListener('DOMContentLoaded', () => {
     initPillarPosterSlideshow();
     initLandingScrollSpy();
 
-    if (sessionStorage.getItem('currentUsername')) {
-        const uName = sessionStorage.getItem('currentUsername');
-        const uUni = sessionStorage.getItem('currentUniversity') || 'UZ';
-        const navText = document.getElementById('nav-login-text');
-        if (navText) navText.innerText = uName;
-        const userPill = document.getElementById('active-user-pill');
-        if (userPill) userPill.innerText = `${uName} (${uUni})`;
-    }
+    loadSessionFromBrowserStorage();
+    updateSessionUI();
 
-    // Present the Multi-Frame Landing Page + Login Gate first unless already unlocked in this session
-    if (sessionStorage.getItem('deltasPortalUnlocked') === 'true') {
-        const landing = document.getElementById('landing-experience');
-        const portal = document.getElementById('portal-app-shell');
-        if (landing) landing.style.display = 'none';
-        if (portal) portal.style.display = 'block';
-        document.body.classList.remove('on-landing');
-        initPortalSlideshow('outreach');
-        loadOutreach('home');
+    const isUnlocked = localStorage.getItem(DELTAS_PORTAL_UNLOCKED_KEY) === 'true'
+        || sessionStorage.getItem(DELTAS_PORTAL_UNLOCKED_KEY) === 'true';
+
+    // Keep portal unlocked across refreshes/reopens while an active session exists
+    if (isUnlocked && (currentSessionToken || sessionStorage.getItem('currentUsername'))) {
+        enterPortalShellUI(false);
     } else {
         showLandingExperience();
     }
+
+    // Verify and hydrate session, modules, RSVPs, and story likes from Neon
+    restoreServerSession();
 });

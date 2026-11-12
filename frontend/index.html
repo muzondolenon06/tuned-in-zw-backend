@@ -3,185 +3,2049 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youth Digital Vanguard Initiative - Tuned_in_zw</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>DELTAS: Youth Connect+ | Delivering Lifeline Tools for Alcohol Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Top Hero & Download Section -->
-    <header class="hero-section">
-        <div class="hero-content">
-            <div class="hero-image-container">
-                <img src="vanguard_logo.jpg" alt="Youth Digital Vanguard Initiative" class="hero-logo">
-                <h1 class="hero-text">PLAY YOUR PART: LEAD THE CHARGE, BE THE SHIELD</h1>
-            </div>
-            
-            <div class="download-corner">
-                <h3>Get the full Tuned_in_zw experience</h3>
-                <a href="https://github.com/muzondolenon06/tuned-in-zw-website/releases/latest/download/Tuned_in_zw_prototype.apk" class="download-btn android-btn">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0004.5511-.4482.9997-.9993.9997zm-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997zm11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.416.416 0 0 0-.5676.1521l-2.022 3.503C15.5532 8.2366 13.8213 7.7813 12 7.7813s-3.5532.4553-5.1373 1.1691L4.8407 5.4474a.416.416 0 0 0-.5676-.1521.416.416 0 0 0-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396z"/></svg>
-                    Download for Android
+
+    <!-- =========================================================================
+         1. MULTI-FRAME LANDING EXPERIENCE & LOGIN GATE (PRESENTED FIRST)
+         ========================================================================= -->
+    <div id="landing-experience" class="landing-experience">
+        
+        <!-- Sticky Institutional Top Navbar (Aspire Leaders Reference Style) -->
+        <header class="landing-navbar" id="landing-navbar">
+            <div class="landing-nav-inner">
+                <a href="#frame-1" class="landing-brand" onclick="scrollToLandingFrame('frame-1'); return false;">
+                    <img src="deltas_logo.jpg" alt="DELTAS Logo" class="landing-brand-logo">
+                    <div class="landing-brand-text">
+                        <span class="landing-brand-title">DELTAS</span>
+                        <span class="landing-brand-sub">Lifeline Tools for Alcohol Solutions</span>
+                    </div>
                 </a>
-            </div>
-        </div>
-    </header>
 
-    <!-- Main Content Area -->
-    <main class="main-container" id="main-content">
-        <!-- Youth Connect+ (Outreach) View -->
-        <div id="view-outreach" class="content-view active">
-            <div class="outreach-header">
-                <h2>Youth Connect+ MIL Academy</h2>
-                <p>Empowering the next generation of digital leaders and defenders.</p>
+                <nav class="landing-frame-links" aria-label="Landing Page Sections">
+                    <a href="#frame-1" class="frame-nav-link active" data-target="frame-1" onclick="scrollToLandingFrame('frame-1'); return false;">01. DELTAS Initiative</a>
+                    <a href="#frame-2" class="frame-nav-link" data-target="frame-2" onclick="scrollToLandingFrame('frame-2'); return false;">02. Youth Connect+</a>
+                    <a href="#frame-3" class="frame-nav-link" data-target="frame-3" onclick="scrollToLandingFrame('frame-3'); return false;">03. Support Hub</a>
+                    <a href="#frame-4" class="frame-nav-link" data-target="frame-4" onclick="scrollToLandingFrame('frame-4'); return false;">04. Ambassadors</a>
+                    <a href="#frame-5" class="frame-nav-link" data-target="frame-5" onclick="scrollToLandingFrame('frame-5'); return false;">05. News &amp; Radio</a>
+                    <a href="#frame-6" class="frame-nav-link" data-target="frame-6" onclick="scrollToLandingFrame('frame-6'); return false;">06. Events</a>
+                </nav>
+
+                <div class="landing-nav-actions">
+                    <button type="button" class="btn-portal-login" onclick="openLandingLoginModal()">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        <span>Sign In to Portal</span>
+                    </button>
+                </div>
             </div>
+        </header>
+
+        <!-- Floating Right-Side Frame Progress Rail -->
+        <aside class="frame-rail" aria-label="Frame Progress Indicator">
+            <button class="rail-dot active" data-target="frame-1" onclick="scrollToLandingFrame('frame-1')" title="01. DELTAS Initiative"><span>01</span></button>
+            <button class="rail-dot" data-target="frame-2" onclick="scrollToLandingFrame('frame-2')" title="02. Deltas Youth Connect+"><span>02</span></button>
+            <button class="rail-dot" data-target="frame-3" onclick="scrollToLandingFrame('frame-3')" title="03. Above the Influence Hub"><span>03</span></button>
+            <button class="rail-dot" data-target="frame-4" onclick="scrollToLandingFrame('frame-4')" title="04. Ambassador Program"><span>04</span></button>
+            <button class="rail-dot" data-target="frame-5" onclick="scrollToLandingFrame('frame-5')" title="05. Youth Impact News &amp; Radio"><span>05</span></button>
+            <button class="rail-dot" data-target="frame-6" onclick="scrollToLandingFrame('frame-6')" title="06. Events &amp; Portal Login"><span>06</span></button>
+        </aside>
+
+        <!-- =====================================================================
+             FRAME 1: DELTAS COMBINED INITIATIVE (MASTER OVERVIEW)
+             ===================================================================== -->
+        <section id="frame-1" class="landing-frame" data-frame-index="1">
+            <!-- Automated Background Image Slideshow -->
+            <div class="frame-slideshow" id="slideshow-frame-1">
+                <div class="slide-bg active" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1600&auto=format&fit=crop&q=80');"></div>
+            </div>
+            <div class="frame-scrim scrim-emerald"></div>
+
+            <div class="frame-inner">
+                <div class="frame-hero-top">
+                    <div class="frame-eyebrow-row">
+                        <span class="frame-eyebrow-pill">THE COMBINED NATIONAL INITIATIVE</span>
+                        <span class="frame-partner-tag">Delta Corporation • Boost Fellowship • Enactus Zimbabwe • WHO Guidelines</span>
+                    </div>
+
+                    <div class="frame-hero-identity">
+                        <img src="deltas_logo.jpg" alt="DELTAS Emblem" class="frame-hero-emblem">
+                        <div class="frame-hero-copy">
+                            <h1>DELTAS: Delivering Lifeline Tools for Alcohol Solutions</h1>
+                            <p class="frame-lead">
+                                A comprehensive, youth-driven digital ecosystem uniting accredited smart-living education, anonymous community watchdog protection, clinical harm-reduction playbooks, and student and learner leadership across Zimbabwe's high schools, colleges, and educational institutions.
+                            </p>
+                            <div class="frame-cta-group">
+                                <button type="button" class="btn-frame-primary" onclick="openLandingLoginModal()">
+                                    <span>Access Full DELTAS Platform →</span>
+                                </button>
+                                <button type="button" class="btn-frame-ghost" onclick="scrollToLandingFrame('frame-2')">
+                                    <span>Explore DELTAS ↓</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aspire Leaders-Inspired Impact Metrics Ribbon -->
+                    <div class="aspire-metrics-ribbon">
+                        <div class="metric-item">
+                            <span class="metric-num">8+</span>
+                            <span class="metric-label">Educational Institutions Connected</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-num">6</span>
+                            <span class="metric-label">Accredited Moderation Modules</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-num">3,800+</span>
+                            <span class="metric-label">"Pledge 18" Youth Signatures</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-num">24/7</span>
+                            <span class="metric-label">Confidential Watchdog &amp; Helplines</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6-Pillar Strategic Matrix: Horizontal Single-Poster Continuous Slideshow -->
+                <div class="pillar-matrix-header">
+                    <span class="matrix-kicker">INSTITUTIONAL FRAMEWORK</span>
+                    <h2>The 6 Strategic Pillars of the DELTAS Combined Initiative</h2>
+                </div>
+
+                <div class="pillar-poster-showcase" id="pillar-poster-showcase">
+                    <div class="pillar-carousel-viewport">
+                        <button type="button" class="pillar-carousel-arrow pillar-arrow-prev" onclick="stepPillarPoster(-1)" aria-label="Previous Strategic Pillar Poster">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                        </button>
+                        <button type="button" class="pillar-carousel-arrow pillar-arrow-next" onclick="stepPillarPoster(1)" aria-label="Next Strategic Pillar Poster">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+
+                        <div class="pillar-carousel-track" id="pillar-carousel-track">
+                            <!-- POSTER 01: GENERAL BACKGROUND -->
+                            <article class="pillar-poster-slide" data-pillar-index="0">
+                                <div class="pillar-poster-frame theme-pillar-01">
+                                    <div class="pillar-poster-ornaments" aria-hidden="true">
+                                        <div class="ppo-dots ppo-dots-tl"></div>
+                                        <div class="ppo-dots ppo-dots-bl"></div>
+                                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M32 6L10 16v14c0 14 9 23 22 28 13-5 22-14 22-28V16L32 6z"/><path d="M32 20v16M32 42v2"/></svg>
+                                    </div>
+                                    <div class="pillar-poster-left">
+                                        <div class="pillar-poster-meta">
+                                            <span class="pillar-poster-num">01</span>
+                                            <span class="pillar-poster-topic-pill">GENERAL BACKGROUND</span>
+                                            <span class="pillar-poster-subkicker">DELTAS Combined Initiative</span>
+                                        </div>
+                                        <h3 class="pillar-poster-title">
+                                            <span class="ppt-gold">Why We Act Now</span>
+                                            Addressing a Critical Youth Public Health Challenge
+                                        </h3>
+                                        <p class="pillar-poster-desc">
+                                            Born out of the urgent need to counter rising youth binge drinking, lethal unregulated street brews (<strong>kambwa / musombodhiya</strong>), underage liquor access, and drink-driving fatalities across Zimbabwean high schools, colleges, and local communities through an empowering, stigma-free digital lifeline.
+                                        </p>
+                                        <div class="pillar-poster-highlights">
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">!</div>
+                                                <div><strong>Illicit Street Brews</strong><span>Countering toxic methanol-laced sachets</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">18-</div>
+                                                <div><strong>Underage Protection</strong><span>Defending learners from illegal sales</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">0%</div>
+                                                <div><strong>Drink-Driving Defense</strong><span>Preventing weekend road fatalities</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">+</div>
+                                                <div><strong>Stigma-Free Support</strong><span>Science over fear or campus rumors</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="pillar-poster-footnote">Replacing party myths &amp; silent risks with early prevention across Zimbabwe</div>
+                                    </div>
+                                    <div class="pillar-poster-visual">
+                                        <img src="assets/poster/pillar_01_background.jpg" alt="Compassionate youth mentor standing protectively along an urban walkway at dusk">
+                                        <div class="pillar-poster-visual-scrim"></div>
+                                        <span class="pillar-poster-stamp">THE URGENCY</span>
+                                        <div class="pillar-poster-visual-caption">
+                                            Protecting learners, students &amp; young adults before peer pressure turns into an avoidable emergency.
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- POSTER 02: CORE AGENDA -->
+                            <article class="pillar-poster-slide" data-pillar-index="1">
+                                <div class="pillar-poster-frame theme-pillar-02">
+                                    <div class="pillar-poster-ornaments" aria-hidden="true">
+                                        <div class="ppo-dots ppo-dots-tl"></div>
+                                        <div class="ppo-dots ppo-dots-bl"></div>
+                                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="32" cy="32" r="22"/><polyline points="20 34 29 42 45 23"/></svg>
+                                    </div>
+                                    <div class="pillar-poster-left">
+                                        <div class="pillar-poster-meta">
+                                            <span class="pillar-poster-num">02</span>
+                                            <span class="pillar-poster-topic-pill">CORE AGENDA</span>
+                                            <span class="pillar-poster-subkicker">Cultural Transformation</span>
+                                        </div>
+                                        <h3 class="pillar-poster-title">
+                                            <span class="ppt-gold">Positive Social Norms</span>
+                                            Shifting Culture from Peer Pressure to Smart Living
+                                        </h3>
+                                        <p class="pillar-poster-desc">
+                                            Transform youth and institutional social norms from high-risk, peer-pressured intoxication to informed moderation (<strong>"Above the Influence"</strong>), proactive bystander intervention, and vibrant substance-free community recreation aligned with WHO and national public health standards.
+                                        </p>
+                                        <div class="pillar-poster-highlights">
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">1:1</div>
+                                                <div><strong>Informed Moderation</strong><span>Hydration pacing &amp; serving awareness</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">5D</div>
+                                                <div><strong>Active Bystanders</strong><span>Arrive Together, Leave Together care</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">S</div>
+                                                <div><strong>Sober Recreation</strong><span>Sports, arts, esports &amp; wellness fests</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">W</div>
+                                                <div><strong>WHO Aligned</strong><span>Global youth safety guidelines in action</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="pillar-poster-footnote">Turning mindful lifestyle choices into a celebrated badge of student honor</div>
+                                    </div>
+                                    <div class="pillar-poster-visual">
+                                        <img src="assets/poster/pillar_02_agenda.jpg" alt="Zimbabwean high school and college students smiling outdoors with infused water bottles">
+                                        <div class="pillar-poster-visual-scrim"></div>
+                                        <span class="pillar-poster-stamp">CULTURAL SHIFT</span>
+                                        <div class="pillar-poster-visual-caption">
+                                            Championing authentic connection, confidence &amp; celebration without dangerous intoxication.
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- POSTER 03: STRATEGIC AIM -->
+                            <article class="pillar-poster-slide" data-pillar-index="2">
+                                <div class="pillar-poster-frame theme-pillar-03">
+                                    <div class="pillar-poster-ornaments" aria-hidden="true">
+                                        <div class="ppo-dots ppo-dots-tl"></div>
+                                        <div class="ppo-dots ppo-dots-bl"></div>
+                                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="18" y="8" width="28" height="48" rx="5"/><line x1="26" y1="48" x2="38" y2="48"/></svg>
+                                    </div>
+                                    <div class="pillar-poster-left">
+                                        <div class="pillar-poster-meta">
+                                            <span class="pillar-poster-num">03</span>
+                                            <span class="pillar-poster-topic-pill">STRATEGIC AIM</span>
+                                            <span class="pillar-poster-subkicker">Lifeline Access Everywhere</span>
+                                        </div>
+                                        <h3 class="pillar-poster-title">
+                                            <span class="ppt-gold">Digital Empowerment</span>
+                                            Universal Access to Verified Lifeline Tools
+                                        </h3>
+                                        <p class="pillar-poster-desc">
+                                            Equip every student, learner, peer educator, and young adult in Zimbabwe with scientifically accurate alcohol education, <strong>real-time myth verification</strong>, confidential hazard reporting, and emergency crisis protocols right on their mobile device.
+                                        </p>
+                                        <div class="pillar-poster-highlights">
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">AI</div>
+                                                <div><strong>BeSmart Verification</strong><span>Fact-check party myths in seconds</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">R</div>
+                                                <div><strong>Confidential Alerts</strong><span>Zero-trace community hazard logging</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">Ed</div>
+                                                <div><strong>Clinical Toxicology</strong><span>BAC, brain &amp; liver literacy for youth</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">24/7</div>
+                                                <div><strong>Emergency Protocols</strong><span>Instant C.U.P.S. &amp; helpline guidance</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="pillar-poster-footnote">Mobile-first safety infrastructure built for rapid student access anytime</div>
+                                    </div>
+                                    <div class="pillar-poster-visual">
+                                        <img src="assets/poster/pillar_03_aim.jpg" alt="Zimbabwean learners collaborating around digital health tools on tablets and smartphones">
+                                        <div class="pillar-poster-visual-scrim"></div>
+                                        <span class="pillar-poster-stamp">LIFELINE ACCESS</span>
+                                        <div class="pillar-poster-visual-caption">
+                                            Putting verified health science &amp; 24/7 safety protection into every learner's hands.
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- POSTER 04: KEY PARTNERSHIPS -->
+                            <article class="pillar-poster-slide" data-pillar-index="3">
+                                <div class="pillar-poster-frame theme-pillar-04">
+                                    <div class="pillar-poster-ornaments" aria-hidden="true">
+                                        <div class="ppo-dots ppo-dots-tl"></div>
+                                        <div class="ppo-dots ppo-dots-bl"></div>
+                                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="22" cy="24" r="8"/><circle cx="42" cy="24" r="8"/><path d="M10 48c0-7 6-12 12-12s12 5 12 12"/><path d="M30 48c0-7 6-12 12-12s12 5 12 12"/></svg>
+                                    </div>
+                                    <div class="pillar-poster-left">
+                                        <div class="pillar-poster-meta">
+                                            <span class="pillar-poster-num">04</span>
+                                            <span class="pillar-poster-topic-pill">KEY PARTNERSHIPS</span>
+                                            <span class="pillar-poster-subkicker">Unified National Coalition</span>
+                                        </div>
+                                        <h3 class="pillar-poster-title">
+                                            <span class="ppt-gold">Stronger Together</span>
+                                            Multi-Sectoral Coalition for Youth Safety
+                                        </h3>
+                                        <p class="pillar-poster-desc">
+                                            Uniting educators, medical authorities, civic safety responders, student councils, and national broadcasters so every school, college, and neighborhood operates inside a coordinated ecosystem of care and accountability.
+                                        </p>
+                                        <div class="pillar-poster-highlights grid-chips">
+                                            <span class="pp-partner-chip"><strong>Delta Corporation</strong></span>
+                                            <span class="pp-partner-chip"><strong>Boost Fellowship</strong></span>
+                                            <span class="pp-partner-chip"><strong>High Schools &amp; Colleges</strong></span>
+                                            <span class="pp-partner-chip"><strong>Student Chapters</strong></span>
+                                            <span class="pp-partner-chip"><strong>Ministry of Health (MoHCC)</strong></span>
+                                            <span class="pp-partner-chip"><strong>WHO Africa</strong></span>
+                                            <span class="pp-partner-chip"><strong>Traffic Safety Council (TSCZ)</strong></span>
+                                            <span class="pp-partner-chip"><strong>ZRP &amp; Broadcasters</strong></span>
+                                        </div>
+                                        <div class="pillar-poster-footnote">Private-public-youth synergy bridging policy, campus security &amp; grassroots voices</div>
+                                    </div>
+                                    <div class="pillar-poster-visual">
+                                        <img src="assets/poster/pillar_04_partnerships.jpg" alt="Doctor, school educator, community safety officer, and youth leaders standing together">
+                                        <div class="pillar-poster-visual-scrim"></div>
+                                        <span class="pillar-poster-stamp">COALITION</span>
+                                        <div class="pillar-poster-visual-caption">
+                                            Healthcare, education, law enforcement &amp; youth leaders allied for safer futures.
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- POSTER 05: MEASURABLE IMPACT -->
+                            <article class="pillar-poster-slide" data-pillar-index="4">
+                                <div class="pillar-poster-frame theme-pillar-05">
+                                    <div class="pillar-poster-ornaments" aria-hidden="true">
+                                        <div class="ppo-dots ppo-dots-tl"></div>
+                                        <div class="ppo-dots ppo-dots-bl"></div>
+                                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="10 46 24 30 34 38 52 16"/><polyline points="40 16 52 16 52 28"/></svg>
+                                    </div>
+                                    <div class="pillar-poster-left">
+                                        <div class="pillar-poster-meta">
+                                            <span class="pillar-poster-num">05</span>
+                                            <span class="pillar-poster-topic-pill">MEASURABLE IMPACT</span>
+                                            <span class="pillar-poster-subkicker">Verified Nationwide Results</span>
+                                        </div>
+                                        <h3 class="pillar-poster-title">
+                                            <span class="ppt-gold">Evidence in Motion</span>
+                                            Data-Driven Institutional &amp; Community Transformation
+                                        </h3>
+                                        <p class="pillar-poster-desc">
+                                            Turning awareness into documented action across high schools, colleges, and community hubs—accelerating <strong>Pledge 18</strong> participation, disrupting illicit spirit supply chains, and scaling emergency life-saving literacy.
+                                        </p>
+                                        <div class="pillar-poster-highlights">
+                                            <div class="pp-metric-card">
+                                                <span class="pp-m-val">15,000+</span>
+                                                <span class="pp-m-lbl">Youth reached with verified moderation &amp; harm-reduction education</span>
+                                            </div>
+                                            <div class="pp-metric-card">
+                                                <span class="pp-m-val">3,800+</span>
+                                                <span class="pp-m-lbl">Signed "Pledge 18" commitments across 8+ educational institutions</span>
+                                            </div>
+                                            <div class="pp-metric-card">
+                                                <span class="pp-m-val">Rapid Alerts</span>
+                                                <span class="pp-m-lbl">Disruption of counterfeit methanol spirit sales near student corridors</span>
+                                            </div>
+                                            <div class="pp-metric-card">
+                                                <span class="pp-m-val">C.U.P.S. Ready</span>
+                                                <span class="pp-m-lbl">Hundreds trained in alcohol-poisoning first response &amp; recovery</span>
+                                            </div>
+                                        </div>
+                                        <div class="pillar-poster-footnote">Real behavioral progress tracked across every participating school &amp; college</div>
+                                    </div>
+                                    <div class="pillar-poster-visual">
+                                        <img src="assets/poster/pillar_05_impact.jpg" alt="Zimbabwean high schoolers and student ambassadors celebrating positive community impact outdoors">
+                                        <div class="pillar-poster-visual-scrim"></div>
+                                        <span class="pillar-poster-stamp">PROVEN IMPACT</span>
+                                        <div class="pillar-poster-visual-caption">
+                                            Empowering thousands of youth to choose safety, solidarity &amp; purposeful living.
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- POSTER 06: CORE OBJECTIVES -->
+                            <article class="pillar-poster-slide" data-pillar-index="5">
+                                <div class="pillar-poster-frame theme-pillar-06">
+                                    <div class="pillar-poster-ornaments" aria-hidden="true">
+                                        <div class="ppo-dots ppo-dots-tl"></div>
+                                        <div class="ppo-dots ppo-dots-bl"></div>
+                                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="12" y="10" width="40" height="44" rx="5"/><line x1="20" y1="22" x2="44" y2="22"/><line x1="20" y1="32" x2="44" y2="32"/><line x1="20" y1="42" x2="34" y2="42"/></svg>
+                                    </div>
+                                    <div class="pillar-poster-left">
+                                        <div class="pillar-poster-meta">
+                                            <span class="pillar-poster-num">06</span>
+                                            <span class="pillar-poster-topic-pill">CORE OBJECTIVES</span>
+                                            <span class="pillar-poster-subkicker">Operational Roadmap</span>
+                                        </div>
+                                        <h3 class="pillar-poster-title">
+                                            <span class="ppt-gold">Mission Blueprint</span>
+                                            Six Actionable Mandates Across Every Institution
+                                        </h3>
+                                        <p class="pillar-poster-desc">
+                                            A synchronized six-point mandate uniting clinical learning, anonymous reporting, mental health protection, ambassador leadership, public media, and vibrant live youth experiences.
+                                        </p>
+                                        <div class="pillar-poster-highlights grid-3">
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">01</div>
+                                                <div><strong>6 Academy Modules</strong><span>Clinical &amp; BAC mastery</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">02</div>
+                                                <div><strong>Zero-Trace Watchdog</strong><span>Safe hazard dispatch</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">03</div>
+                                                <div><strong>GBV &amp; Care Support</strong><span>Trauma-informed help</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">04</div>
+                                                <div><strong>Youth Ambassadors</strong><span>Certified peer leaders</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">05</div>
+                                                <div><strong>News &amp; Radio</strong><span>Policy &amp; FM dialogues</span></div>
+                                            </div>
+                                            <div class="pp-badge-card">
+                                                <div class="pp-badge-icon">06</div>
+                                                <div><strong>Sober Festivals</strong><span>Marathons &amp; expos</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="pillar-poster-footnote">Six interconnected engines sustaining safer schools, colleges &amp; communities</div>
+                                    </div>
+                                    <div class="pillar-poster-visual">
+                                        <img src="assets/poster/pillar_06_objectives.jpg" alt="Student peer leaders hosting a live community workshop with microphone and fitness gear">
+                                        <div class="pillar-poster-visual-scrim"></div>
+                                        <span class="pillar-poster-stamp">SIX MANDATES</span>
+                                        <div class="pillar-poster-visual-caption">
+                                            Connecting education, safety reporting, counseling, media &amp; live sports nationwide.
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- Topic Pill Controls with Auto-Shift Countdown Progress -->
+                    <div class="pillar-carousel-nav" id="pillar-carousel-nav" role="tablist" aria-label="Strategic Pillar Posters">
+                        <button type="button" class="pillar-nav-btn active" data-slide="0" onclick="goToPillarPoster(0)">
+                            <span class="pnb-num">01</span><span>Background</span><span class="pnb-progress"></span>
+                        </button>
+                        <button type="button" class="pillar-nav-btn" data-slide="1" onclick="goToPillarPoster(1)">
+                            <span class="pnb-num">02</span><span>Agenda</span><span class="pnb-progress"></span>
+                        </button>
+                        <button type="button" class="pillar-nav-btn" data-slide="2" onclick="goToPillarPoster(2)">
+                            <span class="pnb-num">03</span><span>Strategic Aim</span><span class="pnb-progress"></span>
+                        </button>
+                        <button type="button" class="pillar-nav-btn" data-slide="3" onclick="goToPillarPoster(3)">
+                            <span class="pnb-num">04</span><span>Partnerships</span><span class="pnb-progress"></span>
+                        </button>
+                        <button type="button" class="pillar-nav-btn" data-slide="4" onclick="goToPillarPoster(4)">
+                            <span class="pnb-num">05</span><span>Impact</span><span class="pnb-progress"></span>
+                        </button>
+                        <button type="button" class="pillar-nav-btn" data-slide="5" onclick="goToPillarPoster(5)">
+                            <span class="pnb-num">06</span><span>Objectives</span><span class="pnb-progress"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="frame-bottom-bar">
+                    <div class="slideshow-status" data-slideshow-dots="slideshow-frame-1">
+                        <span class="status-label">Automated Visual Tour:</span>
+                        <button class="slide-dot active" onclick="setFrameSlide('slideshow-frame-1', 0)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-1', 1)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-1', 2)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-1', 3)"></button>
+                    </div>
+                    <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-2')">
+                        <span>Deltas Youth Connect+ ↓</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             FRAME 2: DELTAS YOUTH CONNECT+ (SMART LIVING ACADEMY & COMMUNITY WATCHDOG)
+             ===================================================================== -->
+        <section id="frame-2" class="landing-frame" data-frame-index="2">
+            <!-- Automated Background Image Slideshow -->
+            <div class="frame-slideshow" id="slideshow-frame-2">
+                <div class="slide-bg active" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&auto=format&fit=crop&q=80');"></div>
+            </div>
+            <div class="frame-scrim scrim-charcoal"></div>
+
+            <div class="frame-inner">
+                <div class="frame-section-header">
+                    <span class="frame-eyebrow-pill pill-orange">CORE PLATFORM PILLAR</span>
+                    <h2>Deltas Youth Connect+ : Smart Living Academy &amp; Community Watchdog</h2>
+                    <p class="frame-lead">
+                        The educational and community-protection engine of DELTAS—combining accredited physiological moderation curricula with a confidential, real-time neighborhood &amp; campus safety reporting network.
+                    </p>
+
+                    <!-- Interactive Feature Mode Switcher -->
+                    <div class="feature-mode-switcher" role="tablist">
+                        <button type="button" class="feature-switch-btn active" onclick="switchFrame2Feature('both', this)">
+                            <span>View Both Features Side-by-Side</span>
+                        </button>
+                        <button type="button" class="feature-switch-btn" onclick="switchFrame2Feature('academy', this)">
+                            <span>Feature 1: Smart Living Academy</span>
+                        </button>
+                        <button type="button" class="feature-switch-btn" onclick="switchFrame2Feature('watchdog', this)">
+                            <span>Feature 2: Community Watchdog</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dual Feature Container (Shows Both Side-by-Side or Individual Focus) -->
+                <div id="frame2-dual-container" class="dual-feature-showcase mode-both">
+                    
+                    <!-- FEATURE A: SMART LIVING ACADEMY (GRAPHIC POSTER DISPLAY) -->
+                    <div id="frame2-panel-academy" class="academy-poster-panel">
+                        <div class="poster-canvas">
+                            <!-- Decorative Academic & Scientific SVG Pattern Motifs -->
+                            <div class="poster-ornaments" aria-hidden="true">
+                                <svg class="orn-cap" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 6L4 18l28 12 28-12L32 6z"/><path d="M14 23v12c0 5 8 8 18 8s18-3 18-8V23"/><path d="M56 20v14"/></svg>
+                                <svg class="orn-book" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 12c-7-4-17-4-24 0v28c7-4 17-4 24 0 7-4 17-4 24 0V12c-7-4-17-4-24 0z"/><path d="M32 12v28"/></svg>
+                                <svg class="orn-dna" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 10c14 0 14 28 28 28s14-28 20-28"/><path d="M8 38c14 0 14-28 28-28s14 28 20 28"/><line x1="16" y1="16" x2="16" y2="32"/><line x1="48" y1="16" x2="48" y2="32"/></svg>
+                                <svg class="orn-heart" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 42s-18-11-22-22c-3-8 4-15 12-15 4 0 8 2 10 6 2-4 6-6 10-6 8 0 15 7 12 15-4 11-22 22-22 22z"/><polyline points="17,22 24,22 28,15 33,29 37,20 46,20"/></svg>
+                                <div class="orn-dots orn-dots-tl"></div>
+                                <div class="orn-dots orn-dots-br"></div>
+                            </div>
+
+                            <!-- Poster Top Banner & Display Title -->
+                            <div class="poster-header-block">
+                                <div class="poster-top-ribbon">YOUTH CONNECT+ &nbsp;•&nbsp; CLINICAL &amp; CAMPUS MODERATION</div>
+                                <h3 class="poster-main-title">
+                                    <span class="poster-title-gold">Deltas Youth Connect+</span>
+                                    <span class="poster-title-white">
+                                        Smart Living Academy
+                                        <svg class="poster-pulse-emblem" viewBox="0 0 46 34" fill="none" aria-hidden="true">
+                                            <polygon points="23,2 44,31 2,31" fill="rgba(255,213,79,0.22)" stroke="#FFD54F" stroke-width="1.8"/>
+                                            <polyline points="5,20 14,20 19,10 24,27 29,16 33,20 42,20" stroke="#76FF9B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </h3>
+                                <!-- Subtle Background Summary woven cleanly into the hook -->
+                                <p class="poster-lead-copy">
+                                    Turning nightlife myths into lifesaving science—replacing blind assumptions on serving strengths, hourly liver clearance (<strong>1 standard drink/hr</strong>), and lethal unlabelled street liquor across campus.
+                                </p>
+                            </div>
+
+                            <!-- Core Graphic Emblem Shields (Agenda & Practical Rules woven visually) -->
+                            <div class="poster-emblem-grid">
+                                <!-- Emblem 1: 6 Accredited Modules -->
+                                <div class="poster-emblem emblem-oval">
+                                    <div class="emblem-icon-box">
+                                        <svg viewBox="0 0 36 28" fill="none" stroke="currentColor" stroke-width="2" width="28" height="22">
+                                            <path d="M18 6c-4-3-10-3-14 0v18c4-3 10-3 14 0 4-3 10-3 14 0V6c-4-3-10-3-14 0z"/>
+                                            <line x1="18" y1="6" x2="18" y2="24"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <div class="emblem-stat-line"><span class="emblem-big">6</span><strong>Accredited Modules</strong></div>
+                                        <p>Binge Limits, Driving Law, Illicit Brews, Pledge 18, FASD &amp; Sleep</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 2: 1-for-1 Water Pacing -->
+                                <div class="poster-emblem emblem-shield">
+                                    <div class="emblem-icon-box icon-water">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <path d="M9 6h14l-1.5 18a2 2 0 0 1-2 1.8h-7a2 2 0 0 1-2-1.8L9 6z"/>
+                                            <path d="M10.5 14h11" stroke-dasharray="2 2"/>
+                                            <path d="M22 19c1.5 2 2.2 3.3 2.2 4.3a2.2 2.2 0 0 1-4.4 0c0-1 .7-2.3 2.2-4.3z" fill="#64DFDF" stroke="none"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>1-for-1 Water Pacing</strong>
+                                        <p>Alternate servings &amp; lock in 0.00% "Captain" sober drivers</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 3: BAC & Law Limits Seal -->
+                                <div class="poster-emblem emblem-seal">
+                                    <div class="emblem-icon-box icon-gauge">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <path d="M6 21a10 10 0 1 1 20 0"/>
+                                            <line x1="16" y1="21" x2="21.5" y2="14" stroke="#FFD54F" stroke-width="2.4" stroke-linecap="round"/>
+                                            <circle cx="16" cy="21" r="2" fill="#FFD54F"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>0.08% BAC &amp; Law Limits</strong>
+                                        <p>Gauge standard sizes &amp; protect braking reaction speed</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 4: Methanol Hazards Shield -->
+                                <div class="poster-emblem emblem-hazard">
+                                    <div class="emblem-icon-box icon-flask">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <polygon points="16,4 29,26 3,26" stroke="#FFD54F" fill="rgba(255,213,79,0.14)"/>
+                                            <path d="M14 12h4v3.5l3 6.5H11l3-6.5V12z" stroke="#FFFFFF" stroke-width="1.6"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Zero-Methanol Defense</strong>
+                                        <p>Spot toxic 'kambwa' solvents &amp; risky caffeine mixing</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Realistic People Visual Stage + Impact & Aim Highlights -->
+                            <div class="poster-people-showcase">
+                                <div class="poster-photo-stage">
+                                    <img src="assets/poster/academy_students_group.jpg" alt="Zimbabwean students and learners smiling and studying together with water bottles and textbooks" class="poster-hero-photo">
+                                    <div class="poster-photo-scrim"></div>
+
+                                    <!-- Strategic Impact Badges (no headings) -->
+                                    <div class="poster-float-impact top-left">
+                                        <span class="pfi-value">92%</span>
+                                        <span class="pfi-label">Verified comprehension of BAC &amp; methanol risks</span>
+                                    </div>
+                                    <div class="poster-float-impact top-right">
+                                        <span class="pfi-value">Thousands</span>
+                                        <span class="pfi-label">Badges earned &amp; campus ride-share pools adopted</span>
+                                    </div>
+
+                                    <!-- Strategic Aim Caption Ribbon across bottom of photo -->
+                                    <div class="poster-aim-overlay">
+                                        <p>
+                                            Graduating confident, scientifically literate young adults who verify any party claim in seconds with <strong>BeSmart AI</strong> and lead safe campus nights.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Secondary Realistic Study Card + Action Pathways (Objectives woven naturally) -->
+                                <div class="poster-study-strip">
+                                    <div class="poster-inset-photo-wrap">
+                                        <img src="assets/poster/academy_peer_study.jpg" alt="Students collaborating around laptop and science textbooks with fresh lemon water" class="poster-inset-photo">
+                                    </div>
+                                    <div class="poster-pathway-copy">
+                                        <div class="poster-pathway-pills">
+                                            <span>Self-Paced Progress</span>
+                                            <span>Scenario Simulators</span>
+                                            <span>Ambassador Certification</span>
+                                            <span>Fellowship Unlocks</span>
+                                        </div>
+                                        <div class="poster-cta-row">
+                                            <span class="poster-cta-hint">Master all 6 modules to earn your official badge &amp; career fellowship access.</span>
+                                            <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
+                                                <span>Start Academy →</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Poster Co-Sponsor & Partnership Attribution Footer -->
+                            <div class="poster-partner-footer">
+                                <span class="ppf-line">
+                                    Co-authored with <strong>Clinical Toxicologists</strong> &nbsp;•&nbsp; <strong>WHO Public Health Guidelines</strong> &nbsp;•&nbsp; <strong>Traffic Safety Council of Zimbabwe</strong> &nbsp;•&nbsp; <strong>Delta Smart Drinking</strong> &nbsp;•&nbsp; <strong>School &amp; Institutional Health Services</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FEATURE B: COMMUNITY WATCHDOG (GRAPHIC POSTER DISPLAY) -->
+                    <div id="frame2-panel-watchdog" class="academy-poster-panel poster-theme-watchdog">
+                        <div class="poster-canvas">
+                            <!-- Decorative Guardian & Community Safety SVG Motifs -->
+                            <div class="poster-ornaments" aria-hidden="true">
+                                <svg class="orn-cap" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 4L10 12v14c0 12 10 18 22 20 12-2 22-8 22-20V12L32 4z"/><polyline points="22,24 29,31 42,18"/></svg>
+                                <svg class="orn-book" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="16" y="20" width="32" height="22" rx="4"/><path d="M22 20v-6a10 10 0 0 1 20 0v6"/><circle cx="32" cy="31" r="3"/></svg>
+                                <svg class="orn-dna" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="24" r="18"/><circle cx="32" cy="24" r="10"/><line x1="32" y1="2" x2="32" y2="10"/><line x1="32" y1="38" x2="32" y2="46"/></svg>
+                                <svg class="orn-heart" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 6c-9 0-16 7-16 16 0 12 16 22 16 22s16-10 16-22c0-9-7-16-16-16z"/><circle cx="32" cy="22" r="5"/></svg>
+                                <div class="orn-dots orn-dots-tl"></div>
+                                <div class="orn-dots orn-dots-br"></div>
+                            </div>
+
+                            <!-- Poster Top Banner & Display Title -->
+                            <div class="poster-header-block">
+                                <div class="poster-top-ribbon">YOUTH CONNECT+ &nbsp;•&nbsp; ZERO-TRACE WHISTLEBLOWING &amp; SAFETY</div>
+                                <h3 class="poster-main-title">
+                                    <span class="poster-title-gold">Confidential Community</span>
+                                    <span class="poster-title-white">
+                                        Watchdog Network
+                                        <svg class="poster-pulse-emblem" viewBox="0 0 46 34" fill="none" aria-hidden="true">
+                                            <path d="M23 2L41 9v10c0 8.5-7.5 13-18 14.5C12.5 32 5 27.5 5 19V9L23 2z" fill="rgba(255,213,79,0.22)" stroke="#FFD54F" stroke-width="1.8"/>
+                                            <polyline points="15,18 21,24 31,13" stroke="#76FF9B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </h3>
+                                <!-- Subtle Background Summary woven cleanly into the hook -->
+                                <p class="poster-lead-copy">
+                                    Shutting down unregulated plastic-sachet spirits (<strong>'kambwa'</strong>) laced with methanol and illegal liquor sales to minors around campus perimeters through fearless, <strong>100% identity-protected</strong> citizen alerts.
+                                </p>
+                            </div>
+
+                            <!-- Core Graphic Emblem Shields (Agenda & Protection Pillars woven visually) -->
+                            <div class="poster-emblem-grid">
+                                <!-- Emblem 1: 100% Anonymous Reporting -->
+                                <div class="poster-emblem emblem-oval">
+                                    <div class="emblem-icon-box">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <rect x="7" y="14" width="18" height="13" rx="3"/>
+                                            <path d="M11 14v-4a5 5 0 0 1 10 0v4"/>
+                                            <circle cx="16" cy="20.5" r="2" fill="#FFD54F" stroke="none"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <div class="emblem-stat-line"><span class="emblem-big">60s</span><strong>Zero-Trace Dispatch</strong></div>
+                                        <p>100% encrypted incident logging with zero IP or identity exposure</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 2: Illicit Brews ('Kambwa') Defense -->
+                                <div class="poster-emblem emblem-shield">
+                                    <div class="emblem-icon-box icon-flask">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <path d="M16 3L5 8v8c0 7.5 4.7 11.8 11 13.5C22.3 27.8 27 23.5 27 16V8L16 3z" stroke="#FFD54F"/>
+                                            <line x1="12" y1="12" x2="20" y2="20" stroke="#FF8A65" stroke-width="2.2"/>
+                                            <line x1="20" y1="12" x2="12" y2="20" stroke="#FF8A65" stroke-width="2.2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Illicit 'Kambwa' Alerts</strong>
+                                        <p>Expose toxic methanol street sachets &amp; counterfeit syndicates</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 3: Underage & Liquor Act Compliance -->
+                                <div class="poster-emblem emblem-seal">
+                                    <div class="emblem-icon-box icon-gauge">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <circle cx="16" cy="16" r="11" stroke="#FFD54F"/>
+                                            <path d="M11 16h10M16 11v10" stroke="#76FF9B" stroke-width="2.2" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Age-18 &amp; License Guard</strong>
+                                        <p>Flag underage bottle-store sales &amp; unlicensed campus shebeens</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 4: Drink-Driving & Spiking Hotspots -->
+                                <div class="poster-emblem emblem-hazard">
+                                    <div class="emblem-icon-box icon-water">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <path d="M16 4c-5.5 0-10 4.3-10 9.6 0 7.2 10 14.4 10 14.4s10-7.2 10-14.4C26 8.3 21.5 4 16 4z"/>
+                                            <circle cx="16" cy="13.5" r="3.2" fill="#64DFDF" stroke="none"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Hotspot Early Warning</strong>
+                                        <p>Pin drink-driving corridors &amp; spiking hazards before harm occurs</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Realistic People Visual Stage + Impact & Aim Highlights -->
+                            <div class="poster-people-showcase">
+                                <div class="poster-photo-stage">
+                                    <img src="assets/poster/watchdog_community_safety.jpg" alt="Zimbabwean students and a community safety liaison reviewing a mobile safety map outdoors" class="poster-hero-photo">
+                                    <div class="poster-photo-scrim"></div>
+
+                                    <!-- Strategic Impact Badges -->
+                                    <div class="poster-float-impact top-left">
+                                        <span class="pfi-value">100% Safe</span>
+                                        <span class="pfi-label">Identity-shielded whistleblowing with zero retaliation risk</span>
+                                    </div>
+                                    <div class="poster-float-impact top-right">
+                                        <span class="pfi-value">Live Zones</span>
+                                        <span class="pfi-label">Protecting Mt Pleasant, Senga &amp; Bulawayo student corridors</span>
+                                    </div>
+
+                                    <!-- Strategic Aim Caption Ribbon across bottom of photo -->
+                                    <div class="poster-aim-overlay">
+                                        <p>
+                                            Eradicating counterfeit, methanol-contaminated brews around high schools, colleges, and student hubs while enforcing strict <strong>Age-18 Liquor Act compliance</strong> across local outlets.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Secondary Realistic Collaboration Card + Action Pathways -->
+                                <div class="poster-study-strip">
+                                    <div class="poster-inset-photo-wrap">
+                                        <img src="assets/poster/watchdog_campus_liaison.jpg" alt="Student safety representatives reviewing a mobile watchdog dispatch" class="poster-inset-photo">
+                                    </div>
+                                    <div class="poster-pathway-copy">
+                                        <div class="poster-pathway-pills">
+                                            <span>60-Sec Incident Logging</span>
+                                            <span>Verified Live Safety Feed</span>
+                                            <span>Rapid Inspector Routing</span>
+                                            <span>24/7 Crisis Helplines</span>
+                                        </div>
+                                        <div class="poster-cta-row">
+                                            <span class="poster-cta-hint">Spot an illicit syndicate or unsafe venue? Dispatch a confidential alert in seconds.</span>
+                                            <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
+                                                <span>Report / View Alerts →</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Poster Co-Sponsor & Partnership Attribution Footer -->
+                            <div class="poster-partner-footer">
+                                <span class="ppf-line">
+                                    Direct routing protocols with <strong>School &amp; Institutional Security</strong> &nbsp;•&nbsp; <strong>ZRP Community Liaison</strong> &nbsp;•&nbsp; <strong>Liquor Licensing Boards</strong> &nbsp;•&nbsp; <strong>Municipal Environmental Health Officers</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="frame-bottom-bar">
+                    <div class="slideshow-status" data-slideshow-dots="slideshow-frame-2">
+                        <span class="status-label">Automated Visual Tour:</span>
+                        <button class="slide-dot active" onclick="setFrameSlide('slideshow-frame-2', 0)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-2', 1)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-2', 2)"></button>
+                    </div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <button class="btn-frame-primary" onclick="openLandingLoginModal()">Sign In to Explore Youth Connect+ →</button>
+                        <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-3')">Above the Influence Support Hub ↓</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             FRAME 3: "ABOVE THE INFLUENCE" COMMUNITY SUPPORT HUB
+             ===================================================================== -->
+        <section id="frame-3" class="landing-frame" data-frame-index="3">
+            <!-- Automated Background Image Slideshow -->
+            <div class="frame-slideshow" id="slideshow-frame-3">
+                <div class="slide-bg active" style="background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1600&auto=format&fit=crop&q=80');"></div>
+            </div>
+            <div class="frame-scrim scrim-teal"></div>
+
+            <div class="frame-inner">
+                <div class="frame-section-header">
+                    <span class="frame-eyebrow-pill pill-teal">HARM-REDUCTION &amp; SAFE SPACE</span>
+                    <h2>"Above the Influence" Community Support Hub</h2>
+                    <p class="frame-lead">
+                        A trauma-informed digital safe space pairing clinical emergency playbooks with confidential peer-to-peer stories of resilience, sobriety, and active bystander protection.
+                    </p>
+                </div>
+
+                <!-- ABOVE THE INFLUENCE SUPPORT HUB: WIDE GRAPHIC POSTER DISPLAY -->
+                <div class="academy-poster-panel poster-theme-support poster-wide">
+                    <div class="poster-canvas">
+                        <!-- Decorative Empathy, Care & Lifesaving Pulse SVG Motifs -->
+                        <div class="poster-ornaments" aria-hidden="true">
+                            <svg class="orn-cap" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 42s-18-11-22-22c-3-8 4-15 12-15 4 0 8 2 10 6 2-4 6-6 10-6 8 0 15 7 12 15-4 11-22 22-22 22z"/><polyline points="17,22 24,22 28,15 33,29 37,20 46,20"/></svg>
+                            <svg class="orn-book" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 6L12 14v12c0 11 9 17 20 19 11-2 20-8 20-19V14L32 6z"/><path d="M32 16v14M25 23h14"/></svg>
+                            <svg class="orn-dna" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="22" cy="20" r="8"/><circle cx="42" cy="20" r="8"/><path d="M10 38c0-6 6-10 12-10s12 4 12 10"/><path d="M30 38c0-6 6-10 12-10s12 4 12 10"/></svg>
+                            <svg class="orn-heart" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 24c0-10 9-18 20-18s20 8 20 18-9 18-20 18c-3.5 0-7-.8-10-2.3L12 42l2.5-8.5C13 30.6 12 27.4 12 24z"/></svg>
+                            <div class="orn-dots orn-dots-tl"></div>
+                            <div class="orn-dots orn-dots-br"></div>
+                        </div>
+
+                        <!-- Poster Top Banner & Display Title -->
+                        <div class="poster-header-block">
+                            <div class="poster-top-ribbon">TRAUMA-INFORMED CARE &nbsp;•&nbsp; CLINICAL PLAYBOOKS &amp; PEER SOLIDARITY</div>
+                            <h3 class="poster-main-title">
+                                <span class="poster-title-gold">"Above the Influence"</span>
+                                <span class="poster-title-white">
+                                    Community Support &amp; Crisis Hub
+                                    <svg class="poster-pulse-emblem" viewBox="0 0 46 34" fill="none" aria-hidden="true">
+                                        <path d="M23 30s-14-8.5-17-17C3.8 7 8.5 2 14.5 2c3.2 0 6.2 1.6 8.5 4.6C25.3 3.6 28.3 2 31.5 2 37.5 2 42.2 7 40 13c-3 8.5-17 17-17 17z" fill="rgba(255,213,79,0.22)" stroke="#FFD54F" stroke-width="1.8"/>
+                                        <polyline points="11,15 18,15 21,9 25,21 28,14 35,14" stroke="#76FF9B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </h3>
+                            <!-- Subtle Background Summary woven cleanly into the hook -->
+                            <p class="poster-lead-copy">
+                                Bridging the silence when stigma, panic, or fear of disciplinary fallout stops young people from seeking help during severe social isolation, alcohol-facilitated <strong>GBV</strong>, exam anxiety, or acute poisoning emergencies.
+                            </p>
+                        </div>
+
+                        <!-- 4 Core Playbooks as Graphic Emblem Shields (Agenda & Clinical Protocols) -->
+                        <div class="poster-emblem-grid">
+                            <!-- Emblem 1: Peer Pressure & Refusal Confidence -->
+                            <div class="poster-emblem emblem-oval">
+                                <div class="emblem-icon-box">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                        <path d="M7 11c0-3.3 3.1-6 7-6h4c3.9 0 7 2.7 7 6v5c0 3.3-3.1 6-7 6h-6l-5 4v-4.8C5.8 20.1 7 18.2 7 16v-5z"/>
+                                        <path d="M12 13h8M12 17h5" stroke="#FFD54F" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <div class="emblem-text">
+                                    <strong>Peer Pressure &amp; Refusal</strong>
+                                    <p>Assertive refusal scripts, the "Decoy Cup" tactic &amp; sober ally anchoring</p>
+                                </div>
+                            </div>
+
+                            <!-- Emblem 2: GBV & 5D Bystander Protection -->
+                            <div class="poster-emblem emblem-shield">
+                                <div class="emblem-icon-box icon-water">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                        <path d="M16 3L5 8v8c0 7.5 4.7 11.8 11 13.5C22.3 27.8 27 23.5 27 16V8L16 3z"/>
+                                        <path d="M12 16l3 3 6-6" stroke="#64DFDF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="emblem-text">
+                                    <strong>GBV &amp; 5D Bystander Guard</strong>
+                                    <p>Consent law, anti-spiking vigilance &amp; 45-min squad check-ins</p>
+                                </div>
+                            </div>
+
+                            <!-- Emblem 3: Mental Health & H.A.L.T. Coping -->
+                            <div class="poster-emblem emblem-seal">
+                                <div class="emblem-icon-box icon-gauge">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                        <circle cx="16" cy="16" r="11" stroke="#FFD54F"/>
+                                        <path d="M11 19c1.5 2 3.2 3 5 3s3.5-1 5-3" stroke="#76FF9B" stroke-linecap="round"/>
+                                        <circle cx="12.5" cy="13.5" r="1.3" fill="#FFFFFF" stroke="none"/>
+                                        <circle cx="19.5" cy="13.5" r="1.3" fill="#FFFFFF" stroke="none"/>
+                                    </svg>
+                                </div>
+                                <div class="emblem-text">
+                                    <strong>Mental Health &amp; H.A.L.T.</strong>
+                                    <p>Break exam stress, "hangxiety" rebound &amp; self-medication cycles</p>
+                                </div>
+                            </div>
+
+                            <!-- Emblem 4: Overdose & C.U.P.S. Protocol -->
+                            <div class="poster-emblem emblem-hazard">
+                                <div class="emblem-icon-box icon-flask">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                        <rect x="5" y="5" width="22" height="22" rx="5" stroke="#FFD54F"/>
+                                        <path d="M16 10v12M10 16h12" stroke="#76FF9B" stroke-width="2.6" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <div class="emblem-text">
+                                    <strong>Overdose &amp; C.U.P.S. Care</strong>
+                                    <p>Spot Cold skin, Unconsciousness, Puking, Slow breathing &amp; Recovery Pose</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Realistic People Visual Stage + Impact & Aim Highlights -->
+                        <div class="poster-people-showcase">
+                            <div class="poster-photo-stage">
+                                <img src="assets/poster/support_hub_circle.jpg" alt="Supportive peer circle of Zimbabwean students and learners talking openly together on a sunlit lawn" class="poster-hero-photo">
+                                <div class="poster-photo-scrim"></div>
+
+                                <!-- Strategic Impact Badges -->
+                                <div class="poster-float-impact top-left">
+                                    <span class="pfi-value">Hundreds</span>
+                                    <span class="pfi-label">Anonymous peer recovery &amp; refusal testimonies shared</span>
+                                </div>
+                                <div class="poster-float-impact top-right">
+                                    <span class="pfi-value">Zero Tolerance</span>
+                                    <span class="pfi-label">Thousands trained in C.U.P.S. &amp; 5D bystander response</span>
+                                </div>
+
+                                <!-- Strategic Aim Caption Ribbon across bottom of photo -->
+                                <div class="poster-aim-overlay">
+                                    <p>
+                                        Achieving <strong>zero preventable alcohol-poisoning fatalities</strong> and zero GBV tolerance by equipping every student and learner with clinical first-response mastery and barrier-free counseling.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Secondary Realistic Counseling Card + Action Pathways -->
+                            <div class="poster-study-strip">
+                                <div class="poster-inset-photo-wrap">
+                                    <img src="assets/poster/support_hub_counseling.jpg" alt="Compassionate peer counselor speaking one-on-one with a student in a warm wellness lounge" class="poster-inset-photo">
+                                </div>
+                                <div class="poster-pathway-copy">
+                                    <div class="poster-pathway-pills">
+                                        <span>4 Clinical Harm-Reduction Playbooks</span>
+                                        <span>Anonymous Peer Story Forum</span>
+                                        <span>Bystander Scenario Training</span>
+                                        <span>Instant 999 / 994 Crisis Links</span>
+                                    </div>
+                                    <div class="poster-cta-row">
+                                        <span class="poster-cta-hint">Read real student recovery stories, practice refusal scripts, or connect with a specialist 24/7.</span>
+                                        <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
+                                            <span>Enter Support Hub →</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Poster Co-Sponsor & Partnership Attribution Footer -->
+                        <div class="poster-partner-footer">
+                            <span class="ppf-line">
+                                Clinical &amp; crisis care network: <strong>Adult Rape Clinic (ARC)</strong> &nbsp;•&nbsp; <strong>Musasa Project</strong> &nbsp;•&nbsp; <strong>Friendship Bench Zimbabwe</strong> &nbsp;•&nbsp; <strong>School &amp; Institutional Counseling Centers</strong> &nbsp;•&nbsp; <strong>National EMS (999 / 994)</strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="frame-bottom-bar">
+                    <div class="slideshow-status" data-slideshow-dots="slideshow-frame-3">
+                        <span class="status-label">Automated Visual Tour:</span>
+                        <button class="slide-dot active" onclick="setFrameSlide('slideshow-frame-3', 0)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-3', 1)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-3', 2)"></button>
+                    </div>
+                    <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-4')">
+                        <span>The Ambassador Program ↓</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             FRAME 4: THE DELTAS SMART DRINKING AMBASSADOR PROGRAM
+             ===================================================================== -->
+        <section id="frame-4" class="landing-frame" data-frame-index="4">
+            <!-- Automated Background Image Slideshow -->
+            <div class="frame-slideshow" id="slideshow-frame-4">
+                <div class="slide-bg active" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&auto=format&fit=crop&q=80');"></div>
+            </div>
+            <div class="frame-scrim scrim-emerald"></div>
+
+            <div class="frame-inner">
+                <div class="frame-section-header">
+                    <span class="frame-eyebrow-pill">PEER LEADERSHIP &amp; EDUCATIONAL INSTITUTIONS NETWORK</span>
+                    <h2>The DELTAS Smart Drinking Ambassador Program</h2>
+                    <p class="frame-lead">
+                        Empowering students and learners across Zimbabwe's high schools, colleges, and educational institutions to champion the <strong>Pledge 18</strong> movement, elevate their personal Smart Lifestyle Score, and compete on the National Institutional Leaderboard.
+                    </p>
+                </div>
+
+                <!-- THE DELTAS SMART DRINKING AMBASSADOR PROGRAM: WIDE GRAPHIC POSTER DISPLAY -->
+                <div class="academy-poster-panel poster-theme-ambassador poster-wide">
+                    <div class="poster-canvas">
+                        <!-- Decorative Leadership, Trophy & Institutional Crest SVG Motifs -->
+                        <div class="poster-ornaments" aria-hidden="true">
+                            <svg class="orn-cap" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 8h24v12c0 7-5 12-12 12s-12-5-12-12V8z"/><path d="M20 12h-8v6c0 4 3 7 8 7M44 12h8v6c0 4-3 7-8 7"/><line x1="32" y1="32" x2="32" y2="42"/><line x1="22" y1="42" x2="42" y2="42"/></svg>
+                            <svg class="orn-book" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><polygon points="32,4 39,18 54,20 43,31 46,45 32,38 18,45 21,31 10,20 25,18"/></svg>
+                            <svg class="orn-dna" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 6L4 18l28 12 28-12L32 6z"/><path d="M14 23v12c0 5 8 8 18 8s18-3 18-8V23"/></svg>
+                            <svg class="orn-heart" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="20" r="12"/><polyline points="26,31 22,44 32,39 42,44 38,31"/></svg>
+                            <div class="orn-dots orn-dots-tl"></div>
+                            <div class="orn-dots orn-dots-br"></div>
+                        </div>
+
+                        <!-- Poster Top Banner & Display Title -->
+                        <div class="poster-header-block">
+                            <div class="poster-top-ribbon">STUDENT &amp; LEARNER LEADERSHIP &nbsp;•&nbsp; PLEDGE 18 &amp; INSTITUTIONAL CHALLENGE</div>
+                            <h3 class="poster-main-title">
+                                <span class="poster-title-gold">DELTAS Smart Drinking</span>
+                                <span class="poster-title-white">
+                                    Student Ambassador Network
+                                    <svg class="poster-pulse-emblem" viewBox="0 0 46 34" fill="none" aria-hidden="true">
+                                        <polygon points="23,2 28.5,12.5 40,14 31.5,22 33.5,33 23,27.5 12.5,33 14.5,22 6,14 17.5,12.5" fill="rgba(255,213,79,0.22)" stroke="#FFD54F" stroke-width="1.8"/>
+                                    </svg>
+                                </span>
+                            </h3>
+                            <!-- Subtle Background Summary woven cleanly into the hook -->
+                            <p class="poster-lead-copy">
+                                Because young people model their lifestyle choices on respected students, learners, athletes, and peer leaders across high schools, colleges, and educational institutions far more effectively than top-down punitive rules—turning moderation into an aspirational badge of honor.
+                            </p>
+                        </div>
+
+                        <!-- 4 Core Leadership Pillars as Graphic Emblem Shields (Agenda & Gamified Mechanics) -->
+                        <div class="poster-emblem-grid">
+                            <!-- Emblem 1: 8+ Educational Institutions -->
+                            <div class="poster-emblem emblem-oval">
+                                <div class="emblem-icon-box">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                        <path d="M16 4L3 10l13 6 13-6L16 4z"/>
+                                        <path d="M7 13v8c0 3 4 5 9 5s9-2 9-5v-8" stroke="#FFD54F"/>
+                                    </svg>
+                                </div>
+                                <div class="emblem-text">
+                                    <div class="emblem-stat-line"><span class="emblem-big">8+</span><strong>Educational Institutions</strong></div>
+                                    <p>High schools, colleges &amp; learning institutions competing nationwide</p>
+                                </div>
+                            </div>
+
+                            <!-- Emblem 2: Pledge 18 Signature Drives -->
+                            <div class="poster-emblem emblem-shield">
+                                <div class="emblem-icon-box icon-water">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                        <path d="M16 3L5 8v8c0 7.5 4.7 11.8 11 13.5C22.3 27.8 27 23.5 27 16V8L16 3z"/>
+                                        <text x="16" y="19.5" text-anchor="middle" fill="#FFD54F" stroke="none" font-family="Poppins, sans-serif" font-size="10" font-weight="900">18+</text>
+                                    </svg>
+                                </div>
+                                <div class="emblem-text">
+                                    <strong>Pledge 18 Advocacy</strong>
+                                    <p>2,355+ verified signatures championing legal &amp; mindful choices</p>
+                                </div>
+                            </div>
+
+                            <!-- Emblem 3: Smart Lifestyle Score (/100) -->
+                            <div class="poster-emblem emblem-seal">
+                                <div class="emblem-icon-box icon-gauge">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                        <circle cx="16" cy="14" r="7" stroke="#FFD54F"/>
+                                        <polyline points="12,20 10,28 16,25 22,28 20,20" stroke="#76FF9B"/>
+                                    </svg>
+                                </div>
+                                <div class="emblem-text">
+                                    <strong>Lifestyle Score (/100)</strong>
+                                    <p>Verifiable mastery across Facts, Scenarios, Safety &amp; Leadership</p>
+                                </div>
+                            </div>
+
+                            <!-- Emblem 4: Live Institutional Leaderboard -->
+                            <div class="poster-emblem emblem-hazard">
+                                <div class="emblem-icon-box icon-flask">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                        <path d="M9 6h14v7a7 7 0 0 1-14 0V6z" stroke="#FFD54F"/>
+                                        <path d="M9 9H5v3a4 4 0 0 0 4 4M23 9h4v3a4 4 0 0 1-4 4"/>
+                                        <line x1="16" y1="20" x2="16" y2="26"/>
+                                        <line x1="11" y1="26" x2="21" y2="26" stroke="#76FF9B" stroke-width="2.4"/>
+                                    </svg>
+                                </div>
+                                <div class="emblem-text">
+                                    <strong>Institutional Leaderboard</strong>
+                                    <p>Weekly school &amp; college challenges, workshops &amp; sober festivals</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Realistic People Visual Stage + Impact & Aim Highlights -->
+                        <div class="poster-people-showcase">
+                            <div class="poster-photo-stage">
+                                <img src="assets/poster/ambassador_leaders_group.jpg" alt="Confident Zimbabwean student and learner ambassadors standing together with leadership folders and certificates" class="poster-hero-photo">
+                                <div class="poster-photo-scrim"></div>
+
+                                <!-- Strategic Impact Badges -->
+                                <div class="poster-float-impact top-left">
+                                    <span class="pfi-value">814+ Leaders</span>
+                                    <span class="pfi-label">Active certified student &amp; learner ambassadors across 8+ educational institutions</span>
+                                </div>
+                                <div class="poster-float-impact top-right">
+                                    <span class="pfi-value">23,590+ Pts</span>
+                                    <span class="pfi-label">Institutional impact points &amp; 2,355+ Pledge 18 commitments</span>
+                                </div>
+
+                                <!-- Strategic Aim Caption Ribbon across bottom of photo -->
+                                <div class="poster-aim-overlay">
+                                    <p>
+                                        Cultivating a self-sustaining generation of ethical students and learners who lead orientation workshops, organize vibrant <strong>alcohol-free school &amp; college events</strong>, and mentor incoming peers.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Secondary Realistic Campaign Card + Action Pathways -->
+                            <div class="poster-study-strip">
+                                <div class="poster-inset-photo-wrap">
+                                    <img src="assets/poster/ambassador_pledge_drive.jpg" alt="Enthusiastic student and learner ambassadors welcoming peers at an outdoor Pledge 18 orientation table" class="poster-inset-photo">
+                                </div>
+                                <div class="poster-pathway-copy">
+                                    <div class="poster-pathway-pills">
+                                        <span>4 Competency Metrics</span>
+                                        <span>Live Institutional Leaderboard</span>
+                                        <span>Digital Ambassador Badges</span>
+                                        <span>Fellowship &amp; Leadership Paths</span>
+                                    </div>
+                                    <div class="poster-cta-row">
+                                        <span class="poster-cta-hint">Represent your school or educational institution, climb the national leaderboard, and unlock fellowships.</span>
+                                        <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
+                                            <span>Join Ambassadors →</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Poster Co-Sponsor & Partnership Attribution Footer -->
+                        <div class="poster-partner-footer">
+                            <span class="ppf-line">
+                                Anchored by <strong>Partner High Schools &amp; Colleges</strong> &nbsp;•&nbsp; <strong>Educational Institutions</strong> &nbsp;•&nbsp; <strong>Student &amp; Learner Councils</strong> &nbsp;•&nbsp; <strong>Boost Fellowship</strong> &nbsp;•&nbsp; <strong>Delta Leadership Mentors</strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="frame-bottom-bar">
+                    <div class="slideshow-status" data-slideshow-dots="slideshow-frame-4">
+                        <span class="status-label">Automated Visual Tour:</span>
+                        <button class="slide-dot active" onclick="setFrameSlide('slideshow-frame-4', 0)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-4', 1)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-4', 2)"></button>
+                    </div>
+                    <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-5')">
+                        <span>Youth Impact News &amp; Radio ↓</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             FRAME 5: YOUTH IMPACT NEWS & RADIOS & PODS (COMBINED MEDIA FRAME)
+             ===================================================================== -->
+        <section id="frame-5" class="landing-frame" data-frame-index="5">
+            <!-- Automated Background Image Slideshow -->
+            <div class="frame-slideshow" id="slideshow-frame-5">
+                <div class="slide-bg active" style="background-image: url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1600&auto=format&fit=crop&q=80');"></div>
+            </div>
+            <div class="frame-scrim scrim-charcoal"></div>
+
+            <div class="frame-inner">
+                <div class="frame-section-header">
+                    <span class="frame-eyebrow-pill pill-orange">UNIFIED MEDIA, JOURNALISM &amp; BROADCAST HUB</span>
+                    <h2>Youth Impact News &amp; Campus Voice Radio &amp; Pods</h2>
+                    <p class="frame-lead">
+                        Two synergistic media engines in one unified hub: real-time public health &amp; policy journalism paired with live Zimbabwean radio dialogues and student-hosted podcasts.
+                    </p>
+                </div>
+
+                <!-- Dual-Column Media Showcase: Youth Impact News Poster + Radio & Pods Poster -->
+                <div class="dual-feature-showcase mode-both">
+                    
+                    <!-- LEFT: YOUTH IMPACT NEWS HUB (GRAPHIC POSTER DISPLAY) -->
+                    <div class="academy-poster-panel poster-theme-news">
+                        <div class="poster-canvas">
+                            <!-- Decorative Journalism, Press & Global Health SVG Motifs -->
+                            <div class="poster-ornaments" aria-hidden="true">
+                                <svg class="orn-cap" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="10" y="6" width="44" height="36" rx="4"/><line x1="18" y1="16" x2="46" y2="16"/><line x1="18" y1="24" x2="46" y2="24"/><line x1="18" y1="32" x2="34" y2="32"/></svg>
+                                <svg class="orn-book" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="24" r="18"/><ellipse cx="32" cy="24" rx="8" ry="18"/><line x1="14" y1="24" x2="50" y2="24"/></svg>
+                                <svg class="orn-dna" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="28" cy="22" r="12"/><line x1="37" y1="31" x2="50" y2="42"/></svg>
+                                <svg class="orn-heart" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><polyline points="10,36 24,22 34,30 52,12"/><polyline points="40,12 52,12 52,24"/></svg>
+                                <div class="orn-dots orn-dots-tl"></div>
+                                <div class="orn-dots orn-dots-br"></div>
+                            </div>
+
+                            <!-- Poster Top Banner & Display Title -->
+                            <div class="poster-header-block">
+                                <div class="poster-top-ribbon">MEDIA STREAM 01 &nbsp;•&nbsp; VERIFIED EDITORIAL &amp; POLICY DESK</div>
+                                <h3 class="poster-main-title">
+                                    <span class="poster-title-gold">Youth Impact</span>
+                                    <span class="poster-title-white">
+                                        News &amp; Research Hub
+                                        <svg class="poster-pulse-emblem" viewBox="0 0 46 34" fill="none" aria-hidden="true">
+                                            <rect x="5" y="4" width="36" height="26" rx="4" fill="rgba(255,213,79,0.20)" stroke="#FFD54F" stroke-width="1.8"/>
+                                            <line x1="11" y1="12" x2="35" y2="12" stroke="#76FF9B" stroke-width="2.2" stroke-linecap="round"/>
+                                            <line x1="11" y1="18" x2="35" y2="18" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+                                            <line x1="11" y1="24" x2="25" y2="24" stroke="#FFD54F" stroke-width="1.8" stroke-linecap="round"/>
+                                        </svg>
+                                    </span>
+                                </h3>
+                                <!-- Subtle Background Summary woven cleanly into the hook -->
+                                <p class="poster-lead-copy">
+                                    Cutting through social media algorithms that glamorize binge culture and spread unverified party rumors—delivering fact-checked public health advisories and student innovation stories daily.
+                                </p>
+                            </div>
+
+                            <!-- 4 Core Editorial Streams as Graphic Emblem Shields -->
+                            <div class="poster-emblem-grid">
+                                <!-- Emblem 1: WHO & MoHCC Research Briefs -->
+                                <div class="poster-emblem emblem-oval">
+                                    <div class="emblem-icon-box">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <circle cx="16" cy="16" r="11"/>
+                                            <ellipse cx="16" cy="16" rx="5" ry="11"/>
+                                            <line x1="5" y1="16" x2="27" y2="16" stroke="#FFD54F"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Health &amp; WHO Briefs</strong>
+                                        <p>Global peer-mentorship studies &amp; clinical toxicology digests</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 2: Campus Advocacy Spotlights -->
+                                <div class="poster-emblem emblem-shield">
+                                    <div class="emblem-icon-box icon-water">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <path d="M12 24h8M13 28h6"/>
+                                            <path d="M10 14a6 6 0 1 1 12 0c0 2.5-1.5 4-2.5 5.5H12.5C11.5 18 10 16.5 10 14z" stroke="#64DFDF"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Campus Innovation</strong>
+                                        <p>Spotlighting Enactus social enterprises &amp; Pledge 18 milestones</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 3: Liquor Act & Road Policy -->
+                                <div class="poster-emblem emblem-seal">
+                                    <div class="emblem-icon-box icon-gauge">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <path d="M16 5v22M8 9h16"/>
+                                            <path d="M8 9l-3 7h6l-3-7zM24 9l-3 7h6l-3-7z" stroke="#FFD54F"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Liquor Act &amp; Policy</strong>
+                                        <p>Statutory 0.08% BAC enforcement, licensing &amp; road safety updates</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 4: Toxicology & Lab Advisories -->
+                                <div class="poster-emblem emblem-hazard">
+                                    <div class="emblem-icon-box icon-flask">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <rect x="6" y="5" width="20" height="22" rx="3" stroke="#FFD54F"/>
+                                            <polyline points="10,17 14,17 16,12 19,21 21,17 23,17" stroke="#76FF9B" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Lab &amp; Safety Alerts</strong>
+                                        <p>Methanol 'kambwa' warnings, FASD &amp; REM sleep memory science</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Realistic People Visual Stage + Impact & Aim Highlights -->
+                            <div class="poster-people-showcase">
+                                <div class="poster-photo-stage">
+                                    <img src="assets/poster/news_editorial_desk.jpg" alt="Young Zimbabwean student journalists and public health researchers reviewing news briefs in a modern campus media room" class="poster-hero-photo">
+                                    <div class="poster-photo-scrim"></div>
+
+                                    <!-- Strategic Impact Badges -->
+                                    <div class="poster-float-impact top-left">
+                                        <span class="pfi-value">Thousands</span>
+                                        <span class="pfi-label">Monthly student &amp; learner reads across 8+ educational institutions</span>
+                                    </div>
+                                    <div class="poster-float-impact top-right">
+                                        <span class="pfi-value">3 Live Feeds</span>
+                                        <span class="pfi-label">WHO &amp; MoHCC, Youth Innovation &amp; Liquor Policy</span>
+                                    </div>
+
+                                    <!-- Strategic Aim Caption Ribbon across bottom of photo -->
+                                    <div class="poster-aim-overlay">
+                                        <p>
+                                            Keeping students, learners, and youth leaders informed with credible daily reporting that connects <strong>local youth action</strong> to global public health standards.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Secondary Realistic Field Reporting Card + Action Pathways -->
+                                <div class="poster-study-strip">
+                                    <div class="poster-inset-photo-wrap">
+                                        <img src="assets/poster/news_campus_reporters.jpg" alt="Student reporters interviewing a health specialist outdoors at a learning institution" class="poster-inset-photo">
+                                    </div>
+                                    <div class="poster-pathway-copy">
+                                        <div class="poster-pathway-pills">
+                                            <span>Categorized News Streams</span>
+                                            <span>Student Project Spotlights</span>
+                                            <span>Accessible Medical Briefs</span>
+                                            <span>Policy Fact-Checks</span>
+                                        </div>
+                                        <div class="poster-cta-row">
+                                            <span class="poster-cta-hint">Explore verified public health dispatches, campus breakthroughs, and policy updates.</span>
+                                            <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
+                                                <span>Read Impact News →</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Poster Co-Sponsor & Partnership Attribution Footer -->
+                            <div class="poster-partner-footer">
+                                <span class="ppf-line">
+                                    Verified feeds from <strong>WHO Africa</strong> &nbsp;•&nbsp; <strong>Ministry of Health &amp; Child Care (MoHCC)</strong> &nbsp;•&nbsp; <strong>National Youth Press Desks</strong> &nbsp;•&nbsp; <strong>Enactus Editorial Teams</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: CAMPUS VOICE RADIO & PODS (GRAPHIC POSTER DISPLAY) -->
+                    <div class="academy-poster-panel poster-theme-radio">
+                        <div class="poster-canvas">
+                            <!-- Decorative Broadcast Microphone, Soundwave & Headphones SVG Motifs -->
+                            <div class="poster-ornaments" aria-hidden="true">
+                                <svg class="orn-cap" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="24" y="6" width="16" height="24" rx="8"/><path d="M16 20a16 16 0 0 0 32 0"/><line x1="32" y1="36" x2="32" y2="44"/><line x1="22" y1="44" x2="42" y2="44"/></svg>
+                                <svg class="orn-book" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 28V22a18 18 0 0 1 36 0v6"/><rect x="10" y="26" width="8" height="14" rx="3"/><rect x="46" y="26" width="8" height="14" rx="3"/></svg>
+                                <svg class="orn-dna" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="28"/><line x1="22" y1="12" x2="22" y2="36"/><line x1="32" y1="6" x2="32" y2="42"/><line x1="42" y1="14" x2="42" y2="34"/><line x1="52" y1="20" x2="52" y2="28"/></svg>
+                                <svg class="orn-heart" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="24" r="6"/><path d="M20 14a16 16 0 0 0 0 20M44 14a16 16 0 0 1 0 20"/></svg>
+                                <div class="orn-dots orn-dots-tl"></div>
+                                <div class="orn-dots orn-dots-br"></div>
+                            </div>
+
+                            <!-- Poster Top Banner & Display Title -->
+                            <div class="poster-header-block">
+                                <div class="poster-top-ribbon">MEDIA STREAM 02 &nbsp;•&nbsp; LIVE FM AIRWAVES &amp; STUDENT PODCASTS</div>
+                                <h3 class="poster-main-title">
+                                    <span class="poster-title-gold">Campus Voice</span>
+                                    <span class="poster-title-white">
+                                        Radio &amp; Podcast Studio
+                                        <svg class="poster-pulse-emblem" viewBox="0 0 46 34" fill="none" aria-hidden="true">
+                                            <circle cx="23" cy="17" r="13" fill="rgba(255,213,79,0.20)" stroke="#FFD54F" stroke-width="1.8"/>
+                                            <line x1="14" y1="17" x2="14" y2="17" stroke="#76FF9B" stroke-width="3" stroke-linecap="round"/>
+                                            <line x1="18.5" y1="12" x2="18.5" y2="22" stroke="#76FF9B" stroke-width="2.4" stroke-linecap="round"/>
+                                            <line x1="23" y1="8" x2="23" y2="26" stroke="#FFD54F" stroke-width="2.4" stroke-linecap="round"/>
+                                            <line x1="27.5" y1="12" x2="27.5" y2="22" stroke="#76FF9B" stroke-width="2.4" stroke-linecap="round"/>
+                                            <line x1="32" y1="15" x2="32" y2="19" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+                                        </svg>
+                                    </span>
+                                </h3>
+                                <!-- Subtle Background Summary woven cleanly into the hook -->
+                                <p class="poster-lead-copy">
+                                    Meeting students during daily commutes, gym sessions, and hostel study hours—turning national radio and campus podcasts into an intimate, stigma-free forum for candid lifestyle dialogue.
+                                </p>
+                            </div>
+
+                            <!-- 4 Core Broadcast Pillars as Graphic Emblem Shields -->
+                            <div class="poster-emblem-grid">
+                                <!-- Emblem 1: National FM Broadcast Desk -->
+                                <div class="poster-emblem emblem-oval">
+                                    <div class="emblem-icon-box">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <circle cx="16" cy="16" r="3" fill="#FFD54F" stroke="none"/>
+                                            <path d="M10 10a8.5 8.5 0 0 0 0 12M22 10a8.5 8.5 0 0 1 0 12"/>
+                                            <path d="M6 6a14 14 0 0 0 0 20M26 6a14 14 0 0 1 0 20" stroke="#76FF9B"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <div class="emblem-stat-line"><span class="emblem-big">3</span><strong>National FM Desks</strong></div>
+                                        <p>StarFM, ZiFM Stereo &amp; Capitalk 100.4FM weekly youth broadcasts</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 2: Pledge 18 Student Panels -->
+                                <div class="poster-emblem emblem-shield">
+                                    <div class="emblem-icon-box icon-water">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <rect x="12" y="4" width="8" height="14" rx="4" stroke="#64DFDF"/>
+                                            <path d="M8 12a8 8 0 0 0 16 0"/>
+                                            <line x1="16" y1="20" x2="16" y2="27"/>
+                                            <line x1="11" y1="27" x2="21" y2="27"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Pledge 18 Debate Pods</strong>
+                                        <p>Unscripted student panels on Freshers' Week &amp; refusal confidence</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 3: Expert Clinical & Police Q&As -->
+                                <div class="poster-emblem emblem-seal">
+                                    <div class="emblem-icon-box icon-gauge">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <path d="M7 18v-3a9 9 0 0 1 18 0v3"/>
+                                            <rect x="5" y="17" width="4" height="7" rx="2" stroke="#FFD54F"/>
+                                            <rect x="23" y="17" width="4" height="7" rx="2" stroke="#FFD54F"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Expert Call-In Q&amp;As</strong>
+                                        <p>Live sessions with toxicologists, traffic officers &amp; counselors</p>
+                                    </div>
+                                </div>
+
+                                <!-- Emblem 4: Hostel & On-Demand Replays -->
+                                <div class="poster-emblem emblem-hazard">
+                                    <div class="emblem-icon-box icon-flask">
+                                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26">
+                                            <circle cx="16" cy="16" r="11" stroke="#FFD54F"/>
+                                            <polygon points="13,11 22,16 13,21" fill="#76FF9B" stroke="none"/>
+                                        </svg>
+                                    </div>
+                                    <div class="emblem-text">
+                                        <strong>Replay Library</strong>
+                                        <p>On-demand episodes replayed in student &amp; school workshops across 8+ institutions</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Realistic People Visual Stage + Impact & Aim Highlights -->
+                            <div class="poster-people-showcase">
+                                <div class="poster-photo-stage">
+                                    <img src="assets/poster/radio_studio_hosts.jpg" alt="Vibrant Zimbabwean youth radio hosts and guest panelists wearing headphones at studio broadcast microphones" class="poster-hero-photo">
+                                    <div class="poster-photo-scrim"></div>
+
+                                    <!-- Strategic Impact Badges -->
+                                    <div class="poster-float-impact top-left">
+                                        <span class="pfi-value">8+ Institutions</span>
+                                        <span class="pfi-label">School &amp; student workshop replays plus national call-in engagement</span>
+                                    </div>
+                                    <div class="poster-float-impact top-right">
+                                        <span class="pfi-value">Live &amp; Pods</span>
+                                        <span class="pfi-label">StarFM, ZiFM Stereo, Capitalk 100.4FM &amp; youth streams</span>
+                                    </div>
+
+                                    <!-- Strategic Aim Caption Ribbon across bottom of photo -->
+                                    <div class="poster-aim-overlay">
+                                        <p>
+                                            Normalizing open, stigma-free dialogue around <strong>peer pressure refusal, sobriety, and bystander responsibility</strong> across national airwaves and youth podcast feeds.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Secondary Realistic Podcast Studio Card + Action Pathways -->
+                                <div class="poster-study-strip">
+                                    <div class="poster-inset-photo-wrap">
+                                        <img src="assets/poster/radio_student_podcasters.jpg" alt="Two Zimbabwean students recording a youth podcast together with studio microphones" class="poster-inset-photo">
+                                    </div>
+                                    <div class="poster-pathway-copy">
+                                        <div class="poster-pathway-pills">
+                                            <span>Station-Filtered Schedules</span>
+                                            <span>Student-Produced Pods</span>
+                                            <span>Medical &amp; Police Q&amp;As</span>
+                                            <span>Live Show Reminders</span>
+                                        </div>
+                                        <div class="poster-cta-row">
+                                            <span class="poster-cta-hint">Browse weekly FM broadcast times or stream student-hosted Pledge 18 episodes.</span>
+                                            <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
+                                                <span>Tune In to Radio →</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Poster Co-Sponsor & Partnership Attribution Footer -->
+                            <div class="poster-partner-footer">
+                                <span class="ppf-line">
+                                    Broadcast collaborations with <strong>StarFM</strong> &nbsp;•&nbsp; <strong>ZiFM Stereo</strong> &nbsp;•&nbsp; <strong>Capitalk 100.4FM</strong> &nbsp;•&nbsp; <strong>Youth &amp; Institutional Radio Studios</strong> &nbsp;•&nbsp; <strong>Medical Guest Panelists</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="frame-bottom-bar">
+                    <div class="slideshow-status" data-slideshow-dots="slideshow-frame-5">
+                        <span class="status-label">Automated Visual Tour:</span>
+                        <button class="slide-dot active" onclick="setFrameSlide('slideshow-frame-5', 0)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-5', 1)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-5', 2)"></button>
+                    </div>
+                    <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-6')">
+                        <span>Events &amp; Portal Login ↓</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             FRAME 6: CAMPUS & COMMUNITY EVENTS + PORTAL ACCESS GATE
+             ===================================================================== -->
+        <section id="frame-6" class="landing-frame" data-frame-index="6">
+            <!-- Automated Background Image Slideshow -->
+            <div class="frame-slideshow" id="slideshow-frame-6">
+                <div class="slide-bg active" style="background-image: url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600&auto=format&fit=crop&q=80');"></div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1600&auto=format&fit=crop&q=80');"></div>
+            </div>
+            <div class="frame-scrim scrim-emerald"></div>
+
+            <div class="frame-inner">
+                <div class="frame-section-header">
+                    <span class="frame-eyebrow-pill">EXPERIENCES, MARATHONS &amp; SOBER FESTIVALS</span>
+                    <h2>Campus &amp; Community Events Showcase</h2>
+                    <p class="frame-lead">
+                        Bringing the DELTAS mission to life on the ground through national student and learner marathons, Pledge 18 awareness walks, zero-alcohol mocktail &amp; esports festivals, and hands-on emergency workshops across schools, colleges, and communities.
+                    </p>
+                </div>
+
+                <!-- Featured Related Events Grid with Images & Details -->
+                <div class="landing-events-showcase-grid">
+                    
+                    <article class="landing-event-card">
+                        <div class="lec-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=700&auto=format&fit=crop&q=80" alt="Delta Smart Drinking 10km Campus Marathon">
+                            <span class="lec-category-badge badge-emerald">Marathons &amp; Sports</span>
+                            <span class="lec-rsvp-pill">342 RSVPs</span>
+                        </div>
+                        <div class="lec-body">
+                            <div class="lec-meta">Sat, Nov 28, 2026 • 06:30 AM &nbsp;|&nbsp; UZ Sports Grounds, Harare</div>
+                            <h3>Delta Smart Drinking 10km Campus Marathon &amp; Wellness Expo</h3>
+                            <p>Run for a clear mind! 10km &amp; 5km road race promoting student fitness, moderation, and harm reduction. Finishers receive medals, electrolyte hydration kits, and Ambassador gear.</p>
+                            <div class="lec-footer">
+                                <span>Organized by: <strong>Delta Corp &amp; Enactus UZ</strong></span>
+                                <button type="button" class="lec-action-btn" onclick="openLandingLoginModal()">Sign In to RSVP →</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="landing-event-card">
+                        <div class="lec-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=700&auto=format&fit=crop&q=80" alt="National Pledge 18 Campus Relay">
+                            <span class="lec-category-badge badge-orange">Campaigns &amp; Pledges</span>
+                            <span class="lec-rsvp-pill">418 RSVPs</span>
+                        </div>
+                        <div class="lec-body">
+                            <div class="lec-meta">Fri, Dec 04, 2026 • 09:00 AM &nbsp;|&nbsp; Harare City Hall to University Way</div>
+                            <h3>National 'Pledge 18' Campus Relay &amp; Awareness Walk</h3>
+                            <p>Inter-university student march against underage drinking, illicit brews (<em>kambwa</em>), and drink-driving. Features the giant Pledge 18 signature wall and peer advocacy booths.</p>
+                            <div class="lec-footer">
+                                <span>Organized by: <strong>Youth Connect+ &amp; Boost Fellowship</strong></span>
+                                <button type="button" class="lec-action-btn" onclick="openLandingLoginModal()">Sign In to RSVP →</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="landing-event-card">
+                        <div class="lec-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=700&auto=format&fit=crop&q=80" alt="Enactus Zero-Alcohol Mocktail & Esports Fest">
+                            <span class="lec-category-badge badge-teal">Sober Festivals &amp; Arts</span>
+                            <span class="lec-rsvp-pill">285 RSVPs</span>
+                        </div>
+                        <div class="lec-body">
+                            <div class="lec-meta">Sat, Dec 12, 2026 • 02:00 PM &nbsp;|&nbsp; MSU Student Union Plaza, Gweru</div>
+                            <h3>Enactus Zero-Alcohol Mocktail &amp; Live FIFA Esports Fest</h3>
+                            <p>Redefining campus nightlife! High-energy esports gaming tournaments, live acoustic music, poetry slams, and an artisan mocktail tasting bar proving unforgettable nights need zero alcohol.</p>
+                            <div class="lec-footer">
+                                <span>Organized by: <strong>Enactus MSU Chapter</strong></span>
+                                <button type="button" class="lec-action-btn" onclick="openLandingLoginModal()">Sign In to RSVP →</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="landing-event-card">
+                        <div class="lec-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&auto=format&fit=crop&q=80" alt="Smart Drinking Peer Ambassador Workshop">
+                            <span class="lec-category-badge badge-emerald">Workshops</span>
+                            <span class="lec-rsvp-pill">160 RSVPs</span>
+                        </div>
+                        <div class="lec-body">
+                            <div class="lec-meta">Wed, Nov 25, 2026 • 04:00 PM &nbsp;|&nbsp; NUST Innovation Hub, Bulawayo</div>
+                            <h3>Smart Drinking Peer Ambassador &amp; De-escalation Workshop</h3>
+                            <p>Practical certification workshop covering C.U.P.S. alcohol poisoning first response, de-escalating impaired peer drivers, and confidential watchdog reporting protocols.</p>
+                            <div class="lec-footer">
+                                <span>Organized by: <strong>Boost Fellowship &amp; NUST Dean of Students</strong></span>
+                                <button type="button" class="lec-action-btn" onclick="openLandingLoginModal()">Sign In to RSVP →</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- INLINE PORTAL ACCESS & LOGIN GATE -->
+                <div class="landing-final-login-gate" id="landing-inline-login">
+                    <div class="gate-left-info">
+                        <span class="frame-eyebrow-pill">READY TO ENTER THE PLATFORM?</span>
+                        <h3>Sign In to Access the Full Interactive DELTAS Website</h3>
+                        <p>Unlock all 6 Smart Living Academy modules, log confidential Community Watchdog reports, test claims with the BeSmart Myth vs. Fact AI Checker, RSVP for campus events, and earn points for your university chapter.</p>
+                        <p style="font-size:0.86rem; color:var(--text-muted); line-height:1.5;">Authorized student ambassadors, faculty leaders, and youth peer educators can sign in with their university accounts below.</p>
+                    </div>
+
+                    <div class="gate-right-form">
+                        <h4>DELTAS Portal Sign In</h4>
+                        <div class="gate-form-group">
+                            <label for="inline-login-email">Student / Ambassador Email</label>
+                            <input type="email" id="inline-login-email" placeholder="e.g. ambassador@deltas.org.zw">
+                        </div>
+                        <div class="gate-form-group">
+                            <label for="inline-login-uni">University Chapter</label>
+                            <select id="inline-login-uni">
+                                <option value="UZ" selected>University of Zimbabwe (UZ)</option>
+                                <option value="NUST">National University of Science &amp; Technology (NUST)</option>
+                                <option value="MSU">Midlands State University (MSU)</option>
+                                <option value="CUT">Chinhoyi University of Technology (CUT)</option>
+                                <option value="ZEGU">Zimbabwe Ezekiel Guti University (ZEGU)</option>
+                                <option value="HIT">Harare Institute of Technology (HIT)</option>
+                                <option value="BUSE">Bindura University of Science Education (BUSE)</option>
+                                <option value="AU">Africa University (AU)</option>
+                            </select>
+                        </div>
+                        <div class="gate-form-group">
+                            <label for="inline-login-password">Password</label>
+                            <input type="password" id="inline-login-password" placeholder="Enter your password">
+                        </div>
+                        <button type="button" class="btn-primary" style="width:100%; padding:13px; font-size:0.95rem;" onclick="submitPortalGateLogin('inline')">
+                            Enter Full DELTAS Platform →
+                        </button>
+                        <p id="inline-login-feedback" class="gate-feedback"></p>
+                    </div>
+                </div>
+
+                <div class="frame-bottom-bar">
+                    <div class="slideshow-status" data-slideshow-dots="slideshow-frame-6">
+                        <span class="status-label">Automated Visual Tour:</span>
+                        <button class="slide-dot active" onclick="setFrameSlide('slideshow-frame-6', 0)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-6', 1)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-6', 2)"></button>
+                        <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-6', 3)"></button>
+                    </div>
+                    <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-1')">
+                        <span>↑ Back to Top</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- =========================================================================
+         LANDING PAGE LOGIN MODAL (ACCESSIBLE FROM ANY FRAME)
+         ========================================================================= -->
+    <div id="landing-login-modal" class="landing-modal-overlay" style="display:none;" onclick="if(event.target === this) closeLandingLoginModal()">
+        <div class="landing-modal-card" role="dialog" aria-labelledby="modal-login-title">
+            <button type="button" class="modal-close-btn" onclick="closeLandingLoginModal()" aria-label="Close Login Modal">&times;</button>
             
-            <div class="outreach-tabs">
-                <button class="out-tab active" onclick="switchOutreachTab('home', this)">HOME</button>
-                <button class="out-tab" onclick="switchOutreachTab('safespace', this)">Y.D.V.I SAFE SPACE</button>
-                <button class="out-tab" onclick="switchOutreachTab('opportunities', this)">OPPORTUNITIES</button>
-                <button class="out-tab" onclick="switchOutreachTab('contact', this)">CONTACT</button>
+            <div class="modal-brand-header">
+                <img src="deltas_logo.jpg" alt="DELTAS Logo" class="modal-logo">
+                <div>
+                    <span class="modal-kicker">AUTHENTICATED PORTAL ACCESS</span>
+                    <h3 id="modal-login-title">Sign In to DELTAS Youth Connect+</h3>
+                </div>
             </div>
-            
-            <div id="outreach-feed" class="feed-container">
-                <!-- Populated dynamically -->
+
+            <p class="modal-subtext">
+                Sign in with your student email and university chapter account to unlock the full interactive platform.
+            </p>
+
+            <div class="modal-form-body">
+                <div class="gate-form-group">
+                    <label for="modal-login-email">Student / Ambassador Email</label>
+                    <input type="email" id="modal-login-email" placeholder="e.g. ambassador@deltas.org.zw">
+                </div>
+                <div class="gate-form-group">
+                    <label for="modal-login-uni">University Chapter</label>
+                    <select id="modal-login-uni">
+                        <option value="UZ" selected>University of Zimbabwe (UZ)</option>
+                        <option value="NUST">National University of Science &amp; Technology (NUST)</option>
+                        <option value="MSU">Midlands State University (MSU)</option>
+                        <option value="CUT">Chinhoyi University of Technology (CUT)</option>
+                        <option value="ZEGU">Zimbabwe Ezekiel Guti University (ZEGU)</option>
+                        <option value="HIT">Harare Institute of Technology (HIT)</option>
+                        <option value="BUSE">Bindura University of Science Education (BUSE)</option>
+                        <option value="AU">Africa University (AU)</option>
+                    </select>
+                </div>
+                <div class="gate-form-group">
+                    <label for="modal-login-password">Password</label>
+                    <input type="password" id="modal-login-password" placeholder="Enter your password">
+                </div>
+
+                <button type="button" id="btn-modal-login-submit" class="btn-primary" style="width:100%; padding:13px; font-size:0.96rem; margin-top:4px;" onclick="submitPortalGateLogin('modal')">
+                    Sign In &amp; Launch Full Website →
+                </button>
+                <p id="modal-login-feedback" class="gate-feedback"></p>
             </div>
+        </div>
+    </div>
+
+
+    <!-- =========================================================================
+         2. DETAILED INTERACTIVE WEBSITE SHELL (UNLOCKED AFTER LOGIN)
+         ========================================================================= -->
+    <div id="portal-app-shell" class="portal-app-shell" style="display:none;">
+        <!-- Automated Ambient Background Slideshow Across the Portal Platform -->
+        <div class="portal-slideshow" id="portal-slideshow" aria-hidden="true">
+            <div class="slide-bg active" id="portal-slide-a" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&auto=format&fit=crop&q=80');"></div>
+            <div class="slide-bg" id="portal-slide-b"></div>
+            <div class="portal-scrim" id="portal-scrim"></div>
         </div>
 
-        <!-- Module Detail View (Hidden by default) -->
-        <div id="view-module-detail" class="content-view">
-            <div class="outreach-header" style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="closeDetailView()">
-                <span style="font-size:1.5rem; color:var(--primary); font-weight:bold;">← Back to Modules</span>
-                <h2 id="module-detail-title" style="margin:0; margin-left:15px;">Module Details</h2>
-            </div>
-            <div class="progress-bar-container" style="background:rgba(255,255,255,0.1); height:8px; border-radius:4px; margin: 15px 20px;">
-                <div id="module-progress" style="background:#2ecc71; height:100%; width:100%; border-radius:4px; transition:width 0.3s;"></div>
-            </div>
-            <p id="module-progress-text" style="text-align:center; font-size:0.85rem; color:#2ecc71; margin-top:-5px; margin-bottom:15px;">✓ Completed & Registered</p>
-            
-            <div id="module-content-list" class="feed-container">
-                <!-- Content injected here -->
-            </div>
-        </div>
-        
-        <!-- Safe Space Detail View -->
-        <div id="view-safespace-detail" class="content-view">
-            <div class="outreach-header" style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="closeSafeSpaceDetailView()">
-                <span style="font-size:1.5rem; color:#2ecc71; font-weight:bold;">← Back to Safe Space</span>
-                <h2 id="safespace-detail-title" style="margin:0; margin-left:15px;">Safe Space Topic</h2>
-            </div>
-            
-            <div id="safespace-article-container" class="feed-container" style="padding-top:10px;">
-                <!-- Admin Guide Injected Here -->
-            </div>
-            
-            <div class="feed-container" style="padding-top:20px; border-top: 1px solid rgba(255,255,255,0.1); margin-top:20px;">
-                <h3 style="margin-bottom:15px; text-align:center;">Your Peer's experiences with <span id="safespace-peer-topic" style="color:var(--primary);"></span></h3>
-                
-                <div id="safespace-comments-list">
-                    <!-- Comments injected here -->
+        <!-- Top Hero & Download Section -->
+        <header class="hero-section">
+            <div class="hero-content">
+                <div class="hero-image-container">
+                    <img src="deltas_logo.jpg" alt="DELTAS: Delivering Lifeline Tools for Alcohol Solutions" class="hero-logo">
+                    <h1 class="hero-text">DELTAS: DELIVERING LIFELINE TOOLS FOR ALCOHOL SOLUTIONS</h1>
                 </div>
                 
-                <button id="safespace-share-btn" onclick="document.getElementById('safespace-post-form').style.display='block'; this.style.display='none';" style="background:var(--primary); color:#fff; border:none; padding:12px; border-radius:5px; cursor:pointer; font-weight:bold; width:100%; margin-top:15px;">Share your experience</button>
+                <div class="download-corner">
+                    <span class="challenge-pill" id="active-user-pill">Delta &amp; Boost Challenge</span>
+                    <a href="https://github.com/muzondolenon06/tuned-in-zw-website/releases/latest/download/Tuned_in_zw_prototype.apk" class="download-btn android-btn" title="Get full DELTAS Youth Connect+ experience">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0004.5511-.4482.9997-.9993.9997zm-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997zm11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.416.416 0 0 0-.5676.1521l-2.022 3.503C15.5532 8.2366 13.8213 7.7813 12 7.7813s-3.5532.4553-5.1373 1.1691L4.8407 5.4474a.416.416 0 0 0-.5676-.1521.416.416 0 0 0-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396z"/></svg>
+                        <span>Download App</span>
+                    </a>
+                    <button type="button" class="portal-logout-btn" onclick="handleLogout()" title="Log out and return to Landing Page">
+                        <span>Log Out</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-container" id="main-content">
+            <!-- Youth Connect+ (Outreach) View -->
+            <div id="view-outreach" class="content-view active">
+                <div class="outreach-header">
+                    <h2>Deltas Youth Connect+ : Smart Living Academy</h2>
+                    <p>Accredited moderation modules, community watchdog reporting, and youth leadership pathways.</p>
+                </div>
                 
-                <div id="safespace-post-form" style="display:none; margin-top:15px; background:rgba(255,255,255,0.05); padding:15px; border-radius:10px;">
-                    <textarea id="safespace-post-text" placeholder="Share your experience or advice for peers..." style="width:100%; min-height:80px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:10px; border-radius:5px; margin-bottom:10px; box-sizing:border-box;"></textarea>
-                    <input type="file" id="safespace-post-image" accept="image/*" style="margin-bottom:10px; width:100%; color:#aaa;" />
-                    <button id="safespace-submit-btn" onclick="submitSafeSpaceComment()" style="background:#2ecc71; color:#fff; border:none; padding:12px; border-radius:5px; cursor:pointer; font-weight:bold; width:100%;">Post Experience</button>
+                <div class="outreach-tabs">
+                    <button class="out-tab active" onclick="switchOutreachTab('home', this)">SMART LIVING ACADEMY</button>
+                    <button class="out-tab" onclick="switchOutreachTab('watchdog', this)">COMMUNITY WATCHDOG</button>
+                    <button class="out-tab" onclick="switchOutreachTab('opportunities', this)">OPPORTUNITIES</button>
+                    <button class="out-tab" onclick="switchOutreachTab('contact', this)">EMERGENCY HELPLINES</button>
+                </div>
+                
+                <div id="outreach-feed" class="feed-container">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
-        </div>
-        
-        <!-- News View -->
-        <div id="view-news" class="content-view">
-            <div class="page-header">
-                <h2>News Hub</h2>
-                <div class="filter-tabs">
-                    <button class="filter-tab active" onclick="filterNews('All', this)">All News</button>
-                    <button class="filter-tab" onclick="filterNews('The Zimbabwean', this)">The Zimbabwean</button>
-                    <button class="filter-tab" onclick="filterNews('NewsDay', this)">NewsDay</button>
-                    <button class="filter-tab" onclick="filterNews('Herald', this)">Herald</button>
-                    <button class="filter-tab" onclick="filterNews('Chronicle', this)">Chronicle</button>
-                </div>
-            </div>
-            <div id="news-feed" class="feed-container grid-layout">
-                <!-- Populated dynamically -->
-            </div>
-        </div>
 
-        <!-- Radio View -->
-        <div id="view-radio" class="content-view">
-            <div class="page-header">
-                <h2>Radio Programmes & Broadcasts</h2>
-                <div class="filter-tabs">
-                    <button class="filter-tab active" onclick="filterRadio('All', this)">All Stations</button>
-                    <button class="filter-tab" onclick="filterRadio('ZiFM', this)">ZiFM Stereo</button>
-                    <button class="filter-tab" onclick="filterRadio('StarFM', this)">StarFM</button>
-                    <button class="filter-tab" onclick="filterRadio('Capitalk', this)">Capitalk 100.4FM</button>
+            <!-- Above the Influence Support Hub View -->
+            <div id="view-influence" class="content-view">
+                <div class="outreach-header">
+                    <h2>"Above the Influence" Community Support Hub</h2>
+                    <p>Practical harm-reduction playbooks, confidential peer stories, and campus safety protocols.</p>
+                </div>
+                
+                <div id="influence-feed" class="feed-container">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
-            <div id="radio-feed" class="feed-container list-layout">
-                <!-- Populated dynamically -->
-            </div>
-        </div>
 
-        <!-- BeSure View -->
-        <div id="view-besure" class="content-view">
-            <div class="outreach-header">
-                <h2>BeSure Fact-Checking Suite</h2>
-                <p>Your ultimate fact-checking and media literacy toolkit.</p>
+            <!-- Module Detail View (Hidden by default) -->
+            <div id="view-module-detail" class="content-view">
+                <div class="outreach-header" style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="closeDetailView()">
+                    <span style="font-size:1.3rem; color:var(--primary); font-weight:bold; font-family:'Poppins', sans-serif;">← Back to Academy Modules</span>
+                    <h2 id="module-detail-title" style="margin:0; margin-left:15px; font-size:1.5rem;">Module Details</h2>
+                </div>
+                <div style="background:rgba(255, 255, 255, 0.96); border-radius:12px; padding:12px 18px; margin:15px 0 20px 0; border:1px solid var(--border-color); box-shadow:var(--shadow-sm);">
+                    <div class="progress-bar-container" style="background:var(--cream-accent); height:8px; border-radius:4px; margin-bottom:8px; overflow:hidden;">
+                        <div id="module-progress" style="background:var(--accent-sage); height:100%; width:100%; border-radius:4px; transition:width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);"></div>
+                    </div>
+                    <p id="module-progress-text" style="text-align:center; font-size:0.85rem; color:var(--accent-sage); font-weight:700; margin:0;">✓ Verified Smart Drinking Ambassador Module</p>
+                </div>
+                
+                <div id="module-content-list" class="feed-container">
+                    <!-- Content injected here -->
+                </div>
             </div>
             
-            <div class="outreach-tabs">
-                <button class="out-tab active" onclick="switchBeSureTab('verify', this)">🔎 VERIFY THIS</button>
-                <button class="out-tab" onclick="switchBeSureTab('real_or_manipulated', this)">REAL OR MANIPULATED?</button>
-                <button class="out-tab" onclick="switchBeSureTab('mil_challenge', this)">MIL Challenge</button>
-                <button class="out-tab" onclick="switchBeSureTab('mil_score', this)">MIL Score</button>
+            <!-- Safe Space / Support Hub Detail View -->
+            <div id="view-safespace-detail" class="content-view">
+                <div class="outreach-header" style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="closeSafeSpaceDetailView()">
+                    <span style="font-size:1.3rem; color:var(--primary); font-weight:bold; font-family:'Poppins', sans-serif;">← Back to Support Hub</span>
+                    <h2 id="safespace-detail-title" style="margin:0; margin-left:15px; font-size:1.5rem;">Harm-Reduction Guide</h2>
+                </div>
+                
+                <div id="safespace-article-container" class="feed-container" style="padding-top:10px;">
+                    <!-- Harm-Reduction Playbook Injected Here -->
+                </div>
+                
+                <div class="feed-container" style="padding:22px; margin-top:20px; background:rgba(255, 255, 255, 0.96); border-radius:14px; border:1px solid var(--border-color); box-shadow:var(--shadow-sm);">
+                    <h3 style="margin-bottom:15px; text-align:center;">Peer Stories &amp; Advice: <span id="safespace-peer-topic" style="color:var(--primary);"></span></h3>
+                    
+                    <div id="safespace-comments-list">
+                        <!-- Comments injected here -->
+                    </div>
+                    
+                    <button id="safespace-share-btn" class="btn-primary" onclick="document.getElementById('safespace-post-form').style.display='block'; this.style.display='none';" style="width:100%; margin-top:15px; padding:12px;">+ Share Your Peer Story</button>
+                    
+                    <div id="safespace-post-form" style="display:none; margin-top:15px; background:var(--card-bg); border:1px solid var(--border-color); box-shadow:var(--shadow-sm); padding:18px; border-radius:12px;">
+                        <textarea id="safespace-post-text" placeholder="Share how you navigated peer pressure, supported a friend, or hosted a sober event..." style="width:100%; min-height:85px; margin-bottom:10px; box-sizing:border-box;"></textarea>
+                        <label style="display:flex; align-items:center; gap:8px; font-size:0.88rem; color:var(--text-muted); margin-bottom:12px; cursor:pointer;">
+                            <input type="checkbox" id="safespace-post-anon" checked />
+                            <span>Post Anonymously (Protect my identity)</span>
+                        </label>
+                        <input type="file" id="safespace-post-image" accept="image/*" style="margin-bottom:12px; width:100%; font-size:0.85rem;" />
+                        <button id="safespace-submit-btn" class="btn-sage" onclick="submitSafeSpaceComment()" style="width:100%; padding:12px;">Post Peer Story</button>
+                    </div>
+                </div>
             </div>
             
-            <div id="besure-feed" class="feed-container">
-                <!-- Populated dynamically -->
+            <!-- Youth Impact News View -->
+            <div id="view-news" class="content-view">
+                <div class="page-header">
+                    <h2>Youth Impact News Hub</h2>
+                    <p style="margin-top:-2px; margin-bottom:12px;">Youth Advocacy Spotlights, WHO &amp; Ministry of Health Research, and Liquor Policy Updates.</p>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="filterNews('All', this)">All Streams</button>
+                        <button class="filter-tab" onclick="filterNews('Campus Innovation', this)">Campus Innovation</button>
+                        <button class="filter-tab" onclick="filterNews('Health News', this)">Health &amp; WHO News</button>
+                        <button class="filter-tab" onclick="filterNews('Enactus Updates', this)">Enactus &amp; Policy Updates</button>
+                    </div>
+                </div>
+                <div id="news-feed" class="feed-container grid-layout">
+                    <!-- Populated dynamically -->
+                </div>
             </div>
-        </div>
-        
-        <!-- Login View -->
-        <div id="view-login" class="content-view">
-            <div class="outreach-header">
-                <h2>Personal Account & Score Tracking</h2>
-                <p>Sign in to track your Media Literacy scores and contribute peer reports.</p>
-            </div>
-            <div class="feed-container" style="display:flex; flex-direction:column; gap:15px; align-items:center; margin-top:20px; max-width:400px; margin-left:auto; margin-right:auto;">
-                <input type="email" id="login-email" placeholder="Email Address (e.g. youth@tunedin.zw)" style="width:100%; padding:12px; border-radius:5px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:#fff; box-sizing:border-box;" />
-                <input type="password" id="login-password" placeholder="Password" style="width:100%; padding:12px; border-radius:5px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:#fff; box-sizing:border-box;" />
-                <button onclick="handleLogin()" style="width:100%; padding:12px; border-radius:5px; border:none; background:#2ecc71; color:#fff; font-weight:bold; cursor:pointer; font-size:1rem;">Sign In / Auto-Register</button>
-                <p id="login-message" style="color:#2ecc71; display:none; text-align:center;"></p>
-            </div>
-        </div>
 
-    </main>
+            <!-- Campus Voice & Community Radio View -->
+            <div id="view-radio" class="content-view">
+                <div class="page-header">
+                    <h2>Campus Voice &amp; Community Radio Hub</h2>
+                    <p style="margin-top:-2px; margin-bottom:12px;">Live Zimbabwean radio dialogues, 'Pledge 18' student panel podcasts, and expert Q&amp;As.</p>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="filterRadio('All', this)">All Audio &amp; Podcasts</button>
+                        <button class="filter-tab" onclick="filterRadio('Student Panels', this)">Student Panels (Pledge 18)</button>
+                        <button class="filter-tab" onclick="filterRadio('Expert Q&As', this)">Expert Q&amp;As</button>
+                        <button class="filter-tab" onclick="filterRadio('StarFM', this)">StarFM</button>
+                        <button class="filter-tab" onclick="filterRadio('ZiFM', this)">ZiFM Stereo</button>
+                        <button class="filter-tab" onclick="filterRadio('Capitalk', this)">Capitalk 100.4FM</button>
+                    </div>
+                </div>
+                <div id="radio-feed" class="feed-container list-layout">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
 
-    <!-- Fixed Bottom Navigation -->
-    <nav class="bottom-nav">
-        <a href="javascript:void(0)" class="nav-item active" onclick="switchMainView('outreach', this)">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
-            <span>Youth Connect+</span>
-        </a>
-        <a href="javascript:void(0)" class="nav-item" onclick="switchMainView('news', this)">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-            <span>News</span>
-        </a>
-        <a href="javascript:void(0)" class="nav-item" onclick="switchMainView('radio', this)">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-            <span>Radio</span>
-        </a>
-        <a href="javascript:void(0)" class="nav-item" onclick="switchMainView('besure', this)">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-            <span>BeSure</span>
-        </a>
-        <a href="javascript:void(0)" class="nav-item" id="nav-login-btn" onclick="switchMainView('login', this)">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            <span id="nav-login-text">Login</span>
-        </a>
-    </nav>
+            <!-- Events View -->
+            <div id="view-events" class="content-view">
+                <div class="page-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; text-align:left;">
+                    <div style="flex:1; min-width:260px;">
+                        <h2 style="text-align:left; margin-bottom:4px;">Campus &amp; Community Events Hub</h2>
+                        <p style="margin:0; text-align:left;">Marathons, fitness runs, Pledge 18 campaigns, and sober festivals organized by youth leaders and partners.</p>
+                    </div>
+                    <button onclick="toggleEventPostForm()" class="btn-primary" style="padding:10px 18px;">
+                        + Post an Event (Organizers)
+                    </button>
+                </div>
+
+                <!-- Organizer Event Post Form (Collapsible) -->
+                <div id="event-post-modal" style="display:none; padding:22px; border-radius:14px; margin-bottom:25px; background:rgba(255, 255, 255, 0.96); border:1px solid var(--border-color); box-shadow:var(--shadow-md); backdrop-filter:blur(12px);">
+                    <h3 style="margin-bottom:12px; font-size:1.25rem;">Post a New Campus Event / Campaign</h3>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:14px; margin-bottom:14px;">
+                        <div>
+                            <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Event Title:</label>
+                            <input type="text" id="event-input-title" placeholder="e.g. UZ 10km Smart Drinking Marathon" style="width:100%; box-sizing:border-box;" />
+                        </div>
+                        <div>
+                            <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Organizing Body / Chapter:</label>
+                            <input type="text" id="event-input-organizer" placeholder="e.g. Enactus UZ / Delta Corporation" style="width:100%; box-sizing:border-box;" />
+                        </div>
+                        <div>
+                            <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Event Category:</label>
+                            <select id="event-input-category" style="width:100%; box-sizing:border-box;">
+                                <option value="Marathons &amp; Sports">Marathons &amp; Sports</option>
+                                <option value="Campaigns &amp; Pledges">Campaigns &amp; Pledges</option>
+                                <option value="Sober Festivals &amp; Arts">Sober Festivals &amp; Arts</option>
+                                <option value="Workshops">Workshops</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Date &amp; Time:</label>
+                            <input type="text" id="event-input-date" placeholder="e.g. Saturday, Dec 05, 2026 • 07:00 AM" style="width:100%; box-sizing:border-box;" />
+                        </div>
+                    </div>
+                    <div style="margin-bottom:14px;">
+                        <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Venue / Campus Location:</label>
+                        <input type="text" id="event-input-location" placeholder="e.g. UZ Sports Grounds, Mt Pleasant, Harare" style="width:100%; box-sizing:border-box;" />
+                    </div>
+                    <div style="margin-bottom:14px;">
+                        <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Event Description &amp; Details:</label>
+                        <textarea id="event-input-desc" placeholder="Describe the marathon distance, activities, registration info, or campaign goals..." style="width:100%; height:85px; box-sizing:border-box;"></textarea>
+                    </div>
+                    <div style="display:flex; justify-content:flex-end; gap:10px;">
+                        <button onclick="toggleEventPostForm()" class="btn-cream">Cancel</button>
+                        <button onclick="submitNewEvent()" id="btn-submit-event" class="btn-primary">Publish Event</button>
+                    </div>
+                    <p id="event-form-feedback" style="display:none; color:var(--accent-sage); font-weight:bold; margin-top:10px; text-align:center;"></p>
+                </div>
+
+                <div class="filter-tabs" style="margin-bottom:20px;">
+                    <button class="filter-tab active" onclick="filterEvents('All', this)">All Events</button>
+                    <button class="filter-tab" onclick="filterEvents('Marathons &amp; Sports', this)">Marathons &amp; Sports</button>
+                    <button class="filter-tab" onclick="filterEvents('Campaigns &amp; Pledges', this)">Campaigns &amp; Pledges</button>
+                    <button class="filter-tab" onclick="filterEvents('Sober Festivals', this)">Sober Festivals &amp; Arts</button>
+                    <button class="filter-tab" onclick="filterEvents('Workshops', this)">Workshops</button>
+                </div>
+
+                <div id="events-feed" class="feed-container grid-layout">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- BeSmart Moderation & Decision Toolkit View -->
+            <div id="view-besure" class="content-view">
+                <div class="outreach-header">
+                    <h2>"BeSmart" Moderation &amp; Decision Toolkit</h2>
+                    <p>Interactive alcohol myth-busting, real-world social scenario simulators, and the Inter-University Leaderboard.</p>
+                </div>
+                
+                <div class="outreach-tabs">
+                    <button class="out-tab active" onclick="switchBeSureTab('verify', this)">MYTH VS. FACT CHECKER</button>
+                    <button class="out-tab" onclick="switchBeSureTab('real_or_manipulated', this)">SMART SCENARIO SIMULATOR</button>
+                    <button class="out-tab" onclick="switchBeSureTab('mil_challenge', this)">WEEKLY CHALLENGE &amp; LEADERBOARD</button>
+                    <button class="out-tab" onclick="switchBeSureTab('mil_score', this)">SMART LIFESTYLE SCORE</button>
+                </div>
+                
+                <div id="besure-feed" class="feed-container">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+            
+            <!-- Login / Ambassador Account View inside Portal -->
+            <div id="view-login" class="content-view">
+                <div class="outreach-header">
+                    <h2>Smart Drinking Ambassador Account</h2>
+                    <p>Switch active university chapter, manage your Ambassador profile, or return to the Multi-Frame Landing Page.</p>
+                </div>
+                <div class="outreach-card" style="max-width:460px; margin:25px auto; padding:28px; display:flex; flex-direction:column; gap:16px;">
+                    <div>
+                        <label style="font-size:0.82rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:5px;">Student Email</label>
+                        <input type="email" id="login-email" placeholder="e.g. ambassador@deltas.org.zw" style="width:100%; box-sizing:border-box;" />
+                    </div>
+                    <div>
+                        <label style="font-size:0.82rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:5px;">University Chapter</label>
+                        <select id="login-university" style="width:100%; box-sizing:border-box;">
+                            <option value="UZ">University of Zimbabwe (UZ)</option>
+                            <option value="NUST">National University of Science &amp; Technology (NUST)</option>
+                            <option value="MSU">Midlands State University (MSU)</option>
+                            <option value="CUT">Chinhoyi University of Technology (CUT)</option>
+                            <option value="ZEGU">Zimbabwe Ezekiel Guti University (ZEGU)</option>
+                            <option value="HIT">Harare Institute of Technology (HIT)</option>
+                            <option value="BUSE">Bindura University of Science Education (BUSE)</option>
+                            <option value="AU">Africa University (AU)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.82rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:5px;">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" style="width:100%; box-sizing:border-box;" />
+                    </div>
+                    <button onclick="handleLogin()" class="btn-primary" style="width:100%; padding:13px; font-size:0.95rem; margin-top:5px;">Update / Switch Ambassador Account</button>
+                    <button onclick="handleLogout()" class="btn-cream" style="width:100%; padding:11px; font-size:0.88rem;">← Log Out &amp; Return to Landing Page</button>
+                    <p id="login-message" style="color:var(--accent-sage); display:none; text-align:center; font-weight:bold;"></p>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Fixed Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="javascript:void(0)" class="nav-item active" data-view="outreach" onclick="switchMainView('outreach', this)">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
+                <span>Youth Connect+</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-view="news" onclick="switchMainView('news', this)">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                <span>Youth Impact News</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-view="radio" onclick="switchMainView('radio', this)">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Radio &amp; Pods</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-view="influence" onclick="switchMainView('influence', this)">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                <span>Above Influence</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-view="events" onclick="switchMainView('events', this)">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg>
+                <span>Events</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-view="besure" onclick="switchMainView('besure', this)">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                <span>BeSmart</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-login-btn" data-view="login" onclick="switchMainView('login', this)">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                <span id="nav-login-text">Ambassador</span>
+            </a>
+        </nav>
+    </div>
 
     <script src="app.js"></script>
 </body>
