@@ -805,6 +805,32 @@ While alcohol may make you feel drowsy, it severely fragments Rapid Eye Movement
             db.add_all(sample_events)
             db.commit()
 
+        # Ensure Default Testing Ambassador Accounts are seeded
+        default_accounts = [
+            ("ambassador", "ambassador@deltas.org.zw", "Deltas2026!", "UZ", 88, 84, 92, 86),
+            ("coordinator", "coordinator@nust.ac.zw", "Deltas2026!", "NUST", 94, 90, 95, 92),
+        ]
+        for uname, uemail, upwd, uuni, s1, s2, s3, s4 in default_accounts:
+            existing_u = db.query(models.User).filter(models.User.username == uname).first()
+            if not existing_u:
+                new_u = models.User(
+                    username=uname,
+                    email=uemail,
+                    password_hash=upwd,
+                    university=uuni
+                )
+                db.add(new_u)
+                db.commit()
+                db.refresh(new_u)
+                db.add(models.MILScore(
+                    user_id=new_u.id,
+                    info_verification=s1,
+                    ai_awareness=s2,
+                    digital_safety=s3,
+                    source_evaluation=s4
+                ))
+                db.commit()
+
     except Exception as e:
         print(f"Auto-seed error: {e}")
         db.rollback()
@@ -1269,7 +1295,7 @@ def answer_scenario(scenario_id: int, req: ScenarioAnswerRequest, db: Session = 
         "best_option": scenario.best_option,
         "consensus_stats": scenario.consensus_stats,
         "expert_tip": scenario.expert_tip,
-        "message": "✓ Smart & Safe Choice! (+10 Moderation Points)" if is_safest else f"⚠️ High-Risk Choice. The safest action is Option {scenario.best_option}."
+        "message": "✓ Smart & Safe Choice! (+10 Moderation Points)" if is_safest else f"Warning: High-Risk Choice. The safest action is Option {scenario.best_option}."
     }
 
 # Legacy endpoints kept so nothing breaks
