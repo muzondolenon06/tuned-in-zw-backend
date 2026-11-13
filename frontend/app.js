@@ -2028,6 +2028,168 @@ function initPillarPosterSlideshow() {
     }
 }
 
+// -----------------------------------------
+// Continuous Horizontal Event Poster Slideshow (Frame 6)
+// -----------------------------------------
+const EVENT_POSTER_COUNT = 4;
+const EVENT_POSTER_INTERVAL_MS = 5000;
+let eventCurrentPos = 0;
+let eventTimer = null;
+let eventPaused = false;
+let eventTransitionResetTimer = null;
+
+function updateEventNavButtons(activeIdx) {
+    const navButtons = document.querySelectorAll('#events-carousel-nav .events-nav-pill');
+    navButtons.forEach((btn, i) => {
+        btn.classList.remove('active');
+        if (i === activeIdx) {
+            void btn.offsetWidth; // Restart progress bar animation cleanly
+            btn.classList.add('active');
+        }
+    });
+}
+
+function applyEventTransform(pos, animate = true) {
+    const track = document.getElementById('events-carousel-track');
+    if (!track) return;
+    track.style.transition = animate ? 'transform 0.75s cubic-bezier(0.22, 1, 0.36, 1)' : 'none';
+    track.style.transform = `translateX(-${pos * 100}%)`;
+}
+
+function resetEventAutoTimer() {
+    if (eventTimer) clearInterval(eventTimer);
+    eventTimer = setInterval(() => {
+        if (!eventPaused) {
+            advanceEventPoster();
+        }
+    }, EVENT_POSTER_INTERVAL_MS);
+}
+
+function advanceEventPoster() {
+    const track = document.getElementById('events-carousel-track');
+    if (!track) return;
+
+    if (eventTransitionResetTimer) {
+        clearTimeout(eventTransitionResetTimer);
+        eventTransitionResetTimer = null;
+    }
+
+    eventCurrentPos += 1;
+    applyEventTransform(eventCurrentPos, true);
+    updateEventNavButtons(eventCurrentPos % EVENT_POSTER_COUNT);
+
+    if (eventCurrentPos >= EVENT_POSTER_COUNT) {
+        // After smooth slide onto cloned slide 0, silently snap back to index 0 for infinite horizontal loop
+        eventTransitionResetTimer = setTimeout(() => {
+            eventCurrentPos = 0;
+            applyEventTransform(0, false);
+            void track.offsetWidth;
+        }, 760);
+    }
+}
+
+function stepEventPoster(delta) {
+    const track = document.getElementById('events-carousel-track');
+    if (!track) return;
+
+    if (eventTransitionResetTimer) {
+        clearTimeout(eventTransitionResetTimer);
+        eventTransitionResetTimer = null;
+        if (eventCurrentPos >= EVENT_POSTER_COUNT) {
+            eventCurrentPos = 0;
+            applyEventTransform(0, false);
+            void track.offsetWidth;
+        }
+    }
+
+    if (delta > 0) {
+        advanceEventPoster();
+    } else {
+        if (eventCurrentPos <= 0) {
+            eventCurrentPos = EVENT_POSTER_COUNT - 1;
+        } else {
+            eventCurrentPos -= 1;
+        }
+        applyEventTransform(eventCurrentPos, true);
+        updateEventNavButtons(eventCurrentPos % EVENT_POSTER_COUNT);
+    }
+    resetEventAutoTimer();
+}
+
+function goToEventPoster(targetIdx) {
+    const track = document.getElementById('events-carousel-track');
+    if (!track) return;
+
+    if (eventTransitionResetTimer) {
+        clearTimeout(eventTransitionResetTimer);
+        eventTransitionResetTimer = null;
+    }
+
+    eventCurrentPos = ((targetIdx % EVENT_POSTER_COUNT) + EVENT_POSTER_COUNT) % EVENT_POSTER_COUNT;
+    applyEventTransform(eventCurrentPos, true);
+    updateEventNavButtons(eventCurrentPos);
+    resetEventAutoTimer();
+}
+
+function initEventPosterSlideshow() {
+    const showcase = document.getElementById('events-poster-showcase');
+    const track = document.getElementById('events-carousel-track');
+    if (!showcase || !track) return;
+
+    // Ensure clone exists for continuous seamless looping if not already rendered
+    if (!track.querySelector('.event-poster-clone')) {
+        const firstSlide = track.querySelector('.event-poster-slide');
+        if (firstSlide) {
+            const clone = firstSlide.cloneNode(true);
+            clone.classList.add('event-poster-clone');
+            clone.setAttribute('aria-hidden', 'true');
+            track.appendChild(clone);
+        }
+    }
+
+    eventCurrentPos = 0;
+    applyEventTransform(0, false);
+    updateEventNavButtons(0);
+    resetEventAutoTimer();
+
+    if (!showcase.dataset.hoverBound) {
+        showcase.addEventListener('mouseenter', () => {
+            eventPaused = true;
+            showcase.classList.add('is-paused');
+        });
+        showcase.addEventListener('mouseleave', () => {
+            eventPaused = false;
+            showcase.classList.remove('is-paused');
+        });
+
+        // Touch swipe support for mobile devices
+        let touchStartX = 0;
+        let touchEndX = 0;
+        showcase.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            eventPaused = true;
+        }, { passive: true });
+
+        showcase.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            eventPaused = false;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 40) {
+                if (diff > 0) {
+                    stepEventPoster(1);
+                } else {
+                    stepEventPoster(-1);
+                }
+            }
+        }, { passive: true });
+
+        showcase.dataset.hoverBound = 'true';
+    }
+}
+
+window.stepEventPoster = stepEventPoster;
+window.goToEventPoster = goToEventPoster;
+
 function scrollToLandingFrame(frameId) {
     const target = document.getElementById(frameId);
     if (target) {
@@ -2264,7 +2426,7 @@ async function submitPortalGateLogin(source = 'modal') {
         if (fbEl) {
             fbEl.style.display = 'block';
             fbEl.style.color = 'var(--secondary-orange-dark)';
-            fbEl.innerText = 'Please enter your student email address.';
+            fbEl.innerText = 'Please enter your email address.';
         }
         return;
     }
@@ -2286,7 +2448,7 @@ async function submitPortalGateLogin(source = 'modal') {
 
     const authData = await authenticateAmbassador(email, pwd, uni);
     if (fbEl) {
-        fbEl.innerText = `✓ Welcome, ${authData.username} (${authData.university})! Launching platform...`;
+        fbEl.innerText = `✓ Welcome, ${authData.username}! Launching platform...`;
     }
     setTimeout(() => {
         unlockAndEnterPortal(authData);
@@ -2303,7 +2465,7 @@ async function handleLogin() {
     const msg = document.getElementById('login-message');
 
     if (!email) {
-        msg.innerText = "Please enter your student email address.";
+        msg.innerText = "Please enter your email address.";
         msg.style.display = 'block';
         msg.style.color = 'red';
         return;
@@ -2318,7 +2480,7 @@ async function handleLogin() {
 
     const authData = await authenticateAmbassador(email, pwd, uni);
     msg.style.color = 'var(--accent-sage)';
-    msg.innerText = `Welcome, Ambassador ${authData.username} (${authData.university})! Redirecting...`;
+    msg.innerText = `Welcome, Ambassador ${authData.username}! Redirecting...`;
     msg.style.display = 'block';
 
     setTimeout(() => {
@@ -2327,11 +2489,40 @@ async function handleLogin() {
     }, 600);
 }
 
+// -----------------------------------------
+// Real-Student Background Videos (Permanently Muted Campus Media)
+// -----------------------------------------
+function initRadioStudioVideos() {
+    const videoPlayers = document.querySelectorAll('.poster-video-player, .poster-theme-radio video, .poster-theme-support video');
+    videoPlayers.forEach(video => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+        video.playsInline = true;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // Autoplay may be restricted until first user interaction
+                const onFirstTouch = () => {
+                    video.muted = true;
+                    video.play().catch(() => {});
+                    document.removeEventListener('click', onFirstTouch);
+                    document.removeEventListener('touchstart', onFirstTouch);
+                };
+                document.addEventListener('click', onFirstTouch, { once: true });
+                document.addEventListener('touchstart', onFirstTouch, { once: true });
+            });
+        }
+    });
+}
+
 // Initialize Landing Experience or Unlocked Portal on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
     initLandingSlideshows();
     initPillarPosterSlideshow();
+    initEventPosterSlideshow();
     initLandingScrollSpy();
+    initRadioStudioVideos();
 
     loadSessionFromBrowserStorage();
     updateSessionUI();
