@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DELTAS: Youth Connect+ | Delivering Lifeline Tools for Alcohol Solutions</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,2 30,28 2,28' fill='%23166534'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -36,10 +37,13 @@
                     <a href="#frame-6" class="frame-nav-link" data-target="frame-6" onclick="scrollToLandingFrame('frame-6'); return false;">06. Events</a>
                 </nav>
 
-                <div class="landing-nav-actions">
-                    <button type="button" class="btn-portal-login" onclick="openLandingLoginModal()">
+                <div class="landing-nav-actions" style="display:flex; gap:10px; align-items:center;">
+                    <button type="button" class="btn-portal-login" onclick="openLandingLoginModal('sign_in')">
                         <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        <span>Sign In to Portal</span>
+                        <span>Sign In</span>
+                    </button>
+                    <button type="button" class="btn-portal-signup" onclick="openLandingLoginModal('create_account')">
+                        <span>Create Account</span>
                     </button>
                 </div>
             </div>
@@ -80,14 +84,14 @@
                         <div class="frame-hero-copy">
                             <h1>DELTAS: Delivering Lifeline Tools for Alcohol Solutions</h1>
                             <p class="frame-lead">
-                                A comprehensive, youth-driven digital ecosystem uniting accredited smart-living education, anonymous community watchdog protection, clinical harm-reduction playbooks, and student and learner leadership across Zimbabwe's high schools, colleges, and educational institutions.
+                                A comprehensive, youth-driven digital ecosystem uniting accredited smart-living education, anonymous community watchdog protection, clinical harm-reduction handbooks, and student and learner leadership across Zimbabwe's high schools, colleges, and educational institutions.
                             </p>
                             <div class="frame-cta-group">
                                 <button type="button" class="btn-frame-primary" onclick="openLandingLoginModal()">
-                                    <span>Access Full DELTAS Platform →</span>
+                                    <span>Access Full DELTAS Platform</span>
                                 </button>
                                 <button type="button" class="btn-frame-ghost" onclick="scrollToLandingFrame('frame-2')">
-                                    <span>Explore DELTAS ↓</span>
+                                    <span>Explore DELTAS</span>
                                 </button>
                             </div>
                         </div>
@@ -476,7 +480,7 @@
                         <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-1', 3)"></button>
                     </div>
                     <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-2')">
-                        <span>Deltas Youth Connect+ ↓</span>
+                        <span>Deltas Youth Connect+</span>
                     </button>
                 </div>
             </div>
@@ -611,7 +615,7 @@
                                         <div class="poster-cta-row">
                                             <span class="poster-cta-hint">Master all 6 modules to earn your official badge &amp; career fellowship access.</span>
                                             <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
-                                                <span>Start Academy →</span>
+                                                <span>Start Academy</span>
                                             </button>
                                         </div>
                                     </div>
@@ -719,7 +723,7 @@
                                         <div class="poster-cta-row">
                                             <span class="poster-cta-hint">Spot an illicit syndicate or unsafe venue? Dispatch a confidential alert in seconds.</span>
                                             <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
-                                                <span>Report / View Alerts →</span>
+                                                <span>Report / View Alerts</span>
                                             </button>
                                         </div>
                                     </div>
@@ -745,8 +749,8 @@
                         <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-2', 2)"></button>
                     </div>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <button class="btn-frame-primary" onclick="openLandingLoginModal()">Sign In to Explore Youth Connect+ →</button>
-                        <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-3')">Above the Influence Support Hub ↓</button>
+                        <button class="btn-frame-primary" onclick="openLandingLoginModal()">Sign In to Explore Youth Connect+</button>
+                        <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-3')">Above the Influence Support Hub</button>
                     </div>
                 </div>
             </div>
@@ -769,7 +773,7 @@
                     <span class="frame-eyebrow-pill pill-teal">HARM-REDUCTION &amp; SAFE SPACE</span>
                     <h2>"Above the Influence" Community Support Hub</h2>
                     <p class="frame-lead">
-                        A trauma-informed digital safe space pairing clinical emergency playbooks with confidential peer-to-peer stories of resilience, sobriety, and active bystander protection.
+                        A trauma-informed digital safe space pairing clinical emergency handbooks with confidential peer-to-peer stories of resilience, sobriety, and active bystander protection.
                     </p>
                 </div>
 
@@ -788,7 +792,7 @@
 
                         <!-- Poster Top Banner & Display Title -->
                         <div class="poster-header-block">
-                            <div class="poster-top-ribbon">TRAUMA-INFORMED CARE &nbsp;•&nbsp; CLINICAL PLAYBOOKS &amp; PEER SOLIDARITY</div>
+                            <div class="poster-top-ribbon">TRAUMA-INFORMED CARE &nbsp;•&nbsp; CLINICAL HANDBOOKS &amp; PEER SOLIDARITY</div>
                             <h3 class="poster-main-title">
                                 <span class="poster-title-gold">"Above the Influence"</span>
                                 <span class="poster-title-white">
@@ -801,7 +805,7 @@
                             </p>
                         </div>
 
-                        <!-- 4 Core Playbooks as Graphic Emblem Shields (Agenda & Clinical Protocols) -->
+                        <!-- 4 Core Handbooks as Graphic Emblem Shields (Agenda & Clinical Protocols) -->
                         <div class="poster-emblem-grid">
                             <!-- Emblem 1: Peer Pressure & Refusal Confidence -->
                             <div class="poster-emblem emblem-oval">
@@ -839,9 +843,8 @@
                         <!-- Realistic People Visual Stage + Impact & Aim Highlights -->
                         <div class="poster-people-showcase">
                             <div class="poster-photo-stage">
-                                <video id="supportHubHeroVideo" class="poster-hero-photo poster-video-player" autoplay muted loop playsinline preload="auto" poster="assets/videos/community_support_poster.jpg">
+                                <video id="supportHubHeroVideo" class="poster-hero-photo poster-video-player" muted loop playsinline preload="none" poster="assets/videos/community_support_poster.jpg">
                                     <source src="assets/videos/community_support_session.mp4" type="video/mp4">
-                                    <source src="assets/videos/community_support_session.mov" type="video/quicktime">
                                     Your browser does not support HTML5 video.
                                 </video>
                                 <div class="poster-photo-scrim"></div>
@@ -861,7 +864,7 @@
                                 </div>
                                 <div class="poster-pathway-copy">
                                     <div class="poster-pathway-pills">
-                                        <span>4 Clinical Harm-Reduction Playbooks</span>
+                                        <span>4 Clinical Harm-Reduction Handbooks</span>
                                         <span>Anonymous Peer Story Forum</span>
                                         <span>Bystander Scenario Training</span>
                                         <span>Instant 999 / 994 Crisis Links</span>
@@ -869,7 +872,7 @@
                                     <div class="poster-cta-row">
                                         <span class="poster-cta-hint">Read real student recovery stories, practice refusal scripts, or connect with a specialist 24/7.</span>
                                         <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
-                                            <span>Enter Support Hub →</span>
+                                            <span>Enter Support Hub</span>
                                         </button>
                                     </div>
                                 </div>
@@ -893,7 +896,7 @@
                         <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-3', 2)"></button>
                     </div>
                     <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-4')">
-                        <span>The Ambassador Program ↓</span>
+                        <span>The Ambassador Program</span>
                     </button>
                 </div>
             </div>
@@ -966,11 +969,11 @@
                                 </div>
                             </div>
 
-                            <!-- Emblem 3: Smart Lifestyle Score (/100) -->
+                            <!-- Emblem 3: Smart Lifestyle Score (Points) -->
                             <div class="poster-emblem emblem-seal">
                                 <div class="emblem-text">
-                                    <strong>Lifestyle Score (/100)</strong>
-                                    <p>Verifiable mastery across Facts, Scenarios, Safety &amp; Leadership</p>
+                                    <strong>Lifestyle Score (Points)</strong>
+                                    <p>Continuous points accumulation across Academy, Support Tasks &amp; Scenarios</p>
                                 </div>
                             </div>
 
@@ -1012,7 +1015,7 @@
                                     <div class="poster-cta-row">
                                         <span class="poster-cta-hint">Represent your school or educational institution, climb the national leaderboard, and unlock fellowships.</span>
                                         <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
-                                            <span>Join Ambassadors →</span>
+                                            <span>Join Ambassadors</span>
                                         </button>
                                     </div>
                                 </div>
@@ -1036,7 +1039,7 @@
                         <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-4', 2)"></button>
                     </div>
                     <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-5')">
-                        <span>Youth Impact News &amp; Radio ↓</span>
+                        <span>Youth Impact News &amp; Radio</span>
                     </button>
                 </div>
             </div>
@@ -1158,7 +1161,7 @@
                                         <div class="poster-cta-row">
                                             <span class="poster-cta-hint">Explore verified public health dispatches, campus breakthroughs, and policy updates.</span>
                                             <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
-                                                <span>Read Impact News →</span>
+                                                <span>Read Impact News</span>
                                             </button>
                                         </div>
                                     </div>
@@ -1207,8 +1210,8 @@
                                 <!-- Emblem 1: National FM Broadcast Desk -->
                                 <div class="poster-emblem emblem-oval">
                                     <div class="emblem-text">
-                                        <div class="emblem-stat-line"><span class="emblem-big">3</span><strong>National FM Desks</strong></div>
-                                        <p>StarFM, ZiFM Stereo &amp; Capitalk 100.4FM weekly youth broadcasts</p>
+                                        <div class="emblem-stat-line"><span class="emblem-big">3</span><strong>Live Broadcast Streams</strong></div>
+                                        <p>National &amp; campus youth radio dialogues, panels &amp; weekly broadcasts</p>
                                     </div>
                                 </div>
 
@@ -1240,9 +1243,8 @@
                             <!-- Real Student Radio & Podcast Session Video Stage + Impact & Aim Highlights -->
                             <div class="poster-people-showcase">
                                 <div class="poster-photo-stage">
-                                    <video id="radioStudioHeroVideo" class="poster-hero-photo poster-video-player" autoplay muted loop playsinline preload="auto" poster="assets/videos/campus_voice_radio_poster.jpg">
+                                    <video id="radioStudioHeroVideo" class="poster-hero-photo poster-video-player" muted loop playsinline preload="none" poster="assets/videos/campus_voice_radio_poster.jpg">
                                         <source src="assets/videos/campus_voice_radio_session.mp4" type="video/mp4">
-                                        <source src="assets/videos/campus_voice_radio_session.mov" type="video/quicktime">
                                         Your browser does not support HTML5 video.
                                     </video>
                                     <div class="poster-photo-scrim"></div>
@@ -1258,9 +1260,8 @@
                                 <!-- Secondary Real Student Podcast Studio Card + Action Pathways -->
                                 <div class="poster-study-strip">
                                     <div class="poster-inset-photo-wrap">
-                                        <video class="poster-inset-photo poster-video-player" autoplay muted loop playsinline preload="auto" poster="assets/videos/campus_voice_radio_inset_poster.jpg">
+                                        <video class="poster-inset-photo poster-video-player" muted loop playsinline preload="none" poster="assets/videos/campus_voice_radio_inset_poster.jpg">
                                             <source src="assets/videos/campus_voice_radio_inset.mp4" type="video/mp4">
-                                            <source src="assets/videos/campus_voice_radio_session.mov" type="video/quicktime">
                                             Your browser does not support HTML5 video.
                                         </video>
                                     </div>
@@ -1274,7 +1275,7 @@
                                         <div class="poster-cta-row">
                                             <span class="poster-cta-hint">Browse weekly FM broadcast times or stream student-hosted Pledge 18 episodes.</span>
                                             <button type="button" class="btn-poster-gold" onclick="openLandingLoginModal()">
-                                                <span>Tune In to Radio →</span>
+                                                <span>Tune In to Radio</span>
                                             </button>
                                         </div>
                                     </div>
@@ -1284,7 +1285,7 @@
                             <!-- Poster Co-Sponsor & Partnership Attribution Footer -->
                             <div class="poster-partner-footer">
                                 <span class="ppf-line">
-                                    Broadcast collaborations with <strong>StarFM</strong> &nbsp;•&nbsp; <strong>ZiFM Stereo</strong> &nbsp;•&nbsp; <strong>Capitalk 100.4FM</strong> &nbsp;•&nbsp; <strong>Youth &amp; Institutional Radio Studios</strong> &nbsp;•&nbsp; <strong>Medical Guest Panelists</strong>
+                                    Broadcast collaborations with <strong>National Community Radio Networks</strong> &nbsp;•&nbsp; <strong>Youth &amp; Institutional Radio Studios</strong> &nbsp;•&nbsp; <strong>Pledge 18 Student Podcasters</strong> &nbsp;•&nbsp; <strong>Medical Guest Panelists</strong>
                                 </span>
                             </div>
                         </div>
@@ -1300,7 +1301,7 @@
                         <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-5', 2)"></button>
                     </div>
                     <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-6')">
-                        <span>Events &amp; Portal Login ↓</span>
+                        <span>Events &amp; Portal Login</span>
                     </button>
                 </div>
             </div>
@@ -1380,7 +1381,6 @@
                                             </div>
                                             <button type="button" class="btn-event-rsvp" onclick="openLandingLoginModal()">
                                                 <span>Sign In to RSVP</span>
-                                                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                                             </button>
                                         </div>
                                     </div>
@@ -1428,7 +1428,6 @@
                                             </div>
                                             <button type="button" class="btn-event-rsvp" onclick="openLandingLoginModal()">
                                                 <span>Sign In to RSVP</span>
-                                                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                                             </button>
                                         </div>
                                     </div>
@@ -1476,7 +1475,6 @@
                                             </div>
                                             <button type="button" class="btn-event-rsvp" onclick="openLandingLoginModal()">
                                                 <span>Sign In to RSVP</span>
-                                                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                                             </button>
                                         </div>
                                     </div>
@@ -1524,7 +1522,6 @@
                                             </div>
                                             <button type="button" class="btn-event-rsvp" onclick="openLandingLoginModal()">
                                                 <span>Sign In to RSVP</span>
-                                                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                                             </button>
                                         </div>
                                     </div>
@@ -1572,7 +1569,6 @@
                                             </div>
                                             <button type="button" class="btn-event-rsvp" onclick="openLandingLoginModal()" tabindex="-1">
                                                 <span>Sign In to RSVP</span>
-                                                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                                             </button>
                                         </div>
                                     </div>
@@ -1617,18 +1613,34 @@
 
                     <div class="gate-right-form">
                         <h4>DELTAS Portal Sign In</h4>
+                        <button type="button" class="btn-google-auth" onclick="startGoogleSignInFlow('signin')" style="margin-bottom:10px;">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                            </svg>
+                            <span>Sign in with Google</span>
+                        </button>
+                        <div class="auth-divider"><span>or with email</span></div>
                         <div class="gate-form-group">
                             <label for="inline-login-email">Email</label>
-                            <input type="email" id="inline-login-email" placeholder="e.g. ambassador@deltas.org.zw">
+                            <input type="email" id="inline-login-email" placeholder="e.g. ambassador@deltas.org.zw" onkeydown="if(event.key==='Enter') submitPortalGateLogin('inline')">
                         </div>
                         <div class="gate-form-group">
                             <label for="inline-login-password">Password</label>
-                            <input type="password" id="inline-login-password" placeholder="Enter your password">
+                            <input type="password" id="inline-login-password" placeholder="Enter your password" onkeydown="if(event.key==='Enter') submitPortalGateLogin('inline')">
                         </div>
                         <button type="button" class="btn-primary" style="width:100%; padding:13px; font-size:0.95rem;" onclick="submitPortalGateLogin('inline')">
-                            Enter Full DELTAS Platform →
+                            Enter Full DELTAS Platform
                         </button>
                         <p id="inline-login-feedback" class="gate-feedback"></p>
+                        <div style="text-align:center; margin-top:14px; font-size:0.86rem; color:var(--text-muted);">
+                            New to DELTAS?
+                            <button type="button" onclick="openLandingLoginModal('create_account')" style="background:none; border:none; color:var(--primary); font-weight:800; cursor:pointer; text-decoration:underline; margin-left:4px;">
+                                Create an Account
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -1641,7 +1653,7 @@
                         <button class="slide-dot" onclick="setFrameSlide('slideshow-frame-6', 3)"></button>
                     </div>
                     <button class="btn-next-frame" onclick="scrollToLandingFrame('frame-1')">
-                        <span>↑ Back to Top</span>
+                        <span>Back to Top</span>
                     </button>
                 </div>
             </div>
@@ -1650,38 +1662,271 @@
     </div>
 
     <!-- =========================================================================
-         LANDING PAGE LOGIN MODAL (ACCESSIBLE FROM ANY FRAME)
+         LANDING PAGE AUTH MODAL (SIGN IN & CREATE ACCOUNT)
          ========================================================================= -->
     <div id="landing-login-modal" class="landing-modal-overlay" style="display:none;" onclick="if(event.target === this) closeLandingLoginModal()">
-        <div class="landing-modal-card" role="dialog" aria-labelledby="modal-login-title">
-            <button type="button" class="modal-close-btn" onclick="closeLandingLoginModal()" aria-label="Close Login Modal">&times;</button>
+        <div class="landing-modal-card" id="auth-modal-card" role="dialog" aria-labelledby="modal-auth-title" style="max-width:540px; max-height:92vh; overflow-y:auto; transition:max-width 0.22s ease;">
+            <button type="button" class="modal-close-btn" onclick="closeLandingLoginModal()" aria-label="Close Modal">&times;</button>
             
             <div class="modal-brand-header">
                 <img src="deltas_logo.jpg" alt="DELTAS Logo" class="modal-logo">
                 <div>
                     <span class="modal-kicker">AUTHENTICATED PORTAL ACCESS</span>
-                    <h3 id="modal-login-title">Sign In to DELTAS Youth Connect+</h3>
+                    <h3 id="modal-auth-title">DELTAS Youth Connect+</h3>
                 </div>
             </div>
 
-            <p class="modal-subtext">
-                Sign in with your email and password to unlock the full interactive platform.
+            <!-- Tab Switcher Bar: Sign In | Create Account -->
+            <div class="auth-switcher-bar">
+                <button type="button" id="tab-auth-signin" class="auth-switcher-btn active" onclick="showAuthView('sign_in')">
+                    Sign In
+                </button>
+                <button type="button" id="tab-auth-create" class="auth-switcher-btn" onclick="showAuthView('create_account')">
+                    Create Account
+                </button>
+            </div>
+
+            <!-- ================= VIEW 1: SIGN IN ================= -->
+            <div id="auth-view-signin">
+                <p class="modal-subtext" style="margin-bottom:14px;">
+                    Sign in with your email and password to unlock the full interactive platform.
+                </p>
+
+                <!-- Google Sign In Button -->
+                <button type="button" class="btn-google-auth" onclick="startGoogleSignInFlow('signin')">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                    <span>Sign in with Google</span>
+                </button>
+
+                <div class="auth-divider">
+                    <span>or continue with email</span>
+                </div>
+
+                <div class="modal-form-body">
+                    <div class="gate-form-group">
+                        <label for="modal-login-email">Email</label>
+                        <input type="email" id="modal-login-email" placeholder="e.g. ambassador@deltas.org.zw" onkeydown="if(event.key==='Enter') submitPortalGateLogin('modal')" />
+                    </div>
+                    <div class="gate-form-group">
+                        <label for="modal-login-password">Password</label>
+                        <input type="password" id="modal-login-password" placeholder="Enter your password" onkeydown="if(event.key==='Enter') submitPortalGateLogin('modal')" />
+                    </div>
+
+                    <button type="button" id="btn-modal-login-submit" class="btn-primary" style="width:100%; padding:13px; font-size:0.96rem; margin-top:6px;" onclick="submitPortalGateLogin('modal')">
+                        Sign In &amp; Launch Full Website
+                    </button>
+                    <p id="modal-login-feedback" class="gate-feedback"></p>
+
+                    <div style="text-align:center; margin-top:16px; padding-top:14px; border-top:1px solid var(--border-color); font-size:0.86rem; color:var(--text-muted);">
+                        New to DELTAS Youth Connect+?
+                        <button type="button" onclick="showAuthView('create_account')" style="background:none; border:none; color:var(--primary); font-weight:800; cursor:pointer; text-decoration:underline; margin-left:4px;">
+                            Create an Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= VIEW 2: CREATE ACCOUNT ================= -->
+            <div id="auth-view-create" style="display:none;">
+                <p class="modal-subtext" style="margin-bottom:12px;">
+                    Enter your details to create your DELTAS account and access the full interactive platform.
+                </p>
+
+                <!-- Sign up with Google button -->
+                <button type="button" class="btn-google-auth" onclick="startGoogleSignInFlow('signup')" style="margin-bottom:12px;">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                    <span>Sign up with Google (Link Account)</span>
+                </button>
+                <div id="reg-google-linked-badge" style="display:none; background:#F0FDF4; border:1px solid #BBF7D0; color:#166534; padding:8px 12px; border-radius:8px; font-size:0.8rem; font-weight:700; margin-bottom:12px; align-items:center; gap:8px;">
+                    Google Account Linked: <span id="reg-google-email-label"></span>
+                </div>
+
+                <div class="auth-divider">
+                    <span>or enter registration details</span>
+                </div>
+
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                    <!-- Full Name -->
+                    <div class="gate-form-group">
+                        <label for="reg-fullname">Full Name <span style="color:red;">*</span></label>
+                        <input type="text" id="reg-fullname" placeholder="e.g. Tariro Moyo" required />
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="gate-form-group">
+                        <label for="reg-email">Email Address <span style="color:red;">*</span></label>
+                        <input type="email" id="reg-email" placeholder="e.g. tariro.moyo@gmail.com" required />
+                    </div>
+
+                    <!-- Phone Number (+263...) -->
+                    <div class="gate-form-group">
+                        <label for="reg-phone">Phone Number (Zimbabwe +263) <span style="color:red;">*</span></label>
+                        <div style="display:flex; align-items:center; border:1.5px solid var(--border-color); border-radius:8px; overflow:hidden; background:#FFFFFF;">
+                            <span style="background:var(--cream-soft); padding:10px 12px; font-weight:700; color:var(--primary); border-right:1px solid var(--border-color); font-size:0.88rem;">+263</span>
+                            <input type="tel" id="reg-phone" placeholder="77 123 4567" style="border:none; outline:none; flex:1; padding:10px 12px; font-size:0.9rem;" required />
+                        </div>
+                    </div>
+
+                    <!-- Date of Birth & Gender Grid -->
+                    <div class="auth-two-col" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                        <div class="gate-form-group">
+                            <label for="reg-dob">Date of Birth <span style="color:red;">*</span></label>
+                            <input type="date" id="reg-dob" required style="width:100%; padding:9px 10px; border-radius:8px; border:1.5px solid var(--border-color); box-sizing:border-box;" />
+                        </div>
+                        <div class="gate-form-group">
+                            <label for="reg-gender">Gender <span style="color:red;">*</span></label>
+                            <select id="reg-gender" style="width:100%; padding:9px 10px; border-radius:8px; border:1.5px solid var(--border-color); box-sizing:border-box; background:#FFFFFF;">
+                                <option value="">Select Gender...</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Prefer not to say">Prefer not to say</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Educational Institution -->
+                    <div class="gate-form-group">
+                        <label for="reg-institution">Educational Institution <span style="font-weight:400; color:var(--text-muted);">(N/A for non-students)</span> <span style="color:red;">*</span></label>
+                        <select id="reg-institution" style="width:100%; padding:9px 10px; border-radius:8px; border:1.5px solid var(--border-color); box-sizing:border-box; background:#FFFFFF;">
+                            <option value="University of Zimbabwe (UZ)">University of Zimbabwe (UZ)</option>
+                            <option value="National University of Science & Technology (NUST)">National University of Science &amp; Technology (NUST)</option>
+                            <option value="Midlands State University (MSU)">Midlands State University (MSU)</option>
+                            <option value="Chinhoyi University of Technology (CUT)">Chinhoyi University of Technology (CUT)</option>
+                            <option value="Great Zimbabwe University (GZU)">Great Zimbabwe University (GZU)</option>
+                            <option value="Harare Institute of Technology (HIT)">Harare Institute of Technology (HIT)</option>
+                            <option value="Africa University (AU)">Africa University (AU)</option>
+                            <option value="Bindura University of Science Education (BUSE)">Bindura University of Science Education (BUSE)</option>
+                            <option value="Lupane State University (LSU)">Lupane State University (LSU)</option>
+                            <option value="Catholic University of Zimbabwe (CUZ)">Catholic University of Zimbabwe (CUZ)</option>
+                            <option value="Other Tertiary / Polytechnic / College">Other Tertiary / Polytechnic / College</option>
+                            <option value="N/A (Non-Student / Community Member / Professional)">N/A (Non-Student / Community Member / Professional)</option>
+                        </select>
+                    </div>
+
+                    <!-- Motivation & Interest in DELTAS Platform -->
+                    <div class="gate-form-group">
+                        <label style="display:block; margin-bottom:4px;">
+                            Motivation &amp; Platform Interest <span style="color:red;">*</span>
+                            <span style="display:block; font-size:0.76rem; font-weight:400; color:var(--text-muted);">Choose the focus areas aligned with your goals on DELTAS Youth Connect+:</span>
+                        </label>
+                        <div class="motivation-choice-grid">
+                            <label class="motivation-choice-item">
+                                <input type="checkbox" name="reg-interest" value="Smart Drinking &amp; Campus Moderation Advocacy" checked />
+                                <span><strong>Smart Drinking &amp; Moderation</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">Promoting pacing, caps, and safe habits</span></span>
+                            </label>
+                            <label class="motivation-choice-item">
+                                <input type="checkbox" name="reg-interest" value="Peer Sobriety &amp; Refusal Habit Coaching" checked />
+                                <span><strong>Peer Sobriety Coaching</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">Urge surfing, decoy cups, refusal drills</span></span>
+                            </label>
+                            <label class="motivation-choice-item">
+                                <input type="checkbox" name="reg-interest" value="Drink Driving &amp; BAC Legal Awareness" />
+                                <span><strong>Drink Driving Prevention</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">Zero-tolerance road safety &amp; transit plans</span></span>
+                            </label>
+                            <label class="motivation-choice-item">
+                                <input type="checkbox" name="reg-interest" value="Illicit Brews &amp; Substance Watchdog" />
+                                <span><strong>Illicit Brew Watchdog</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">Reporting kambwa &amp; counterfeit alcohol</span></span>
+                            </label>
+                            <label class="motivation-choice-item">
+                                <input type="checkbox" name="reg-interest" value="Campus Events &amp; Sober Socializing" />
+                                <span><strong>Sober Events &amp; Socializing</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">Sports, cultural events, &amp; hackathons</span></span>
+                            </label>
+                            <label class="motivation-choice-item">
+                                <input type="checkbox" name="reg-interest" value="Mental Wellness &amp; H.A.L.T. Stress Management" />
+                                <span><strong>Mental Wellness &amp; H.A.L.T.</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">Exam stress, anxiety, &amp; resilience</span></span>
+                            </label>
+                            <label class="motivation-choice-item">
+                                <input type="checkbox" name="reg-interest" value="FASD Prevention &amp; Maternal Health Advocacy" />
+                                <span><strong>Maternal Health &amp; FASD</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">Fetal alcohol spectrum disorder education</span></span>
+                            </label>
+                            <label class="motivation-choice-item">
+                                <input type="checkbox" name="reg-interest" value="Enactus &amp; Youth Leadership Innovation" />
+                                <span><strong>Youth Leadership &amp; Enactus</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">Campus leadership &amp; social impact</span></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Ambassador Referral Code (Optional) -->
+                    <div class="gate-form-group">
+                        <label for="reg-referral-code">
+                            Ambassador Referral Code <span style="font-weight:400; color:var(--text-muted);">(Optional)</span>
+                        </label>
+                        <input type="text" id="reg-referral-code" placeholder="e.g. DELTAS-UZ-AMBASS-2026-C5PJ" style="width:100%; padding:10px 12px; border-radius:8px; border:1.5px solid var(--border-color); box-sizing:border-box; text-transform:uppercase; font-weight:600; letter-spacing:0.5px; background:#FFFFFF;" />
+                        <p style="font-size:0.75rem; color:var(--text-muted); margin:4px 0 0 0; line-height:1.4;">
+                            If you were referred by a DELTAS Smart Drinking Ambassador, enter their code here to sync your Smart Living Academy module completion with their leadership dashboard.
+                        </p>
+                    </div>
+
+                    <!-- Password & Password Confirmation Grid -->
+                    <div class="auth-two-col" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                        <div class="gate-form-group">
+                            <label for="reg-password">Password <span style="color:red;">*</span></label>
+                            <input type="password" id="reg-password" placeholder="Min 6 characters" required style="width:100%; padding:9px 10px; border-radius:8px; border:1.5px solid var(--border-color); box-sizing:border-box;" />
+                        </div>
+                        <div class="gate-form-group">
+                            <label for="reg-password-confirm">Confirm Password <span style="color:red;">*</span></label>
+                            <input type="password" id="reg-password-confirm" placeholder="Re-enter password" required style="width:100%; padding:9px 10px; border-radius:8px; border:1.5px solid var(--border-color); box-sizing:border-box;" />
+                        </div>
+                    </div>
+
+                    <!-- Create Account Button -->
+                    <button type="button" id="btn-create-account-submit" class="btn-primary" style="width:100%; padding:14px; font-size:1rem; font-weight:700; margin-top:6px;" onclick="submitCreateAccount()">
+                        Create Account &amp; Access Platform
+                    </button>
+                    <p id="reg-feedback" class="gate-feedback" style="display:none;"></p>
+
+                    <div style="text-align:center; margin-top:12px; font-size:0.86rem; color:var(--text-muted);">
+                        Already have an account?
+                        <button type="button" onclick="showAuthView('sign_in')" style="background:none; border:none; color:var(--primary); font-weight:800; cursor:pointer; text-decoration:underline; margin-left:4px;">
+                            Sign In
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         GOOGLE AUTH SELECTOR MODAL (INSTANT 1-CLICK OR CUSTOM GOOGLE ACCOUNT)
+         ========================================================================= -->
+    <div id="google-auth-selector-modal" class="landing-modal-overlay" style="display:none;" onclick="if(event.target === this) closeGoogleAuthSelector()">
+        <div class="landing-modal-card" style="max-width:440px; padding:26px; border-radius:18px; background:#FFFFFF; text-align:left;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                    <strong style="font-size:1.15rem; color:#202124;">Sign in with Google</strong>
+                </div>
+                <button type="button" class="modal-close-btn" onclick="closeGoogleAuthSelector()" aria-label="Close" style="position:static; width:30px; height:30px; font-size:1.2rem;">&times;</button>
+            </div>
+            <p style="font-size:0.86rem; color:#5f6368; margin:0 0 16px 0;">
+                Choose an account to continue to <strong>DELTAS Youth Connect+</strong>
             </p>
 
-            <div class="modal-form-body">
-                <div class="gate-form-group">
-                    <label for="modal-login-email">Email</label>
-                    <input type="email" id="modal-login-email" placeholder="e.g. ambassador@deltas.org.zw">
-                </div>
-                <div class="gate-form-group">
-                    <label for="modal-login-password">Password</label>
-                    <input type="password" id="modal-login-password" placeholder="Enter your password">
-                </div>
+            <div id="google-accounts-list" style="display:flex; flex-direction:column; gap:8px; margin-bottom:14px;">
+                <!-- Filled dynamically with quick-pick Google profiles -->
+            </div>
 
-                <button type="button" id="btn-modal-login-submit" class="btn-primary" style="width:100%; padding:13px; font-size:0.96rem; margin-top:4px;" onclick="submitPortalGateLogin('modal')">
-                    Sign In &amp; Launch Full Website →
-                </button>
-                <p id="modal-login-feedback" class="gate-feedback"></p>
+            <div style="border-top:1px solid #e0e0e0; padding-top:12px; margin-top:8px;">
+                <div style="font-size:0.82rem; font-weight:700; color:#3c4043; margin-bottom:6px;">Use another Google Account:</div>
+                <div style="display:flex; gap:8px;">
+                    <input type="email" id="google-custom-email-input" placeholder="e.g. yourname@gmail.com" onkeydown="if(event.key==='Enter') submitGoogleCustomAccount();" style="flex:1; padding:8px 10px; border-radius:6px; border:1px solid #dadce0; font-size:0.86rem;" />
+                    <button type="button" onclick="submitGoogleCustomAccount()" class="btn-primary" style="padding:8px 16px; font-size:0.84rem; font-weight:700;">Continue</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1698,7 +1943,7 @@
             <div class="portal-scrim" id="portal-scrim"></div>
         </div>
 
-        <!-- Top Hero & Download Section -->
+        <!-- Top Hero & Smart Lifestyle Points Corner -->
         <header class="hero-section">
             <div class="hero-content">
                 <div class="hero-image-container">
@@ -1708,10 +1953,10 @@
                 
                 <div class="download-corner">
                     <span class="challenge-pill" id="active-user-pill">Delta &amp; Boost Challenge</span>
-                    <a href="https://github.com/muzondolenon06/tuned-in-zw-website/releases/latest/download/Tuned_in_zw_prototype.apk" class="download-btn android-btn" title="Get full DELTAS Youth Connect+ experience">
-                        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0004.5511-.4482.9997-.9993.9997zm-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997zm11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.416.416 0 0 0-.5676.1521l-2.022 3.503C15.5532 8.2366 13.8213 7.7813 12 7.7813s-3.5532.4553-5.1373 1.1691L4.8407 5.4474a.416.416 0 0 0-.5676-.1521.416.416 0 0 0-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396z"/></svg>
-                        <span>Download App</span>
-                    </a>
+                    <button type="button" id="top-corner-points-pill" class="smart-points-corner-pill" onclick="switchMainView('besure', document.querySelector('.bottom-nav .nav-item[data-view=\'besure\']')); setTimeout(() => switchBeSureTab('mil_score', document.querySelectorAll('#view-besure .out-tab')[2]), 80);" title="View your accumulated Smart Lifestyle &amp; Moderation Score">
+                        <span class="spcp-label">Smart Score:</span>
+                        <strong id="top-corner-points-val" class="spcp-value">0 pts</strong>
+                    </button>
                     <button type="button" class="portal-logout-btn" onclick="handleLogout()" title="Log out and return to Landing Page">
                         <span>Log Out</span>
                     </button>
@@ -1744,7 +1989,12 @@
             <div id="view-influence" class="content-view">
                 <div class="outreach-header">
                     <h2>"Above the Influence" Community Support Hub</h2>
-                    <p>Practical harm-reduction playbooks, confidential peer stories, and campus safety protocols.</p>
+                    <p>Practical harm-reduction handbooks, confidential peer stories, verified mentorship, and community support protocols.</p>
+                </div>
+
+                <div class="outreach-tabs" id="influence-subtabs">
+                    <button class="out-tab active" onclick="switchInfluenceTab('forum', this)">PEER STORIES FORUM</button>
+                    <button class="out-tab" onclick="switchInfluenceTab('support', this)">PEER AND COMMUNITY SUPPORT</button>
                 </div>
                 
                 <div id="influence-feed" class="feed-container">
@@ -1755,14 +2005,14 @@
             <!-- Module Detail View (Hidden by default) -->
             <div id="view-module-detail" class="content-view">
                 <div class="outreach-header" style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="closeDetailView()">
-                    <span style="font-size:1.3rem; color:var(--primary); font-weight:bold; font-family:'Poppins', sans-serif;">← Back to Academy Modules</span>
+                    <span style="font-size:1.3rem; color:var(--primary); font-weight:bold; font-family:'Poppins', sans-serif;">Back to Academy Modules</span>
                     <h2 id="module-detail-title" style="margin:0; margin-left:15px; font-size:1.5rem;">Module Details</h2>
                 </div>
                 <div style="background:rgba(255, 255, 255, 0.96); border-radius:12px; padding:12px 18px; margin:15px 0 20px 0; border:1px solid var(--border-color); box-shadow:var(--shadow-sm);">
                     <div class="progress-bar-container" style="background:var(--cream-accent); height:8px; border-radius:4px; margin-bottom:8px; overflow:hidden;">
                         <div id="module-progress" style="background:var(--accent-sage); height:100%; width:100%; border-radius:4px; transition:width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);"></div>
                     </div>
-                    <p id="module-progress-text" style="text-align:center; font-size:0.85rem; color:var(--accent-sage); font-weight:700; margin:0;">✓ Verified Smart Drinking Ambassador Module</p>
+                    <p id="module-progress-text" style="text-align:center; font-size:0.85rem; color:var(--accent-sage); font-weight:700; margin:0;">Verified Smart Drinking Ambassador Module</p>
                 </div>
                 
                 <div id="module-content-list" class="feed-container">
@@ -1773,12 +2023,12 @@
             <!-- Safe Space / Support Hub Detail View -->
             <div id="view-safespace-detail" class="content-view">
                 <div class="outreach-header" style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="closeSafeSpaceDetailView()">
-                    <span style="font-size:1.3rem; color:var(--primary); font-weight:bold; font-family:'Poppins', sans-serif;">← Back to Support Hub</span>
-                    <h2 id="safespace-detail-title" style="margin:0; margin-left:15px; font-size:1.5rem;">Harm-Reduction Guide</h2>
+                    <span style="font-size:1.3rem; color:var(--primary); font-weight:bold; font-family:'Poppins', sans-serif;">Back to Support Hub</span>
+                    <h2 id="safespace-detail-title" style="margin:0; margin-left:15px; font-size:1.5rem;">Harm-Reduction Handbook</h2>
                 </div>
                 
                 <div id="safespace-article-container" class="feed-container" style="padding-top:10px;">
-                    <!-- Harm-Reduction Playbook Injected Here -->
+                    <!-- Harm-Reduction Handbook Injected Here -->
                 </div>
                 
                 <div class="feed-container" style="padding:22px; margin-top:20px; background:rgba(255, 255, 255, 0.96); border-radius:14px; border:1px solid var(--border-color); box-shadow:var(--shadow-sm);">
@@ -1814,7 +2064,7 @@
                         <button class="filter-tab" onclick="filterNews('Enactus Updates', this)">Enactus &amp; Policy Updates</button>
                     </div>
                 </div>
-                <div id="news-feed" class="feed-container grid-layout">
+                <div id="news-feed" class="feed-container">
                     <!-- Populated dynamically -->
                 </div>
             </div>
@@ -1828,79 +2078,51 @@
                         <button class="filter-tab active" onclick="filterRadio('All', this)">All Audio &amp; Podcasts</button>
                         <button class="filter-tab" onclick="filterRadio('Student Panels', this)">Student Panels (Pledge 18)</button>
                         <button class="filter-tab" onclick="filterRadio('Expert Q&As', this)">Expert Q&amp;As</button>
-                        <button class="filter-tab" onclick="filterRadio('StarFM', this)">StarFM</button>
-                        <button class="filter-tab" onclick="filterRadio('ZiFM', this)">ZiFM Stereo</button>
-                        <button class="filter-tab" onclick="filterRadio('Capitalk', this)">Capitalk 100.4FM</button>
+                        <button class="filter-tab" onclick="filterRadio('Community Dialogues', this)">Community Dialogues</button>
                     </div>
                 </div>
-                <div id="radio-feed" class="feed-container list-layout">
+                <div id="radio-feed" class="feed-container">
                     <!-- Populated dynamically -->
                 </div>
             </div>
 
             <!-- Events View -->
             <div id="view-events" class="content-view">
-                <div class="page-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; text-align:left;">
-                    <div style="flex:1; min-width:260px;">
-                        <h2 style="text-align:left; margin-bottom:4px;">Campus &amp; Community Events Hub</h2>
-                        <p style="margin:0; text-align:left;">Marathons, fitness runs, Pledge 18 campaigns, and sober festivals organized by youth leaders and partners.</p>
+                <div class="page-header">
+                    <h2>Campus &amp; Community Events Hub</h2>
+                    <p style="margin-top:-2px; margin-bottom:12px;">Marathons, fitness runs, Pledge 18 campaigns, and sober festivals organized by youth leaders and partners.</p>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="filterEvents('All', this)">All Events</button>
+                        <button class="filter-tab" onclick="filterEvents('Marathons &amp; Sports', this)">Marathons &amp; Sports</button>
+                        <button class="filter-tab" onclick="filterEvents('Campaigns &amp; Pledges', this)">Campaigns &amp; Pledges</button>
+                        <button class="filter-tab" onclick="filterEvents('Sober Festivals', this)">Sober Festivals &amp; Arts</button>
+                        <button class="filter-tab" onclick="filterEvents('Workshops', this)">Workshops</button>
                     </div>
-                    <button onclick="toggleEventPostForm()" class="btn-primary" style="padding:10px 18px;">
-                        + Post an Event (Organizers)
+                </div>
+
+                <div id="events-feed" class="feed-container">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Event Registration & Confirmation View (Dedicated Page) -->
+            <div id="view-event-rsvp-confirm" class="content-view">
+                <div class="outreach-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:18px;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <button type="button" class="btn-cream" onclick="closeEventRSVPConfirmationPage()" style="padding:8px 16px; font-size:0.84rem; font-weight:700;">
+                            Back to Events
+                        </button>
+                        <h2 style="margin:0; font-size:1.45rem; color:var(--primary);">
+                            Event Registration Confirmation
+                        </h2>
+                    </div>
+                    <button type="button" class="btn-primary" onclick="returnToHomepage()" style="padding:8px 18px; font-size:0.84rem; font-weight:700;">
+                        Return to Homepage
                     </button>
                 </div>
 
-                <!-- Organizer Event Post Form (Collapsible) -->
-                <div id="event-post-modal" style="display:none; padding:22px; border-radius:14px; margin-bottom:25px; background:rgba(255, 255, 255, 0.96); border:1px solid var(--border-color); box-shadow:var(--shadow-md); backdrop-filter:blur(12px);">
-                    <h3 style="margin-bottom:12px; font-size:1.25rem;">Post a New Campus Event / Campaign</h3>
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:14px; margin-bottom:14px;">
-                        <div>
-                            <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Event Title:</label>
-                            <input type="text" id="event-input-title" placeholder="e.g. UZ 10km Smart Drinking Marathon" style="width:100%; box-sizing:border-box;" />
-                        </div>
-                        <div>
-                            <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Organizing Body / Chapter:</label>
-                            <input type="text" id="event-input-organizer" placeholder="e.g. Enactus UZ / Delta Corporation" style="width:100%; box-sizing:border-box;" />
-                        </div>
-                        <div>
-                            <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Event Category:</label>
-                            <select id="event-input-category" style="width:100%; box-sizing:border-box;">
-                                <option value="Marathons &amp; Sports">Marathons &amp; Sports</option>
-                                <option value="Campaigns &amp; Pledges">Campaigns &amp; Pledges</option>
-                                <option value="Sober Festivals &amp; Arts">Sober Festivals &amp; Arts</option>
-                                <option value="Workshops">Workshops</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Date &amp; Time:</label>
-                            <input type="text" id="event-input-date" placeholder="e.g. Saturday, Dec 05, 2026 • 07:00 AM" style="width:100%; box-sizing:border-box;" />
-                        </div>
-                    </div>
-                    <div style="margin-bottom:14px;">
-                        <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Venue / Campus Location:</label>
-                        <input type="text" id="event-input-location" placeholder="e.g. UZ Sports Grounds, Mt Pleasant, Harare" style="width:100%; box-sizing:border-box;" />
-                    </div>
-                    <div style="margin-bottom:14px;">
-                        <label style="font-size:0.82rem; display:block; margin-bottom:4px;">Event Description &amp; Details:</label>
-                        <textarea id="event-input-desc" placeholder="Describe the marathon distance, activities, registration info, or campaign goals..." style="width:100%; height:85px; box-sizing:border-box;"></textarea>
-                    </div>
-                    <div style="display:flex; justify-content:flex-end; gap:10px;">
-                        <button onclick="toggleEventPostForm()" class="btn-cream">Cancel</button>
-                        <button onclick="submitNewEvent()" id="btn-submit-event" class="btn-primary">Publish Event</button>
-                    </div>
-                    <p id="event-form-feedback" style="display:none; color:var(--accent-sage); font-weight:bold; margin-top:10px; text-align:center;"></p>
-                </div>
-
-                <div class="filter-tabs" style="margin-bottom:20px;">
-                    <button class="filter-tab active" onclick="filterEvents('All', this)">All Events</button>
-                    <button class="filter-tab" onclick="filterEvents('Marathons &amp; Sports', this)">Marathons &amp; Sports</button>
-                    <button class="filter-tab" onclick="filterEvents('Campaigns &amp; Pledges', this)">Campaigns &amp; Pledges</button>
-                    <button class="filter-tab" onclick="filterEvents('Sober Festivals', this)">Sober Festivals &amp; Arts</button>
-                    <button class="filter-tab" onclick="filterEvents('Workshops', this)">Workshops</button>
-                </div>
-
-                <div id="events-feed" class="feed-container grid-layout">
-                    <!-- Populated dynamically -->
+                <div id="event-rsvp-confirmation-content" class="feed-container" style="max-width:860px; margin:0 auto; padding-top:6px;">
+                    <!-- Populated dynamically by openEventRSVPConfirmationPage -->
                 </div>
             </div>
 
@@ -1908,13 +2130,12 @@
             <div id="view-besure" class="content-view">
                 <div class="outreach-header">
                     <h2>"BeSmart" Moderation &amp; Decision Toolkit</h2>
-                    <p>Interactive alcohol myth-busting, real-world social scenario simulators, and the Inter-University Leaderboard.</p>
+                    <p>AI-powered alcohol myth-busting, rotating real-world social scenario simulators, and your continuous Smart Lifestyle &amp; Moderation Score.</p>
                 </div>
                 
                 <div class="outreach-tabs">
                     <button class="out-tab active" onclick="switchBeSureTab('verify', this)">MYTH VS. FACT CHECKER</button>
                     <button class="out-tab" onclick="switchBeSureTab('real_or_manipulated', this)">SMART SCENARIO SIMULATOR</button>
-                    <button class="out-tab" onclick="switchBeSureTab('mil_challenge', this)">WEEKLY CHALLENGE &amp; LEADERBOARD</button>
                     <button class="out-tab" onclick="switchBeSureTab('mil_score', this)">SMART LIFESTYLE SCORE</button>
                 </div>
                 
@@ -1923,24 +2144,634 @@
                 </div>
             </div>
             
-            <!-- Login / Ambassador Account View inside Portal -->
+            <!-- DELTAS Smart Drinking Ambassador View inside Portal -->
             <div id="view-login" class="content-view">
                 <div class="outreach-header">
-                    <h2>Smart Drinking Ambassador Account</h2>
-                    <p>Manage your Ambassador profile or return to the Multi-Frame Landing Page.</p>
+                    <h2>DELTAS Smart Drinking Ambassador</h2>
+                    <p>Your pathway to earning the official DELTAS Smart Drinking Ambassador Badge, real-time certification progress, and your Ambassador Leadership &amp; Tracking Hub.</p>
                 </div>
-                <div class="outreach-card" style="max-width:460px; margin:25px auto; padding:28px; display:flex; flex-direction:column; gap:16px;">
-                    <div>
-                        <label style="font-size:0.82rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:5px;">Email</label>
-                        <input type="email" id="login-email" placeholder="e.g. ambassador@deltas.org.zw" style="width:100%; box-sizing:border-box;" />
+                <div id="ambassador-hub-container" class="feed-container">
+                    <!-- Populated dynamically by loadAmbassadorHubView() -->
+                </div>
+            </div>
+
+            <!-- =========================================================================
+                 DELTAS CENTRAL ADMINISTRATION & GLOBAL PUBLISHING CONSOLE
+                 Accessible only via verified administrator credentials.
+                 ========================================================================= -->
+            <div id="view-admin-dashboard" class="content-view">
+                <div class="admin-dashboard-container">
+                    
+                    <!-- Console Header -->
+                    <div class="admin-console-header">
+                        <div>
+                            <span class="admin-kicker">CENTRAL ADMINISTRATION &amp; PUBLISHING CONSOLE</span>
+                            <h2 class="admin-console-title">Platform Publishing &amp; Coordination Center</h2>
+                            <p class="admin-console-sub">
+                                Publish verified news dispatches, video podcasts, campus events, and manage active event registrations. Content published here is immediately synchronized globally across all user devices.
+                            </p>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                            <button type="button" class="btn-sage" onclick="viewLivePlatformAsUser()" style="padding:10px 18px; font-size:0.86rem; font-weight:700;">
+                                View Live Platform
+                            </button>
+                            <button type="button" class="btn-primary" onclick="handleLogout()" style="padding:10px 18px; font-size:0.86rem; font-weight:700; background:#DC2626;">
+                                Log Out
+                            </button>
+                        </div>
                     </div>
-                    <div>
-                        <label style="font-size:0.82rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:5px;">Password</label>
-                        <input type="password" id="login-password" placeholder="Enter your password" style="width:100%; box-sizing:border-box;" />
+
+                    <!-- Real-Time Platform Stats Bar -->
+                    <div class="admin-stats-grid">
+                        <div class="admin-stat-card">
+                            <span class="admin-stat-label">Published Articles</span>
+                            <span class="admin-stat-value" id="admin-stat-articles">--</span>
+                            <span class="admin-stat-sub">Live in Youth Impact News</span>
+                        </div>
+                        <div class="admin-stat-card">
+                            <span class="admin-stat-label">Radio &amp; Video Pods</span>
+                            <span class="admin-stat-value" id="admin-stat-radio">--</span>
+                            <span class="admin-stat-sub">Episodes &amp; Live Streams</span>
+                        </div>
+                        <div class="admin-stat-card">
+                            <span class="admin-stat-label">Campus Events</span>
+                            <span class="admin-stat-value" id="admin-stat-events">--</span>
+                            <span class="admin-stat-sub">Active in Calendar</span>
+                        </div>
+                        <div class="admin-stat-card">
+                            <span class="admin-stat-label">Event Registrations</span>
+                            <span class="admin-stat-value" id="admin-stat-rsvps">--</span>
+                            <span class="admin-stat-sub">Student Attendee Signups</span>
+                        </div>
+                        <div class="admin-stat-card">
+                            <span class="admin-stat-label">Pending Accreditations</span>
+                            <span class="admin-stat-value" id="admin-stat-accreditations" style="color:#D97706;">--</span>
+                            <span class="admin-stat-sub">Mentors Awaiting Review</span>
+                        </div>
+                        <div class="admin-stat-card">
+                            <span class="admin-stat-label">Closed Registrations</span>
+                            <span class="admin-stat-value" id="admin-stat-closed-events" style="color:#DC2626;">0</span>
+                            <span class="admin-stat-sub">RSVP Intake Halted</span>
+                        </div>
+                        <div class="admin-stat-card">
+                            <span class="admin-stat-label">Watchdog Alerts</span>
+                            <span class="admin-stat-value" id="admin-stat-reports">--</span>
+                            <span class="admin-stat-sub">Citizen Submissions</span>
+                        </div>
                     </div>
-                    <button onclick="handleLogin()" class="btn-primary" style="width:100%; padding:13px; font-size:0.95rem; margin-top:5px;">Update / Switch Ambassador Account</button>
-                    <button onclick="handleLogout()" class="btn-cream" style="width:100%; padding:11px; font-size:0.88rem;">← Log Out &amp; Return to Landing Page</button>
-                    <p id="login-message" style="color:var(--accent-sage); display:none; text-align:center; font-weight:bold;"></p>
+
+                    <!-- Admin Sub-Navigation Tabs -->
+                    <div class="admin-tab-bar" role="tablist">
+                        <button type="button" class="admin-tab-btn active" id="tab-admin-news" onclick="switchAdminTab('news')">
+                            News &amp; Full Articles
+                        </button>
+                        <button type="button" class="admin-tab-btn" id="tab-admin-radio" onclick="switchAdminTab('radio')">
+                            Radio &amp; Video Pods
+                        </button>
+                        <button type="button" class="admin-tab-btn" id="tab-admin-events" onclick="switchAdminTab('events')">
+                            Events &amp; Registration Control
+                        </button>
+                        <button type="button" class="admin-tab-btn" id="tab-admin-event-registrations" onclick="switchAdminTab('event-registrations')">
+                            Event Registrations
+                        </button>
+                        <button type="button" class="admin-tab-btn" id="tab-admin-accreditations" onclick="switchAdminTab('accreditations')">
+                            Mentor &amp; Counsellor Accreditation
+                        </button>
+                        <button type="button" class="admin-tab-btn" id="tab-admin-support" onclick="switchAdminTab('support')">
+                            Peer Guides &amp; Handbooks
+                        </button>
+                        <button type="button" class="admin-tab-btn" id="tab-admin-watchdog" onclick="switchAdminTab('watchdog')">
+                            Citizen Watchdog Queue
+                        </button>
+                    </div>
+
+                    <!-- TAB 1: NEWS & FULL ARTICLES -->
+                    <div id="admin-panel-news" class="admin-tab-panel">
+                        <div class="admin-panel-card">
+                            <div class="admin-panel-header">
+                                <div>
+                                    <h3 class="admin-panel-title">Publish Verified News Briefing &amp; Full Article</h3>
+                                    <p class="admin-panel-desc">Published articles appear organically in Youth Impact News without admin badges. Readers can view both the summary card and the full article.</p>
+                                </div>
+                            </div>
+
+                            <form id="form-admin-news" onsubmit="event.preventDefault(); submitAdminNewsArticle();">
+                                <div class="admin-form-group">
+                                    <label for="admin-news-title">Article Headline / Title *</label>
+                                    <input type="text" id="admin-news-title" placeholder="e.g. Higher Education Ministry Partners with DELTAS for Zero-Tolerance Campus Safety Policy" required />
+                                </div>
+
+                                <div class="admin-form-grid-2">
+                                    <div class="admin-form-group">
+                                        <label for="admin-news-category">Section Category *</label>
+                                        <select id="admin-news-category" required>
+                                            <option value="Health News">Health News &amp; Harm-Reduction</option>
+                                            <option value="Campus Innovation">Campus Innovation &amp; Tech</option>
+                                            <option value="Student Leadership">Student Leadership &amp; Clubs</option>
+                                            <option value="Research & Policy">Research, Policy &amp; Clinical Findings</option>
+                                        </select>
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="admin-news-author">Author / Publishing Desk (Organic Display) *</label>
+                                        <input type="text" id="admin-news-author" placeholder="e.g. Zimbabwe Health Bureau, UZ Campus News, DELTAS Newsroom" value="DELTAS Newsroom" required />
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label>Poster / Hero Banner (Upload File or Enter Link) *</label>
+                                    <div class="admin-media-upload-container">
+                                        <div class="admin-upload-tabs">
+                                            <button type="button" class="admin-upload-tab-btn active" onclick="switchMediaInputMode('news-poster', 'upload', this)">Upload Media File</button>
+                                            <button type="button" class="admin-upload-tab-btn" onclick="switchMediaInputMode('news-poster', 'url', this)">Enter Image / Video Link</button>
+                                        </div>
+                                        <div id="news-poster-upload-section">
+                                            <div class="admin-dropzone" onclick="document.getElementById('admin-news-poster-file').click()">
+                                                <input type="file" id="admin-news-poster-file" accept="image/*,video/*" style="display:none;" onchange="handleAdminFileUpload(this, 'admin-news-poster', 'news-poster-preview-box', 'admin-news-poster-type')" />
+                                                <strong>Select Poster Image or Video File</strong>
+                                                <p>Supports PNG, JPG, WebP, MP4, WebM (up to 50MB)</p>
+                                            </div>
+                                        </div>
+                                        <div id="news-poster-url-section" style="display:none;">
+                                            <input type="url" id="admin-news-poster-url-input" placeholder="https://images.unsplash.com/photo-..." oninput="syncUrlToTarget('admin-news-poster-url-input', 'admin-news-poster', 'news-poster-preview-box', 'admin-news-poster-type')" />
+                                        </div>
+                                        <!-- Hidden input for final payload -->
+                                        <input type="hidden" id="admin-news-poster" value="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&auto=format&fit=crop&q=80" />
+                                        <input type="hidden" id="admin-news-poster-type" value="image" />
+
+                                        <!-- Live Preview -->
+                                        <div id="news-poster-preview-box" class="admin-media-preview-container" style="display:block;">
+                                            <div class="admin-media-preview-header">
+                                                <span id="news-poster-preview-label">Poster Preview (Image)</span>
+                                                <span id="news-poster-preview-status" style="color:#10B981; font-weight:700;">Ready</span>
+                                            </div>
+                                            <div class="admin-media-preview-content" id="news-poster-preview-content">
+                                                <img id="news-poster-preview-img" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&auto=format&fit=crop&q=80" alt="News Poster Preview" />
+                                                <video id="news-poster-preview-video" style="display:none;" controls></video>
+                                            </div>
+                                        </div>
+
+                                        <div style="font-size:0.78rem; font-weight:700; color:var(--text-muted); margin-top:8px;">Quick Poster Presets:</div>
+                                        <div class="poster-presets-container">
+                                            <div class="poster-preset-thumb selected" onclick="selectNewsPosterPreset(this, 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400');"></div>
+                                            <div class="poster-preset-thumb" onclick="selectNewsPosterPreset(this, 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400');"></div>
+                                            <div class="poster-preset-thumb" onclick="selectNewsPosterPreset(this, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400');"></div>
+                                            <div class="poster-preset-thumb" onclick="selectNewsPosterPreset(this, 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400');"></div>
+                                            <div class="poster-preset-thumb" onclick="selectNewsPosterPreset(this, 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400');"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="admin-news-summary">Brief Excerpt / Feed Summary *</label>
+                                    <textarea id="admin-news-summary" rows="2" placeholder="Brief summary displayed on the card before expanding (1-2 sentences)..." required></textarea>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="admin-news-content">Full Multi-Paragraph Article Content *</label>
+                                    <textarea id="admin-news-content" rows="7" placeholder="Write or paste the full article paragraphs here. Users will read this complete text when opening the article..." required></textarea>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label>In-Article Attached Media (Optional: Photo, Video Clip, or Audio Recording)</label>
+                                    <div class="admin-media-upload-container">
+                                        <div class="admin-upload-tabs">
+                                            <button type="button" class="admin-upload-tab-btn active" onclick="switchMediaInputMode('news-media', 'upload', this)">Upload Media File</button>
+                                            <button type="button" class="admin-upload-tab-btn" onclick="switchMediaInputMode('news-media', 'url', this)">Enter Media Link</button>
+                                        </div>
+                                        <div id="news-media-upload-section">
+                                            <div class="admin-dropzone" onclick="document.getElementById('admin-news-media-file').click()">
+                                                <input type="file" id="admin-news-media-file" accept="image/*,video/*,audio/*" style="display:none;" onchange="handleAdminFileUpload(this, 'admin-news-media-url', 'news-media-preview-box', 'admin-news-media-type')" />
+                                                <strong>Select Photo, Video Clip or Audio Recording File</strong>
+                                                <p>Supports PNG, JPG, MP4, WebM, MP3, WAV, M4A</p>
+                                            </div>
+                                        </div>
+                                        <div id="news-media-url-section" style="display:none;">
+                                            <input type="text" id="admin-news-media-url-input" placeholder="e.g. https://www.youtube.com/watch?v=... or direct media link" oninput="syncUrlToTarget('admin-news-media-url-input', 'admin-news-media-url', 'news-media-preview-box', 'admin-news-media-type')" />
+                                        </div>
+                                        <input type="hidden" id="admin-news-media-url" value="" />
+                                        <input type="hidden" id="admin-news-media-type" value="none" />
+
+                                        <div style="margin-top:10px;">
+                                            <label for="admin-news-media-caption" style="font-size:0.8rem; font-weight:700;">Media Caption &amp; Attribution (Optional)</label>
+                                            <input type="text" id="admin-news-media-caption" placeholder="e.g. Clinical research infographic from UZ College of Health Sciences" />
+                                        </div>
+
+                                        <!-- In-Article Live Preview -->
+                                        <div id="news-media-preview-box" class="admin-media-preview-container">
+                                            <div class="admin-media-preview-header">
+                                                <span id="news-media-preview-label">Attached Media Preview</span>
+                                                <button type="button" class="btn-secondary" onclick="clearAttachedMedia('admin-news-media-url', 'admin-news-media-type', 'news-media-preview-box')" style="padding:2px 8px; font-size:0.72rem;">Clear</button>
+                                            </div>
+                                            <div class="admin-media-preview-content" id="news-media-preview-content">
+                                                <img id="news-media-preview-img" style="display:none;" alt="Attached Image" />
+                                                <video id="news-media-preview-video" style="display:none;" controls></video>
+                                                <audio id="news-media-preview-audio" style="display:none;" controls></audio>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="display:flex; align-items:center; gap:8px; margin-bottom:18px;">
+                                    <input type="checkbox" id="admin-news-hotpick" style="width:18px; height:18px; accent-color:var(--primary);">
+                                    <label for="admin-news-hotpick" style="font-size:0.86rem; font-weight:700; color:var(--text-main); cursor:pointer;">
+                                        Mark as Featured Hot Pick / Urgent Alert
+                                    </label>
+                                </div>
+
+                                <button type="submit" id="btn-submit-admin-news" class="btn-primary" style="padding:12px 28px; font-size:0.95rem; font-weight:700;">
+                                    Publish Full Article to News Feed
+                                </button>
+                                <p id="admin-news-feedback" style="display:none; font-size:0.88rem; font-weight:700; margin-top:12px;"></p>
+                            </form>
+                        </div>
+
+                        <!-- Recent Articles List -->
+                        <div class="admin-panel-card">
+                            <h4 style="font-size:1.1rem; font-weight:800; color:var(--secondary-dark); margin:0 0 16px 0;">Currently Published News Articles</h4>
+                            <div id="admin-recent-articles-list">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: RADIO & VIDEO PODS -->
+                    <div id="admin-panel-radio" class="admin-tab-panel" style="display:none;">
+                        <div class="admin-panel-card">
+                            <div class="admin-panel-header">
+                                <div>
+                                    <h3 class="admin-panel-title">Publish Broadcast Program or Video Podcast</h3>
+                                    <p class="admin-panel-desc">Embed video podcasts (YouTube or video stream) or broadcast audio. When students click, they watch or listen directly inside the platform.</p>
+                                </div>
+                            </div>
+
+                            <form id="form-admin-radio" onsubmit="event.preventDefault(); submitAdminRadioPod();">
+                                <div class="admin-form-group">
+                                    <label for="admin-radio-title">Program / Episode Title *</label>
+                                    <input type="text" id="admin-radio-title" placeholder="e.g. Mind Over Pressure: Breaking the Binge Cycle Before Exam Week" required />
+                                </div>
+
+                                <div class="admin-form-grid-2">
+                                    <div class="admin-form-group">
+                                        <label for="admin-radio-source">Production Studio / Series *</label>
+                                        <select id="admin-radio-source" required>
+                                            <option value="Community Dialogues">Community Dialogues (Live Talk Show)</option>
+                                            <option value="Student Panels">Student Panels (On-Demand Video Podcast)</option>
+                                            <option value="Expert Q&As">Expert Q&amp;As (Clinical &amp; Counseling Briefing)</option>
+                                        </select>
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="admin-radio-host">Host &amp; Panelists *</label>
+                                        <input type="text" id="admin-radio-host" placeholder="e.g. Dr. N. Sibanda &amp; UZ Student Health Board" value="DELTAS Campus Voice Studio" required />
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="admin-radio-airtime">Airtime / Episode Duration *</label>
+                                    <input type="text" id="admin-radio-airtime" placeholder="e.g. Thursdays 19:30 CAT • 24 mins" value="Every Thursday • 19:30 CAT" required />
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label>Episode Media (Upload Video/Audio File or Enter Link) *</label>
+                                    <div class="admin-media-upload-container">
+                                        <div class="admin-upload-tabs">
+                                            <button type="button" class="admin-upload-tab-btn active" onclick="switchMediaInputMode('radio-media', 'upload', this)">Upload Video / Audio File</button>
+                                            <button type="button" class="admin-upload-tab-btn" onclick="switchMediaInputMode('radio-media', 'url', this)">Enter Stream / YouTube Link</button>
+                                        </div>
+                                        <div id="radio-media-upload-section">
+                                            <div class="admin-dropzone" onclick="document.getElementById('admin-radio-media-file').click()">
+                                                <input type="file" id="admin-radio-media-file" accept="video/*,audio/*" style="display:none;" onchange="handleAdminFileUpload(this, 'admin-radio-video', 'radio-media-preview-box', 'admin-radio-media-type')" />
+                                                <strong>Select Episode Video (MP4/WebM) or Audio (MP3/WAV/M4A)</strong>
+                                                <p>Upload the full episode for students to watch or listen</p>
+                                            </div>
+                                        </div>
+                                        <div id="radio-media-url-section" style="display:none;">
+                                            <input type="text" id="admin-radio-video-input" placeholder="e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ or stream URL" value="https://www.youtube.com/watch?v=2n3f8K9vC7A" oninput="syncUrlToTarget('admin-radio-video-input', 'admin-radio-video', 'radio-media-preview-box', 'admin-radio-media-type')" />
+                                        </div>
+                                        <input type="hidden" id="admin-radio-video" value="https://www.youtube.com/watch?v=2n3f8K9vC7A" />
+                                        <input type="hidden" id="admin-radio-media-type" value="video" />
+
+                                        <!-- Live Player Preview -->
+                                        <div id="radio-media-preview-box" class="admin-media-preview-container" style="display:block;">
+                                            <div class="admin-media-preview-header">
+                                                <span id="radio-media-preview-label">Episode Media Ready</span>
+                                                <span id="radio-media-preview-status" style="color:#10B981; font-weight:700;">Ready</span>
+                                            </div>
+                                            <div class="admin-media-preview-content" id="radio-media-preview-content">
+                                                <div id="radio-media-preview-embed" style="width:100%; text-align:center; padding:12px; color:#cbd5e1; font-size:0.84rem;">
+                                                    Configured Stream: YouTube Video Episode
+                                                </div>
+                                                <video id="radio-media-preview-video" style="display:none;" controls></video>
+                                                <audio id="radio-media-preview-audio" style="display:none;" controls></audio>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label>Episode Poster / Thumbnail Banner *</label>
+                                    <div class="admin-media-upload-container">
+                                        <div class="admin-upload-tabs">
+                                            <button type="button" class="admin-upload-tab-btn active" onclick="switchMediaInputMode('radio-poster', 'upload', this)">Upload Media File</button>
+                                            <button type="button" class="admin-upload-tab-btn" onclick="switchMediaInputMode('radio-poster', 'url', this)">Enter Poster Link</button>
+                                        </div>
+                                        <div id="radio-poster-upload-section">
+                                            <div class="admin-dropzone" onclick="document.getElementById('admin-radio-poster-file').click()">
+                                                <input type="file" id="admin-radio-poster-file" accept="image/*,video/*" style="display:none;" onchange="handleAdminFileUpload(this, 'admin-radio-poster', 'radio-poster-preview-box', 'admin-radio-poster-type')" />
+                                                <strong>Select Poster Image or Video File</strong>
+                                                <p>Supports PNG, JPG, WebP, MP4</p>
+                                            </div>
+                                        </div>
+                                        <div id="radio-poster-url-section" style="display:none;">
+                                            <input type="url" id="admin-radio-poster-url-input" placeholder="https://images.unsplash.com/photo-..." oninput="syncUrlToTarget('admin-radio-poster-url-input', 'admin-radio-poster', 'radio-poster-preview-box', 'admin-radio-poster-type')" />
+                                        </div>
+                                        <input type="hidden" id="admin-radio-poster" value="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1200&auto=format&fit=crop&q=80" />
+                                        <input type="hidden" id="admin-radio-poster-type" value="image" />
+
+                                        <div id="radio-poster-preview-box" class="admin-media-preview-container" style="display:block;">
+                                            <div class="admin-media-preview-header">
+                                                <span id="radio-poster-preview-label">Poster Preview (Image)</span>
+                                                <span id="radio-poster-preview-status" style="color:#10B981; font-weight:700;">Ready</span>
+                                            </div>
+                                            <div class="admin-media-preview-content" id="radio-poster-preview-content">
+                                                <img id="radio-poster-preview-img" src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1200&auto=format&fit=crop&q=80" alt="Radio Poster Preview" />
+                                                <video id="radio-poster-preview-video" style="display:none;" controls></video>
+                                            </div>
+                                        </div>
+
+                                        <div style="font-size:0.78rem; font-weight:700; color:var(--text-muted); margin-top:8px;">Quick Thumbnail Presets:</div>
+                                        <div class="poster-presets-container">
+                                            <div class="poster-preset-thumb selected" onclick="selectRadioPosterPreset(this, 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400');"></div>
+                                            <div class="poster-preset-thumb" onclick="selectRadioPosterPreset(this, 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400');"></div>
+                                            <div class="poster-preset-thumb" onclick="selectRadioPosterPreset(this, 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400');"></div>
+                                            <div class="poster-preset-thumb" onclick="selectRadioPosterPreset(this, 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400');"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="admin-radio-summary">Episode Synopsis &amp; Key Discussion Notes *</label>
+                                    <textarea id="admin-radio-summary" rows="4" placeholder="Summarize the core topics covered in this episode, guest insights, and guidance for student listeners..." required></textarea>
+                                </div>
+
+                                <button type="submit" id="btn-submit-admin-radio" class="btn-primary" style="padding:12px 28px; font-size:0.95rem; font-weight:700;">
+                                    Publish Episode to Radio &amp; Pods Hub
+                                </button>
+                                <p id="admin-radio-feedback" style="display:none; font-size:0.88rem; font-weight:700; margin-top:12px;"></p>
+                            </form>
+                        </div>
+
+                        <!-- Active Radio Roster -->
+                        <div class="admin-panel-card">
+                            <h4 style="font-size:1.1rem; font-weight:800; color:var(--secondary-dark); margin:0 0 16px 0;">Active Radio &amp; Podcast Programs</h4>
+                            <div id="admin-recent-radio-list">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: EVENTS & REGISTRATION CONTROL -->
+                    <div id="admin-panel-events" class="admin-tab-panel" style="display:none;">
+                        
+                        <!-- Event Registration Management Table -->
+                        <div class="admin-panel-card">
+                            <div class="admin-panel-header">
+                                <div>
+                                    <h3 class="admin-panel-title">Active Event Registration Manager</h3>
+                                    <p class="admin-panel-desc">Control registration availability for any event. When an event is marked 'Closed', users cannot register or submit RSVPs.</p>
+                                </div>
+                            </div>
+                            <div id="admin-events-manager-list">
+                                <!-- Populated dynamically with toggle buttons -->
+                            </div>
+                        </div>
+
+                        <!-- Publish New Event Form -->
+                        <div class="admin-panel-card">
+                            <div class="admin-panel-header">
+                                <div>
+                                    <h3 class="admin-panel-title">Publish New Campus or Community Event</h3>
+                                    <p class="admin-panel-desc">Add a new event with poster and full venue details to the live Campus &amp; Community Calendar.</p>
+                                </div>
+                            </div>
+
+                            <form id="form-admin-event" onsubmit="event.preventDefault(); submitAdminEvent();">
+                                <div class="admin-form-group">
+                                    <label for="admin-event-title">Event Title *</label>
+                                    <input type="text" id="admin-event-title" placeholder="e.g. National Campus Smart Drinking Leadership Summit" required />
+                                </div>
+
+                                <div class="admin-form-grid-2">
+                                    <div class="admin-form-group">
+                                        <label for="admin-event-category">Event Category *</label>
+                                        <select id="admin-event-category" required>
+                                            <option value="Marathons & Sports">Marathons &amp; Sports</option>
+                                            <option value="Workshops & Seminars">Workshops &amp; Seminars</option>
+                                            <option value="Campus Activations">Campus Activations</option>
+                                            <option value="Community Outreach">Community Outreach</option>
+                                        </select>
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="admin-event-date">Date &amp; Time Display *</label>
+                                        <input type="text" id="admin-event-date" placeholder="e.g. Saturday, Dec 05, 2026 • 09:00 AM" required />
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-grid-2">
+                                    <div class="admin-form-group">
+                                        <label for="admin-event-location">Venue / Campus Location *</label>
+                                        <input type="text" id="admin-event-location" placeholder="e.g. Great Hall, University of Zimbabwe, Harare" required />
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="admin-event-organizer">Organizing Body *</label>
+                                        <input type="text" id="admin-event-organizer" placeholder="e.g. Delta Corporation &amp; Enactus Zimbabwe" value="Delta Corporation &amp; Enactus Zimbabwe" required />
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label>Event Poster / Banner (Upload Media File or Enter Link) *</label>
+                                    <div class="admin-media-upload-container">
+                                        <div class="admin-upload-tabs">
+                                            <button type="button" class="admin-upload-tab-btn active" onclick="switchMediaInputMode('event-poster', 'upload', this)">Upload Media File</button>
+                                            <button type="button" class="admin-upload-tab-btn" onclick="switchMediaInputMode('event-poster', 'url', this)">Enter Poster Link</button>
+                                        </div>
+                                        <div id="event-poster-upload-section">
+                                            <div class="admin-dropzone" onclick="document.getElementById('admin-event-poster-file').click()">
+                                                <input type="file" id="admin-event-poster-file" accept="image/*,video/*" style="display:none;" onchange="handleAdminFileUpload(this, 'admin-event-poster', 'event-poster-preview-box', 'admin-event-poster-type')" />
+                                                <strong>Select Event Poster Image or Video File</strong>
+                                                <p>Supports PNG, JPG, WebP, MP4 (up to 50MB)</p>
+                                            </div>
+                                        </div>
+                                        <div id="event-poster-url-section" style="display:none;">
+                                            <input type="url" id="admin-event-poster-url-input" placeholder="https://images.unsplash.com/photo-..." oninput="syncUrlToTarget('admin-event-poster-url-input', 'admin-event-poster', 'event-poster-preview-box', 'admin-event-poster-type')" />
+                                        </div>
+                                        <input type="hidden" id="admin-event-poster" value="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=1200&auto=format&fit=crop&q=80" />
+                                        <input type="hidden" id="admin-event-poster-type" value="image" />
+
+                                        <div id="event-poster-preview-box" class="admin-media-preview-container" style="display:block;">
+                                            <div class="admin-media-preview-header">
+                                                <span id="event-poster-preview-label">Event Poster Preview</span>
+                                                <span id="event-poster-preview-status" style="color:#10B981; font-weight:700;">Ready</span>
+                                            </div>
+                                            <div class="admin-media-preview-content" id="event-poster-preview-content">
+                                                <img id="event-poster-preview-img" src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=1200&auto=format&fit=crop&q=80" alt="Event Banner Preview" />
+                                                <video id="event-poster-preview-video" style="display:none;" controls></video>
+                                            </div>
+                                        </div>
+
+                                        <div style="font-size:0.78rem; font-weight:700; color:var(--text-muted); margin-top:8px;">Quick Event Poster Presets:</div>
+                                        <div class="poster-presets-container">
+                                            <div class="poster-preset-thumb selected" onclick="selectEventPosterPreset(this, 'https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=400');"></div>
+                                            <div class="poster-preset-thumb" onclick="selectEventPosterPreset(this, 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400');"></div>
+                                            <div class="poster-preset-thumb" onclick="selectEventPosterPreset(this, 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1511578314322-379afb476865?w=400');"></div>
+                                            <div class="poster-preset-thumb" onclick="selectEventPosterPreset(this, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&auto=format&fit=crop&q=80')" style="background-image:url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400');"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="admin-event-description">Full Event Description &amp; Participation Highlights *</label>
+                                    <textarea id="admin-event-description" rows="4" placeholder="Detail the schedule, keynote speakers, workshops, participant packs, and why students should attend..." required></textarea>
+                                </div>
+
+                                <button type="submit" id="btn-submit-admin-event" class="btn-primary" style="padding:12px 28px; font-size:0.95rem; font-weight:700;">
+                                    Publish Event to Campus Calendar
+                                </button>
+                                <p id="admin-event-feedback" style="display:none; font-size:0.88rem; font-weight:700; margin-top:12px;"></p>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- TAB: EVENT REGISTRATIONS & ATTENDEE ROSTERS -->
+                    <div id="admin-panel-event-registrations" class="admin-tab-panel" style="display:none;">
+                        <div class="admin-panel-card">
+                            <div class="admin-panel-header">
+                                <div>
+                                    <h3 class="admin-panel-title">Campus &amp; Community Event Attendee Registrations</h3>
+                                    <p class="admin-panel-desc">All user registration details classified by event name and date. Click any attendee's name to view their full credentials, or use the 'View all details' button on an event.</p>
+                                </div>
+                            </div>
+                            <div id="admin-event-registrations-container">
+                                <!-- Populated dynamically by renderAdminEventRegistrations() -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: MENTOR & COUNSELLOR ACCREDITATIONS -->
+                    <div id="admin-panel-accreditations" class="admin-tab-panel" style="display:none;">
+                        <div class="admin-panel-card">
+                            <div class="admin-panel-header">
+                                <div>
+                                    <h3 class="admin-panel-title">Pending Mentor &amp; Counsellor Accreditations</h3>
+                                    <p class="admin-panel-desc">Review submitted professional qualifications and bio details. Approved applicants receive the official DELTAS Verification Badge and are added to the accredited mentorship directory.</p>
+                                </div>
+                            </div>
+                            <div id="admin-pending-accreditations-container">
+                                <!-- Populated dynamically by renderAdminAccreditationsQueue() -->
+                            </div>
+                        </div>
+
+                        <!-- Active Verified Mentors Roster -->
+                        <div class="admin-panel-card">
+                            <h4 style="font-size:1.1rem; font-weight:800; color:var(--secondary-dark); margin:0 0 16px 0;">Currently Verified Mentors &amp; Clinical Counsellors</h4>
+                            <div id="admin-verified-mentors-container">
+                                <!-- Populated dynamically by renderAdminAccreditationsQueue() -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: PEER GUIDES & HANDBOOKS -->
+                    <div id="admin-panel-support" class="admin-tab-panel" style="display:none;">
+                        <div class="admin-panel-card">
+                            <div class="admin-panel-header">
+                                <div>
+                                    <h3 class="admin-panel-title">Publish Peer Guide, Wellness Handbook or Student Story</h3>
+                                    <p class="admin-panel-desc">Shared to the Above Influence Support Hub for peer inspiration and practical harm-reduction advice.</p>
+                                </div>
+                            </div>
+
+                            <form id="form-admin-support" onsubmit="event.preventDefault(); submitAdminPeerStory();">
+                                <div class="admin-form-group">
+                                    <label for="admin-support-title">Guide / Story Title *</label>
+                                    <input type="text" id="admin-support-title" placeholder="e.g. Navigating Weekend Social Pressures: 5 Respectful Refusal Scripts" required />
+                                </div>
+
+                                <div class="admin-form-grid-2">
+                                    <div class="admin-form-group">
+                                        <label for="admin-support-category">Track / Topic *</label>
+                                        <select id="admin-support-category" required>
+                                            <option value="Sobriety Milestones">Sobriety Milestones &amp; Recovery</option>
+                                            <option value="Exam Stress Management">Exam Stress &amp; Academic Focus</option>
+                                            <option value="Harm-Reduction Strategies">Harm-Reduction Strategies &amp; Hydration</option>
+                                            <option value="Peer Mentorship Advice">Peer Mentorship Advice &amp; Scripts</option>
+                                        </select>
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="admin-support-author">Contributor Tag (Organic Handle) *</label>
+                                        <input type="text" id="admin-support-author" placeholder="e.g. Tinashe M. (NUST Peer Educator), Chipo K. (UZ)" value="DELTAS Wellness Team" required />
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label>Poster / Guide Media (Upload Media File or Enter Link)</label>
+                                    <div class="admin-media-upload-container">
+                                        <div class="admin-upload-tabs">
+                                            <button type="button" class="admin-upload-tab-btn active" onclick="switchMediaInputMode('support-poster', 'upload', this)">Upload Media File</button>
+                                            <button type="button" class="admin-upload-tab-btn" onclick="switchMediaInputMode('support-poster', 'url', this)">Enter Poster Link</button>
+                                        </div>
+                                        <div id="support-poster-upload-section">
+                                            <div class="admin-dropzone" onclick="document.getElementById('admin-support-poster-file').click()">
+                                                <input type="file" id="admin-support-poster-file" accept="image/*,video/*" style="display:none;" onchange="handleAdminFileUpload(this, 'admin-support-poster', 'support-poster-preview-box', 'admin-support-poster-type')" />
+                                                <strong>Select Poster Image or Video File</strong>
+                                                <p>Supports PNG, JPG, WebP, MP4</p>
+                                            </div>
+                                        </div>
+                                        <div id="support-poster-url-section" style="display:none;">
+                                            <input type="url" id="admin-support-poster-url-input" placeholder="https://images.unsplash.com/photo-..." oninput="syncUrlToTarget('admin-support-poster-url-input', 'admin-support-poster', 'support-poster-preview-box', 'admin-support-poster-type')" />
+                                        </div>
+                                        <input type="hidden" id="admin-support-poster" value="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&auto=format&fit=crop&q=80" />
+                                        <input type="hidden" id="admin-support-poster-type" value="image" />
+
+                                        <div id="support-poster-preview-box" class="admin-media-preview-container" style="display:block;">
+                                            <div class="admin-media-preview-header">
+                                                <span id="support-poster-preview-label">Guide Poster Preview</span>
+                                                <span id="support-poster-preview-status" style="color:#10B981; font-weight:700;">Ready</span>
+                                            </div>
+                                            <div class="admin-media-preview-content" id="support-poster-preview-content">
+                                                <img id="support-poster-preview-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&auto=format&fit=crop&q=80" alt="Support Poster Preview" />
+                                                <video id="support-poster-preview-video" style="display:none;" controls></video>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="admin-support-content">Full Guide Content &amp; Action Steps *</label>
+                                    <textarea id="admin-support-content" rows="6" placeholder="Write the step-by-step guidance or peer narrative..." required></textarea>
+                                </div>
+
+                                <button type="submit" id="btn-submit-admin-support" class="btn-primary" style="padding:12px 28px; font-size:0.95rem; font-weight:700;">
+                                    Publish Guide to Support Hub
+                                </button>
+                                <p id="admin-support-feedback" style="display:none; font-size:0.88rem; font-weight:700; margin-top:12px;"></p>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: WATCHDOG MODERATION QUEUE -->
+                    <div id="admin-panel-watchdog" class="admin-tab-panel" style="display:none;">
+                        <div class="admin-panel-card">
+                            <div class="admin-panel-header">
+                                <div>
+                                    <h3 class="admin-panel-title">Citizen Watchdog Alert Moderation Queue</h3>
+                                    <p class="admin-panel-desc">Incoming anonymous reports on counterfeit alcohol, unlicensed selling, or underage sales submitted by students.</p>
+                                </div>
+                            </div>
+                            <div id="admin-watchdog-queue-list">
+                                <p style="text-align:center; padding:20px; color:var(--text-muted);">Loading watchdog reports...</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -1977,6 +2808,173 @@
                 <span id="nav-login-text">Ambassador</span>
             </a>
         </nav>
+    </div>
+
+    <!-- =========================================================================
+         FULL ARTICLE READER MODAL (IN-APP MULTI-PARAGRAPH DISPATCH VIEWER)
+         ========================================================================= -->
+    <div id="article-reader-modal" class="landing-modal-overlay" style="display:none;" onclick="if(event.target === this) closeArticleReaderModal()">
+        <div class="article-reader-card" role="dialog" aria-labelledby="article-reader-title">
+            <button type="button" class="modal-close-btn" onclick="closeArticleReaderModal()" aria-label="Close Reader" style="z-index:10; background:rgba(0,0,0,0.6); color:#fff; top:14px; right:14px;">&times;</button>
+            <div class="article-reader-hero-wrapper" id="article-reader-hero" style="background-image:url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&auto=format&fit=crop&q=80');">
+                <div class="article-reader-hero-overlay">
+                    <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;">
+                        <span id="article-reader-category" style="background:var(--primary); color:#fff; padding:5px 14px; border-radius:999px; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">
+                            Health News
+                        </span>
+                        <span id="article-reader-date" style="color:#E2E8F0; font-size:0.8rem; font-weight:600;">
+                            Latest Dispatch
+                        </span>
+                    </div>
+                    <div style="color:#FFE055; font-size:0.82rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:6px;" id="article-reader-source">
+                        DELTAS Newsroom
+                    </div>
+                    <h2 id="article-reader-title" style="color:#ffffff; font-size:1.45rem; line-height:1.3; margin:0; text-shadow:0 2px 8px rgba(0,0,0,0.5);">
+                        Article Headline
+                    </h2>
+                </div>
+            </div>
+            <div class="article-reader-content">
+                <div id="article-reader-summary-box" style="padding:14px 18px; border-radius:12px; background:var(--card-bg-warm); border-left:4px solid var(--primary); margin-bottom:22px; font-size:1.02rem; font-weight:600; color:var(--text-main); line-height:1.6;">
+                    Summary excerpt
+                </div>
+                <!-- Attached Media Container (Photo, Video, or Audio) -->
+                <div id="article-reader-attached-media" style="display:none; margin-bottom:24px;"></div>
+                <div id="article-reader-body" class="article-reader-body">
+                    <!-- Populated dynamically with full multi-paragraph article -->
+                </div>
+                <div style="margin-top:28px; padding-top:20px; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                    <span style="font-size:0.84rem; color:var(--text-muted); font-weight:600;">+5 Smart Lifestyle Points awarded on reading</span>
+                    <button type="button" class="btn-primary" onclick="closeArticleReaderModal()" style="padding:10px 24px; font-size:0.88rem; font-weight:700;">
+                        Close Reader
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         PODCAST & VIDEO PLAYER MODAL
+         ========================================================================= -->
+    <div id="podcast-video-modal" class="landing-modal-overlay" style="display:none;" onclick="if(event.target === this) closePodcastVideoModal()">
+        <div class="podcast-video-card" role="dialog" aria-labelledby="podcast-video-title">
+            <button type="button" class="modal-close-btn" onclick="closePodcastVideoModal()" aria-label="Close Video Player" style="z-index:10; background:rgba(255,255,255,0.15); color:#fff; top:14px; right:14px;">&times;</button>
+            <div class="podcast-video-wrapper" id="podcast-video-wrapper">
+                <!-- Dynamically populated iframe or video element -->
+            </div>
+            <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;">
+                    <span id="podcast-video-studio" style="background:var(--primary); color:#fff; padding:5px 14px; border-radius:999px; font-size:0.75rem; font-weight:800; text-transform:uppercase;">
+                        Studio
+                    </span>
+                    <span id="podcast-video-airtime" style="color:#FFE055; font-size:0.82rem; font-weight:700;">
+                        Airtime
+                    </span>
+                </div>
+                <h3 id="podcast-video-title" style="color:#ffffff; font-size:1.35rem; line-height:1.35; margin:0 0 10px 0;">
+                    Program Title
+                </h3>
+                <div id="podcast-video-host" style="font-size:0.86rem; color:#A7F3D0; font-weight:600; margin-bottom:14px;">
+                    Hosted by: Host Name
+                </div>
+                <div id="podcast-video-synopsis" style="font-size:0.95rem; line-height:1.68; color:#E2E8F0; background:rgba(255,255,255,0.06); padding:16px; border-radius:12px; margin-bottom:18px;">
+                    Episode Synopsis &amp; Discussion Points
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-top:1px solid rgba(255,255,255,0.12); padding-top:14px;">
+                    <span style="font-size:0.82rem; color:#A7F3D0; font-weight:600;">+5 Smart Lifestyle Points awarded on listen/watch</span>
+                    <button type="button" class="btn-primary" onclick="closePodcastVideoModal()" style="padding:10px 24px; font-size:0.88rem; font-weight:700;">
+                        Close Player
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         CANDIDATE QUALIFICATION DOCUMENT INSPECTION MODAL (ADMIN CONSOLE)
+         ========================================================================= -->
+    <div id="admin-document-inspection-modal" class="landing-modal-overlay" style="display:none;" onclick="if(event.target === this) closeAdminDocumentInspectionModal()">
+        <div class="landing-modal-card" style="max-width:980px; width:95%; max-height:92vh; overflow-y:auto; padding:0; border-radius:18px; background:#FFFFFF; text-align:left; display:flex; flex-direction:column; box-shadow:var(--shadow-xl);">
+            <!-- Modal Header -->
+            <div style="padding:18px 24px; background:linear-gradient(135deg, #0F5132 0%, #15803D 100%); color:#FFFFFF; display:flex; justify-content:space-between; align-items:center; border-top-left-radius:18px; border-top-right-radius:18px;">
+                <div>
+                    <span style="font-size:0.75rem; background:rgba(255,255,255,0.2); color:#FFFFFF; padding:2px 8px; border-radius:4px; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">Accreditation Credential Audit</span>
+                    <h3 id="admin-modal-doc-title" style="margin:4px 0 0 0; font-size:1.25rem; font-weight:800; color:#FFFFFF;">Candidate Qualification Inspection</h3>
+                    <div id="admin-modal-doc-subtitle" style="font-size:0.82rem; color:#D1FAE5; margin-top:2px;">Applicant Verified Information &amp; Submitted Documents</div>
+                </div>
+                <button type="button" class="modal-close-btn" onclick="closeAdminDocumentInspectionModal()" aria-label="Close" style="position:static; width:34px; height:34px; font-size:1.4rem; background:rgba(255,255,255,0.2); color:#FFFFFF; border-radius:50%; display:flex; align-items:center; justify-content:center; border:none; cursor:pointer;">&times;</button>
+            </div>
+
+            <!-- Modal Body: Split view (Document Viewer on Left, Candidate Details on Right) -->
+            <div style="padding:22px; display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:22px; align-items:start;" id="admin-modal-doc-grid">
+                <!-- Left: Full Document Inspection Stage -->
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span style="font-size:0.78rem; font-weight:800; color:var(--text-muted); text-transform:uppercase;">Submitted Credential Document</span>
+                        <div style="display:flex; gap:8px;">
+                            <a id="admin-modal-doc-download" href="#" target="_blank" download class="btn-outline" style="font-size:0.78rem; padding:4px 12px; text-decoration:none; font-weight:700;">Open Original File</a>
+                        </div>
+                    </div>
+
+                    <div id="admin-modal-doc-viewer" style="background:#0F172A; border-radius:12px; overflow:hidden; min-height:360px; max-height:560px; display:flex; align-items:center; justify-content:center; border:1px solid #334155; padding:8px;">
+                        <!-- Dynamically populated <img>, <iframe>, or document viewer -->
+                    </div>
+                </div>
+
+                <!-- Right: Candidate Profile & Full Application Information -->
+                <div style="background:var(--card-bg-warm); border:1px solid var(--border-color); border-radius:12px; padding:18px;">
+                    <h4 style="font-size:0.85rem; font-weight:800; text-transform:uppercase; color:var(--primary); margin:0 0 12px 0;">Applicant Verified Profile</h4>
+                    
+                    <div style="margin-bottom:12px;">
+                        <div style="font-size:0.72rem; text-transform:uppercase; color:var(--text-muted); font-weight:700;">Candidate Name</div>
+                        <div id="admin-modal-applicant-name" style="font-size:1.05rem; font-weight:800; color:var(--text-main);">--</div>
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        <div style="font-size:0.72rem; text-transform:uppercase; color:var(--text-muted); font-weight:700;">Role &amp; Chapter</div>
+                        <div id="admin-modal-applicant-role" style="font-size:0.9rem; font-weight:700; color:var(--primary);">--</div>
+                        <div id="admin-modal-applicant-inst" style="font-size:0.82rem; color:var(--text-muted); font-weight:600;">--</div>
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        <div style="font-size:0.72rem; text-transform:uppercase; color:var(--text-muted); font-weight:700;">Specialization &amp; Focus</div>
+                        <div id="admin-modal-applicant-spec" style="font-size:0.84rem; color:var(--text-main); line-height:1.4;">--</div>
+                    </div>
+
+                    <div style="margin-bottom:14px;">
+                        <div style="font-size:0.72rem; text-transform:uppercase; color:var(--text-muted); font-weight:700;">Professional Bio &amp; Qualifications</div>
+                        <div id="admin-modal-applicant-bio" style="font-size:0.82rem; color:var(--text-muted); line-height:1.45; max-height:130px; overflow-y:auto; background:#FFFFFF; padding:10px; border-radius:6px; border:1px solid var(--border-color);">--</div>
+                    </div>
+
+                    <div style="margin-bottom:16px; padding:10px; background:#FFFFFF; border-radius:6px; border:1px solid var(--border-color); font-size:0.78rem;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                            <span style="color:var(--text-muted);">Filename:</span>
+                            <strong id="admin-modal-doc-filename" style="color:var(--text-main);">--</strong>
+                        </div>
+                        <div style="display:flex; justify-content:space-between;">
+                            <span style="color:var(--text-muted);">Uploaded:</span>
+                            <span id="admin-modal-doc-date" style="color:var(--text-main);">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Direct Decision Actions in Modal -->
+                    <div id="admin-modal-actions" style="display:flex; flex-direction:column; gap:8px;">
+                        <button type="button" id="admin-modal-btn-approve" class="btn-primary" style="width:100%; padding:10px; font-weight:700; font-size:0.88rem;">
+                            Approve Accreditation &amp; Award Verified Badge
+                        </button>
+                        <button type="button" id="admin-modal-btn-decline" class="btn-cream" style="width:100%; padding:9px; font-weight:700; font-size:0.85rem;">
+                            Decline Application
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Admin Console Quick Return Pill (Visible to logged-in administrator when viewing member pages) -->
+    <div id="admin-floating-return" class="admin-floating-pill" style="display:none;" onclick="openAdminDashboard()">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        <span>Admin Console</span>
     </div>
 
     <script src="app.js"></script>
