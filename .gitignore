@@ -19,6 +19,7 @@ frontend/android/
 *.db
 archive/
 github_upload/
+scratch/
 
 # Environment & Secrets
 .env.*
