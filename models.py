@@ -17,6 +17,10 @@ class Article(Base):
     summary = Column(Text, nullable=True)
     full_content = Column(Text, nullable=True)
     image_url = Column(String, nullable=True)
+    poster_type = Column(String, default="image", nullable=True) # 'image' or 'video'
+    media_url = Column(String, nullable=True) # In-article attached media file / link
+    media_type = Column(String, default="none", nullable=True) # 'image', 'video', 'audio', 'none'
+    media_caption = Column(String, nullable=True)
     deep_overview = Column(Text, nullable=True)
     deep_facts = Column(Text, nullable=True) # JSON list of strings
     deep_verdict = Column(Text, nullable=True)
@@ -32,6 +36,12 @@ class RadioProgram(Base):
     schedule = Column(String, nullable=True)
     presenter = Column(String, nullable=True)
     url = Column(String)
+    category = Column(String, default="Campus Voice", nullable=True)
+    poster_url = Column(String, nullable=True)
+    video_url = Column(String, nullable=True)
+    audio_url = Column(String, nullable=True)
+    media_type = Column(String, default="video", nullable=True) # 'video' or 'audio'
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
 class Opportunity(Base):
     __tablename__ = "opportunities"
@@ -48,11 +58,20 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
+    full_name = Column(String, nullable=True)
     email = Column(String, unique=True, index=True, nullable=True)
+    phone = Column(String, nullable=True)
+    date_of_birth = Column(String, nullable=True)
+    gender = Column(String, nullable=True)
     password_hash = Column(String, nullable=True)
     university = Column(String, default="University of Zimbabwe (UZ)", nullable=True)
     age = Column(Integer, nullable=True)
     interests = Column(String, nullable=True)
+    google_id = Column(String, nullable=True)
+    google_linked = Column(Boolean, default=False)
+    referral_code = Column(String, nullable=True)
+    is_admin = Column(Boolean, default=False)
+    role = Column(String, default="user")
     
 class UserActivity(Base):
     __tablename__ = "user_activities"
@@ -183,7 +202,10 @@ class CampusEvent(Base):
     location = Column(String)
     description = Column(Text)
     banner_url = Column(String, nullable=True)
+    video_url = Column(String, nullable=True)
+    media_type = Column(String, default="image", nullable=True) # 'image' or 'video'
     rsvp_count = Column(Integer, default=0)
+    is_closed = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
 
@@ -227,6 +249,11 @@ class UserEventRSVP(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), index=True)
     event_id = Column(Integer, ForeignKey("campus_events.id"), index=True)
+    full_name = Column(String, nullable=True)
+    age = Column(Integer, nullable=True)
+    gender = Column(String, nullable=True)
+    email = Column(String, nullable=True)
+    phone = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     user = relationship("User")
@@ -246,3 +273,23 @@ class UserStoryLike(Base):
 
     user = relationship("User")
     experience = relationship("SafeSpaceExperience")
+
+
+class MentorApplication(Base):
+    __tablename__ = "mentor_applications"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    name = Column(String, index=True)
+    role = Column(String)  # Clinical & Mental Health Counsellor, Peer Sobriety & Moderation Mentor, etc.
+    institution = Column(String, default="University of Zimbabwe (UZ)")
+    specialization = Column(String)
+    bio = Column(Text)
+    file_name = Column(String, nullable=True)
+    file_url = Column(String, nullable=True)
+    status = Column(String, default="pending")  # 'pending', 'approved', 'rejected'
+    verified = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    user = relationship("User")
+
